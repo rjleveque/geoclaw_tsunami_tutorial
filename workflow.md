@@ -9,7 +9,7 @@ notebooks that create these tutorial pages):
     $ git clone https://github.com/rjleveque/geoclaw_tsunami_tutorial.git
 
 This will create a new directory named `geoclaw_tsunami_tutorial`
-contains a subdirectory `GTT` (short for GeoClaw Tsunami Tutorial)
+containing a subdirectory `GTT` (short for GeoClaw Tsunami Tutorial)
 that contains the examples that we will be working with.
 (The top level directory also contains a lot of markdown and other files
 that are used in building the Jupyter Book that you are reading).
@@ -25,7 +25,7 @@ which can be set in the bash shell via:
 
 The export command creates a new environment variable named `GTT` that now
 points to this directory, since `pwd` prints the working directory (you
-could alternatively type in the full path name in defining `GTT`.  
+could alternatively type in the full path name in defining `GTT`).  
 
 You can use this variable in any bash command by using `$GTT`, which gets
 replaced by its definition, so for example:
@@ -36,8 +36,6 @@ should print out the expected full path.  Files within this directory
 will often be referred to in this tutorial as e.g.
 `$GTT/topo/CopalisTopo.ipynb`, which is the Jupyter notebook that
 we will use to create a topofile for one of the examples.
-(The rendered version of that particular notebook also shows up in the
-tutorial as [CopalisTopo](GTT/topo/CopalisTopo].
 
 Since these tutorials will be evolving, in the future you may need to update the
 version on your computer, via::
@@ -52,7 +50,11 @@ You should also clone the Clawpack
 since this contains a few other examples and several Jupyter notebooks
 illustrating GeoClaw concepts.
 
-After cloning the main repository and setting `$CLAW` to point to the
+After cloning the main Clawpack repository, (using the `git clone` option from
+[Options for installing Clawpack Fortran
+codes](https://www.clawpack.org/installing_fortcodes.html#installing-fortcodes), 
+as suggested in [](prerequisites)), 
+and setting `$CLAW` to point to the
 top level of the Clawpack directory, do the following:
 
 ```
@@ -68,8 +70,8 @@ be doing), then you may have "merge conflicts" when you try to update the
 examples using `git pull`, since the version in your clone may now differ
 from the version on Github that was modified in the latest version.
 
-For this reason we suggest that you do not run examples directly in
-`$GTT`.  Instead, copy any example directories or notebooks to another
+For this reason **we strongly suggest that you do not run examples directly in
+`$GTT`**.  Instead, copy any example directories or notebooks to another
 location and work on it there.  You might want to put all your examples,
 and new ones you create, in a directory that you turn into a git repository of
 your own so that you can more easily keep track of your own changes and
@@ -80,7 +82,7 @@ want (but not within the `$GTT` or `$CLAW` directories) and then set an
 environment variable to point to this directory, and call it e.g. `$MYGTT`.
 Then before running the Jupyter notebook `$GTT/topo/CopalisTopo.ipynb`,
 for example (which is rendered in this tutorial as
-[CopalisTopo](GTT/topo/CopalisTopo),
+[](GTT/topo/CopalisTopo)),
 you could first do:
 
     $ cp -r $GTT/topo $MYGTT/

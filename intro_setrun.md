@@ -62,6 +62,7 @@ See
 ### fgmax grids to capture maxima
 
 - [Fixed grid monitoring](https://www.clawpack.org/fgmax.html)
+- Centering fgmax grid points in computational grid cells
 
 ### fgout grids for frequent output on fixed grids
 
