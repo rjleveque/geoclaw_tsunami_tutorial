@@ -2,22 +2,22 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: markdown/intro
+root: intro
 parts:
   - caption: Overview and introduction
     chapters:
-    - file: markdown/prerequisites
-    - file: markdown/workflow
-    - file: markdown/testing_chile2010
+    - file: prerequisites
+    - file: workflow
+    - file: testing_chile2010
   - caption: Setting up and running GeoClaw
     chapters:
-    - file: markdown/intro_setrun
+    - file: intro_setrun
   - caption: Postprocessing and plotting GeoClaw output
     chapters:
-    - file: markdown/intro_postproc
+    - file: intro_postproc
   - caption: GeoClaw examples
     chapters:
-    - file: markdown/intro_examples
+    - file: intro_examples
     - file: GTT/CopalisBeach/README
     - file: GTT/topo/README
     - file: GTT/topo/CopalisTopo
@@ -25,5 +25,5 @@ parts:
     - file: GTT/dtopo/ASCE_SIFT_Region2
   - caption: Resources
     chapters:
-    - file: markdown/intro_resources
-    - file: markdown/biblio
+    - file: intro_resources
+    - file: biblio

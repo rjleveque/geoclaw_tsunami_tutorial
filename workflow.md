@@ -37,7 +37,7 @@ will often be referred to in this tutorial as e.g.
 `$GTT/topo/CopalisTopo.ipynb`, which is the Jupyter notebook that
 we will use to create a topofile for one of the examples.
 (The rendered version of that particular notebook also shows up in the
-tutorial as [CopalisTopo](topo/CopalisTopo].
+tutorial as [CopalisTopo](GTT/topo/CopalisTopo].
 
 Since these tutorials will be evolving, in the future you may need to update the
 version on your computer, via::
@@ -80,7 +80,7 @@ want (but not within the `$GTT` or `$CLAW` directories) and then set an
 environment variable to point to this directory, and call it e.g. `$MYGTT`.
 Then before running the Jupyter notebook `$GTT/topo/CopalisTopo.ipynb`,
 for example (which is rendered in this tutorial as
-[CopalisTopo](topo/CopalisTopo),
+[CopalisTopo](GTT/topo/CopalisTopo),
 you could first do:
 
     $ cp -r $GTT/topo $MYGTT/
