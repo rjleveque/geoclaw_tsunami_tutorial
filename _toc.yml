@@ -1,0 +1,29 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: markdown/intro
+parts:
+  - caption: Overview and introduction
+    chapters:
+    - file: markdown/prerequisites
+    - file: markdown/workflow
+    - file: markdown/testing_chile2010
+  - caption: Setting up and running GeoClaw
+    chapters:
+    - file: markdown/intro_setrun
+  - caption: Postprocessing and plotting GeoClaw output
+    chapters:
+    - file: markdown/intro_postproc
+  - caption: GeoClaw examples
+    chapters:
+    - file: markdown/intro_examples
+    - file: GTT/CopalisBeach/README
+    - file: GTT/topo/README
+    - file: GTT/topo/CopalisTopo
+    - file: GTT/dtopo/README
+    - file: GTT/dtopo/ASCE_SIFT_Region2
+  - caption: Resources
+    chapters:
+    - file: markdown/intro_resources
+    - file: markdown/biblio
