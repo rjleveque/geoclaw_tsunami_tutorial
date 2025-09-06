@@ -18,6 +18,8 @@ and in the NSF-funded Cascadia CoPes Hub, and will be evolving to meet these
 needs.  It should also be useful to other new users of GeoClaw, and will be
 made more generic in the future.
 
+See [](workflow) for more details on cloning and using this repository.
+
 
 ## Other learning resources:
 

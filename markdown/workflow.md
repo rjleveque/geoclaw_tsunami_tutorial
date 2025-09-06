@@ -9,27 +9,35 @@ notebooks that create these tutorial pages):
     $ git clone https://github.com/rjleveque/geoclaw_tsunami_tutorial.git
 
 This will create a new directory named `geoclaw_tsunami_tutorial`
-which also contains a subdirectory of the same name, which is really the top
-level in relation to these notes and the examples.  You might want to set an
-environment variable to point to this directly. 
-In this tutorial this will be called `$GTT` (for GeoClaw Tsunami Tutorial)
+contains a subdirectory `GTT` (short for GeoClaw Tsunami Tutorial)
+that contains the examples that we will be working with.
+(The top level directory also contains a lot of markdown and other files
+that are used in building the Jupyter Book that you are reading).
+
+You might want to set an
+environment variable that contains the full path (on your computer)
+to the `GTT` subdirectory. 
+In this tutorial this variable will be called `GTT`
 which can be set in the bash shell via:
 
-    $ cd geoclaw_tsunami_tutorial/geoclaw_tsunami_tutorial
+    $ cd geoclaw_tsunami_tutorial/GTT
     $ export GTT=`pwd`
 
 The export command creates a new environment variable named `GTT` that now
 points to this directory, since `pwd` prints the working directory (you
 could alternatively type in the full path name in defining `GTT`.  
 
-You can use this variable in any bash command by using `$GTT` which gets
+You can use this variable in any bash command by using `$GTT`, which gets
 replaced by its definition, so for example:
 
     $ echo $GTT
 
 should print out the expected full path.  Files within this directory
-will often be referred to in these notes as e.g. `$GTT/workflow.md`, which
-is the markdown file that creates the page you are now reading.
+will often be referred to in this tutorial as e.g.
+`$GTT/topo/CopalisTopo.ipynb`, which is the Jupyter notebook that
+we will use to create a topofile for one of the examples.
+(The rendered version of that particular notebook also shows up in the
+tutorial as [CopalisTopo](topo/CopalisTopo].
 
 Since these tutorials will be evolving, in the future you may need to update the
 version on your computer, via::
@@ -81,6 +89,15 @@ which would recursively copy the entire `$GTT/topo` into `$MYGTT/topo`. Then
 run the notebook in that directory, so that the one in `$GTT/topo` is
 unchanged.
 
+To start with, you could do:
+
+    $ cp -r $GTT/* $MYGTT/*
+
+to recursively copy all files and subdirectories in `$GTT` to `$MYGTT`, but
+later if you want to move something new over you might not want to overwrite
+your own versions of earlier tests that are already in `$MYGTT`, so you
+might have to be more selective in what you copy.
+
 Similarly, to run the notebooks in `$CLAW/apps/notebooks/geoclaw/chile2010a`
 you might first copy this entire directory to `$MYGTT`, and then running the
 notebooks should give you output similar to this
@@ -92,4 +109,11 @@ Of course you can organize `$MYGTT` however you want, e.g. you might want an
 `apps` subdirectory within it for things you copied from `$CLAW/apps` and a
 `mygeo` subdirectory for new GeoClaw experiments that you are setting up on
 your own.
+
+You might also want to turn your `$MYGTT` directory into your own git
+repository. Using version control regularly is a good idea when developing
+code, for many reasons, whether you are sharing code with others or think
+you are working entirely on your own (in which case you still need to
+collaborate with your past and future self, and using version control makes
+this far easier!)  There are many excellent git tutorials online.
 
