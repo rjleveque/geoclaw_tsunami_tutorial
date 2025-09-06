@@ -70,6 +70,8 @@ if you want to change any of the data in these files, do not modify them
 directly.  Instead modify `setrun.py`, which is much more user-friendly,
 and is always used to create the `.data` files.
 
+See [](intro_setrun) for more information on modifying `setrun.py`.
+
 Next:
 
     $ make output
@@ -99,7 +101,7 @@ You might also want to write custom scripts to read in data from `_output`
 and make plots (in Python or any other graphics package you are comfortable
 with).
 
-(The difficulty: AMR data needs to be handled properly. More to come...)
+See [](intro_postproc) for more information.
 
 ## Dependency checking
 

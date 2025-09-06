@@ -17,11 +17,14 @@ need to clone the separate [apps repository](https://www.clawpack.org/apps.html)
 that contains the examples for this tutorial.
 
 Running Clawpack code requires using Makefiles and is generally done from
-the command line in a linux or MacOS shell. Use of Windows is not generally
-supported for Clawpack.
+the command line in a linux or MacOS shell (and on a Mac you must also
+install the 
+[xcode command line tools](https://developer.apple.com/xcode/resources/).
+The use of Windows is not generally supported for Clawpack.
 
-After installing clawpack,
-you should set an environment variable `$CLAW` to point to the top level of
+After installing clawpack, you should
+[set some environment variables](https://www.clawpack.org/setenv.html).
+In particular, set `$CLAW` to point to the top level of
 your clawpack installation, e.g. in a bash shell:
 
     $ export CLAW=/full/path/to/clawpack

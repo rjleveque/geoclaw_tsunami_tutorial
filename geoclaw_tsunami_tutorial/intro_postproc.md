@@ -1,0 +1,38 @@
+# Postprocessing and plotting GeoClaw output
+
+## Plotting time frame output
+
+- Using `setplot.py`
+- Extracting transects
+
+## Specialized gauge plots
+
+- Discontinuities in output when AMR level changes
+
+## Plotting fgmax output
+
+- plan view
+- transects
+- determining initial shoreline from `B0` topography
+  - may require separate GeoClaw run with no dtopo
+- plotting on maps or satellite imagery
+
+## Plotting fgout output
+
+- Similar tools as for time frames and/or fgmax
+- Making animations
+
+## Plotting topo in 3D with PyVista
+
+- [Some examples](https://depts.washington.edu/clawpack/dev_pyvista/)
+  to accompany
+  [visclaw issue #311](https://github.com/clawpack/visclaw/issues/311)
+
+- [Some examples](https://depts.washington.edu/ptha/CopesHubTsunamis/vis3d/)
+  developed for [Cascadia CoPes Hub](https://cascadiacopeshub.org/)
+  research.
+
+## Debris tracking
+
+- As postprocessing, using velocity field from `fgout` output.
+

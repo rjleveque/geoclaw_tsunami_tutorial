@@ -3,11 +3,25 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: prerequisites
-- file: workflow
-- file: testing_chile2010
-- file: CopalisBeach/README
-- file: topo/CopalisTopo
-- file: dtopo/ASCE_SIFT_Region2
-- file: biblio
+parts:
+  - caption: Overview and introduction
+    chapters:
+    - file: prerequisites
+    - file: workflow
+    - file: testing_chile2010
+  - caption: Setting up and running GeoClaw
+    chapters:
+    - file: intro_setrun
+  - caption: Postprocessing and plotting GeoClaw output
+    chapters:
+    - file: intro_postproc
+  - caption: GeoClaw examples
+    chapters:
+    - file: intro_examples
+    - file: CopalisBeach/README
+    - file: topo/CopalisTopo
+    - file: dtopo/ASCE_SIFT_Region2
+  - caption: Resources
+    chapters:
+    - file: intro_resources
+    - file: biblio
