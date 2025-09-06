@@ -1,11 +1,11 @@
 
-# Prerequisites
+# GeoClaw Prerequisites
 
-If possible, you should have Clawpack installed and working on your own computer
+GeoClaw is distributed with [Clawpack](https://www.clawpack.org), and
+if possible you should have Clawpack installed and working on your own computer
 for ease in working through the examples in this tutorial.
 
-GeoClaw is distributed with [Clawpack](https://www.clawpack.org), and the
-core code is written in Fortran, so you will need a Fortran compiler such
+The core code is written in Fortran, so you will need a Fortran compiler such
 as gfortran.  The user interface (both for setting up a simulation and for
 viewing the results) is in Python, and some of the examples in this tutorial
 are in the form of Jupyter notebooks.  See [Installation Prerequisites](https://www.clawpack.org/prereqs.html#prereqs) for more details.

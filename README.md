@@ -7,21 +7,31 @@ Under development, more to come!
 The rendered version of this Jupyter Book can be viewed at
 https://rjleveque.github.io/geoclaw_tsunami_tutorial
 
+The tutorial examples are all within the `GTT` subdirectory. Files in the
+top level are primarily used for building the Jupyter Book.
+
 ## Usage
 
-Clone this repository to obtain all of the GeoClaw examples and Jupyter notebooks discussed in the tutorial.
+Clone this repository to obtain all of the GeoClaw examples and
+Jupyter notebooks discussed in the tutorial, which will be in the `GTT`
+subdirectory.
+
+See [Suggested Workflow](https://rjleveque.github.io/geoclaw_tsunami_tutorial/markdown/workflow.html)
+for more information on how to run the examples.
 
 ### Building the book
 
 If you'd like to develop and/or build the GeoClaw Tsunami Tutorial book, you should:
 
 1. Clone this repository
-2. Run `pip install -r requirements.txt` (it is recommended you do this within a virtual environment)
-3. (Optional) Edit the books source files located in the `geoclaw_tsunami_tutorial/` directory
-4. Run `jupyter-book clean geoclaw_tsunami_tutorial/` to remove any existing builds
-5. Run `jupyter-book build geoclaw_tsunami_tutorial/`
+2. Run `pip install -r requirements.txt` (it is recommended you do this within a
+   virtual environment)
+3. (Optional) Edit the books source files (which include `.md` files in this
+   directory and also some `.md` and `.ipynb` files within `GTT`).
+4. Run `jupyter-book clean ./` to remove any existing builds
+5. Run `jupyter-book build ./`
 
-A fully-rendered HTML version of the book will be built in `geoclaw_tsunami_tutorial/_build/html/`.
+A fully-rendered HTML version of the book will be built in `./_build/html/`.
 
 
 ## Credits

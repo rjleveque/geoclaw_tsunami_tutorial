@@ -8,6 +8,7 @@
 ## Specialized gauge plots
 
 - Discontinuities in output when AMR level changes
+- Phase plane plots of flow direction
 
 ## Plotting fgmax output
 

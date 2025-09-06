@@ -27,6 +27,8 @@ own version of things:
 
 will recursively copy the entire directory to `$MYCLAW/chile2010`.
 
+### Make topo and dtopo files
+
 Navigate to the directory where you want to run the test, and then issue
 the commands given below.  First:
 
@@ -36,6 +38,8 @@ This simply executes the Python script `maketopo.py`, which downloads
 a topography DEM (topofile) and also creates a dtopofile that specifies the
 deformation based on a very simple (single subfault) model of the 2010
 earthquake near Maule Chile.
+
+### Compile the Fortran code
 
 Next:
 
@@ -51,6 +55,8 @@ to be recompiled in the future.  Note that if you do
 again you get the message
 
     make: `xgeoclaw' is up to date.
+
+### Make .data files
 
 Next:
 
@@ -71,6 +77,20 @@ directly.  Instead modify `setrun.py`, which is much more user-friendly,
 and is always used to create the `.data` files.
 
 See [](intro_setrun) for more information on modifying `setrun.py`.
+
+### View kml files
+
+Running `make data` also created a set of `.kml` files (due to the last 
+line in [this `setrun.py`](https://www.clawpack.org/gallery/_static/geoclaw/examples/tsunami/chile2010/setrun.py.html)
+where `kmltools.make_input_data_kmls(rundata)` is invoked).
+
+An optional step at this point is to open all of these files in Google Earth
+or other GIS tool, which allows you to view the computational domain,
+extent of topo and dtopo files, flagregions specified for refinement, and
+the location of a gauge.  This is a valuable tool in helping to set up a new
+problem properly.
+
+### Run the GeoClaw Fortran code
 
 Next:
 
