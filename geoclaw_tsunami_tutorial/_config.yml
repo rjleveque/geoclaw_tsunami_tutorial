@@ -7,7 +7,7 @@
 title: GeoClaw Tsunami Tutorial  # The title of the book. Will be placed in the left navbar.
 author: R.J. LeVeque  # The author of the book
 copyright: "2025"  # Copyright year to be placed in the footer
-logo: GeoClawLogoTitle.jpg
+logo: images/GeoClawLogoTitle.jpg
 
 # Force re-execution of notebooks on each build, or cache results:
 # See https://jupyterbook.org/content/execute.html
@@ -33,5 +33,6 @@ repository:
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
+  favicon: images/geoclaw-favicon-32x32.png
   use_issues_button: true
   use_repository_button: true
