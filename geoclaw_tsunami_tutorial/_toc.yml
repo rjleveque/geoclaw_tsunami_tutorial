@@ -4,6 +4,10 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+- file: prerequisites
+- file: workflow
+- file: testing_chile2010
+- file: CopalisBeach/README
+- file: topo/CopalisTopo
+- file: dtopo/ASCE_SIFT_Region2
+- file: biblio
