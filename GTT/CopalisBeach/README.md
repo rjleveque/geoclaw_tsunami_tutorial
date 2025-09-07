@@ -1,8 +1,48 @@
 # CopalisBeach examples
 
-The directory `$CLAW/apps/tsunami-examples/tutorials/GeoClawTutorial1/CopalisBeach`
+From the
+[GeoClaw Tsunami Tutorial](https://rjleveque.github.io/geoclaw_tsunami_tutorial)
+
+The directory `$GTT/CopalisBeach`
 contains some example simulations of tsunamis inundating the coastal region
-around [Copalis Beach, WA (-124.1733, 47.1134)](https://maps.app.goo.gl/RW275B5TzY4oQakaA) as shown in the image below:
+around [Copalis Beach, WA (-124.1733, 47.1134)](https://maps.app.goo.gl/RW275B5TzY4oQakaA) 
+
+## Contents
+
+- [](example1/README), Some initial runs, illustrating different grid
+  resolutions, and timeframe and gauge plots specified in `setplot.py`.
+
+- [](example2/README), More complicated examples illustrating many other
+  GeoClaw features.
+
+- [](exercise1/README), An example to try modifying yourself.
+
+- Additional examples and exercises to appear, in particular ones
+  based on a farfield event, such as
+  Alaska 1964 (or AKmaxWA), Tohoku 2011, or Kamchatka 2025.
+
+## Input files
+
+The examples use some topofiles and a dtopofile that can be
+downloaded from an online archive in order to quickly get into the
+GeoClaw simulation examples.
+
+These notebooks were used to create the files:
+
+- [](../topo/CopalisTopo)
+- [](../dtopo/ASCE_SIFT_Region2)
+
+The hypothetical earthquake being modeled is one that was developed to mimic
+a "2500-year" event on a stretch of the Cascadia margin that includes
+Copalis Beach.  We use it here because it is easy to generate the dtopofile
+using GeoClaw tools, as explained in the notebook linked above.
+
+In [](exercise1/README) some suggestions are given for downloading or
+creating  other CSZ earthquake source models to test for comparison.
+
+## Why Copalis Beach?
+
+The region around Copalis Beach is shown in the Google Earth image below:
 
 ```{image} ../topo/images/CopalisTopo0.jpg
 :width: 600px
