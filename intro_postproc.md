@@ -7,7 +7,8 @@
 
 ## Specialized gauge plots
 
-- Discontinuities in output when AMR level changes
+- Better titles with quantities like max value, lat,lon, etc.
+- Gotchas: discontinuities in output when AMR level changes
 - Phase plane plots of flow direction
 
 ## Plotting fgmax output
