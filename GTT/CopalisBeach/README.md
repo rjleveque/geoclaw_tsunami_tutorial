@@ -27,10 +27,27 @@ The examples use some topofiles and a dtopofile that can be
 downloaded from an online archive in order to quickly get into the
 GeoClaw simulation examples.
 
-These notebooks were used to create the files:
+The topofiles can be obtained by executing these commands:
 
-- [](../topo/CopalisTopo)
-- [](../dtopo/ASCE_SIFT_Region2)
+    $ cd $GTT/topo
+    $ python fetch_CopalisTopo.py
+
+The dtopofiles can be obtained by executing this command:
+
+    $ cd $GTT/dtopo
+    $ python fetch_ASCE_SIFT_Region2.py
+    
+
+Alternatively, you can run these notebooks, which were used to create the files:
+
+- [](../topo/fetch_etopo22) - creates 
+  `topofiles/etopo22_30s_-130_-122_40_50_30sec.asc`
+  with 15 arcsecond resolution, covering full domain
+- [](../topo/CopalisTopo) - creates
+  `topofiles/Copalis_13s.asc` with 1/3 arcsecond resolution
+- [](../dtopo/ASCE_SIFT_Region2) - creates
+  `dtopofiles/ASCE_SIFT_Region2.dtt3`, an earthquake source
+  `
 
 The hypothetical earthquake being modeled is one that was developed to mimic
 a "2500-year" event on a stretch of the Cascadia margin that includes

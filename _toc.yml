@@ -23,6 +23,7 @@ parts:
     - file: GTT/CopalisBeach/example2/README
     - file: GTT/CopalisBeach/exercise1/README
     - file: GTT/topo/README
+    - file: GTT/topo/fetch_etopo22
     - file: GTT/topo/CopalisTopo
     - file: GTT/dtopo/README
     - file: GTT/dtopo/ASCE_SIFT_Region2
