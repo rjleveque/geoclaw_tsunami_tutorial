@@ -2,7 +2,11 @@
 
 ## Plotting time frame output
 
-- Using `setplot.py`
+- [Plotting with Visclaw
+  documentation](https://www.clawpack.org/plotting.html) 
+  is outdated and needs a lot of work!
+- [Using `setplot.py`](https://www.clawpack.org/setplot.html)
+- plotting on maps or satellite imagery
 - Extracting transects
 
 ## Specialized gauge plots
