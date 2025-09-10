@@ -11,6 +11,7 @@ around [Copalis Beach, WA (-124.1733, 47.1134)](https://maps.app.goo.gl/RW275B5T
 
 - [](example1/README), Some initial runs, illustrating different grid
   resolutions, and timeframe and gauge plots specified in `setplot.py`.
+  See also these [sample results](example1/results).
 
 - [](example2/README), More complicated examples illustrating many other
   GeoClaw features.

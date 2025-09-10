@@ -12,17 +12,20 @@ exploring tsunami modeling.  See [](../README) for more about the Copalis
 Beach location and a list of other examples and tutorials based on this
 location.
 
+## Sample results
+
+See [](results), with more to come.
+
 ## Contents (Work in Progress):
 
-- `setrun1.py`, an first pass to model on coarse grids, which runs quickly.
-- `setrun2.py`, a modified version to include finer level grids
+- `setrun1a.py`, an first pass to model on coarse grids, which runs quickly.
+- `setrun1b.py`, a modified version to include finer level grids
 - `setplot.py`, to make plots of time frames and a couple gauges
 - `example1a.ipynb`, a notebook illustrating timeframe results
 - `example1b.ipynb`, a notebook illustrating comparison transect plots
-- `Makefile`, a standard GeoClaw `Makefile` but with a new target added so
-  `make examples` runs both versions and makes output directories
-  `_output1` and `_output2`. 
-- `fetch_output.py` a script to fetch `_output1` and `_output2` from an
+- `Makefile1a`, a standard GeoClaw `Makefile` but using `setrun1a.py`
+  and redirecting output/plots to `_output1a` / `_plots1a`.
+- `fetch_output.py` a script to fetch `_output1a` and `_output1b` from an
   online archive (rather than running the code).
 
 ## Note:
