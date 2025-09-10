@@ -25,6 +25,7 @@ These runs were done on a Macbook Pro with the M1 chip and 6 OpenMP threads.
 |setrun1a |24 arcsec  (level 3)| 35 seconds | 180 seconds |
 |setrun1b | 6 arcsec  (level 5)| 253 seconds | 1378 seconds |
 |setrun1c | 1 arcsec  (level 7)| 533 seconds | 2967 seconds |
+|setrun1d | 1/3 arcsec  (level 8)| 1920 seconds | 11018 seconds |
 
 ## Comparison of the inundation
 
@@ -45,8 +46,6 @@ at time 50 minutes.
 
 ### 1/3" resolution
 
-To appear.
-
 ![](./sample_results/example1d_frame0005fig1.jpg)
 
 
@@ -57,10 +56,10 @@ To appear.
 
 Computed using  `setrun1a.py` with 24" resolution around Copalis
 
-Right click and select "Show all controls" to find the Play button.
-
 The other versions add refinement levels only near Copalis Beach, and so the
 full domain plots look nearly identical and are not shown below.
+
+Right click and select "Show all controls" to find the Play button.
 
 ![](./sample_results/example1a_movie_fig0.mp4)
 
