@@ -14,17 +14,30 @@ location.
 
 ## Sample results
 
-See [](results), with more to come.
+:::{warning}
+Work in Progress
+
+Todo: Add `fetch_output` script to download all `_output` and `_plots`
+directories?
+:::
+
+See [](results).  The shell scripts `make_example1a.sh` and `make_all.sh`
+can be used to run the code and create the files needed in `sample_results`
+for [rendering results.md](results).
 
 ## Contents (Work in Progress):
 
-- `setrun1a.py`, an first pass to model on coarse grids, which runs quickly.
-- `setrun1b.py`, a modified version to include finer level grids
+- `setrun1a.py`, an first pass to model on coarse grids (up to AMR level 3)
+- `setrun1b.py`, a modified version to include up to AMR level 5
+- `setrun1c.py`, a modified version to include up to AMR level 7
+- `setrun1d.py`, a modified version to include up to AMR level 8
 - `setplot.py`, to make plots of time frames and a couple gauges
-- `example1a.ipynb`, a notebook illustrating timeframe results
-- `example1b.ipynb`, a notebook illustrating comparison transect plots
+- `example1a.ipynb`, a notebook illustrating timeframe results (To appear)
+- `example1b.ipynb`, a notebook illustrating comparison transect plots (To
+  appear)
 - `Makefile1a`, a standard GeoClaw `Makefile` but using `setrun1a.py`
   and redirecting output/plots to `_output1a` / `_plots1a`.
+- `Makefile1b`, `Makefile1c`, `Makefile1d`.
 - `fetch_output.py` a script to fetch `_output1a` and `_output1b` from an
   online archive (rather than running the code).
 
