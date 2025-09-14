@@ -76,8 +76,9 @@ killed by saltwater intrusion following coseismic coastal subsidence during
 the earthquake of January 26, 1700, the last major CSZ event.  
 
 :::{seealso}
-[The Copalis ghost forest, What is it and why visit?](https://wa100.dnr.wa.gov/willapa-hills/copalis-ghost-forest)
+- [The Copalis ghost forest, What is it and why visit?](https://wa100.dnr.wa.gov/willapa-hills/copalis-ghost-forest)
+- For more information about this paleoseismology, see {cite}`orphan_tsunami`.
+- [paper](doi:10.1029/91JB02346)
 :::
 
 
-For more information about this history, see {cite}`orphan_tsunami`.
