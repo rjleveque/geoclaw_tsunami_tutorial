@@ -2,9 +2,12 @@
 
 Tutorial on using GeoClaw for tsunami modeling
 
+[![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](<https://rjleveque.github.io/geoclaw_tsunami_tutorial>)
+
 Under development, more to come! 
 
-The rendered version of this Jupyter Book can be viewed at
+The rendered version of this [Jupyter Book](https://jupyterbook.org/)
+can be viewed at
 https://rjleveque.github.io/geoclaw_tsunami_tutorial
 
 The tutorial examples are all within the `GTT` subdirectory. Files in the

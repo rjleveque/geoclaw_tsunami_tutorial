@@ -81,8 +81,9 @@ the earthquake of January 26, 1700, the last major CSZ event.
 - [This paper DOI 10.1029/91JB02346](doi:10.1029/91JB02346)  % not working
 % This works: [This paper DOI 10.1029/91JB02346](https://doi.org/10.1029/91JB02346)
 - ~~testing stirkethrough~~
+- Testing replacement: {{ WEBSITE }} is a url?
 - Testing [website]({{ WEBSITE }})
-- Testing <a href="WEBSITE">website in raw html</a>
+- Testing <a href="{{ WEBSITE }}">website in raw html</a>
 :::
 
 
