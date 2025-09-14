@@ -78,7 +78,11 @@ the earthquake of January 26, 1700, the last major CSZ event.
 :::{seealso}
 - [The Copalis ghost forest, What is it and why visit?](https://wa100.dnr.wa.gov/willapa-hills/copalis-ghost-forest)
 - For more information about this paleoseismology, see {cite}`orphan_tsunami`.
-- [paper](doi:10.1029/91JB02346)
+- [This paper DOI 10.1029/91JB02346](doi:10.1029/91JB02346)  % not working
+% This works: [This paper DOI 10.1029/91JB02346](https://doi.org/10.1029/91JB02346)
+- ~~testing stirkethrough~~
+- Testing [website]({{ WEBSITE }})
+- Testing <a href="WEBSITE">website in raw html</a>
 :::
 
 

@@ -43,4 +43,21 @@ sphinx:
     html_extra_path: ['_extra_html']
 
 parse:
+  myst_enable_extensions: 
+    # https://myst-parser.readthedocs.io/en/latest/syntax/optional.html
+    - amsmath
+    - colon_fence
+    #- deflist
+    - dollarmath
+    #- html_admonition
+    #- html_image
+    - linkify
+    - replacements
+    #- smartquotes
+    - substitution
+    - strikethrough
   myst_url_schemes: ["mailto", "http", "https", "wiki", "doi"] 
+  myst_dmath_double_inline: true  # Allow display math ($$) inline
+  myst_substitutions:
+    WEBSITE : "https://rjleveque.github.io/geoclaw_tsunami_tutorial/"
+
