@@ -1,8 +1,8 @@
+[![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](<https://rjleveque.github.io/geoclaw_tsunami_tutorial>)
+
 # GeoClaw Tsunami Tutorial
 
 Tutorial on using GeoClaw for tsunami modeling
-
-[![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](<https://rjleveque.github.io/geoclaw_tsunami_tutorial>)
 
 Under development, more to come! 
 
