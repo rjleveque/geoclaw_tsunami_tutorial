@@ -70,9 +70,14 @@ The region around Copalis Beach is shown in the Google Earth image below:
 This region was chosen as a relatively small-scale example of interesting
 coastal topography.  Moreover it is historically important in our understanding
 of past CSZ tsunamis.  The
-[ghost forest](https://wa100.dnr.wa.gov/willapa-hills/copalis-ghost-forest)
+[ghost forest](wiki:Ghost_forest)
 indicated in the satellite image above contains trees that were rapidly
 killed by saltwater intrusion following coseismic coastal subsidence during
 the earthquake of January 26, 1700, the last major CSZ event.  
+
+:::{seealso}
+[The Copalis ghost forest, What is it and why visit?](https://wa100.dnr.wa.gov/willapa-hills/copalis-ghost-forest)
+:::
+
 
 For more information about this history, see {cite}`orphan_tsunami`.
