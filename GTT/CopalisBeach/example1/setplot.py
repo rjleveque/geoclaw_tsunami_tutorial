@@ -186,7 +186,7 @@ def setplot(plotdata):
         try:
             timing_plotdir = plotdata.plotdir + '/timing_figures'
             os.system('mkdir -p %s' % timing_plotdir)
-            units = {'comptime':'hours', 'simtime':'hours', 'cell':'billions'}
+            units = {'comptime':'minutes', 'simtime':'minutes', 'cell':'millions'}
             plot_timing_stats.make_plots(outdir=plotdata.outdir, make_pngs=True,
                                           plotdir=timing_plotdir, units=units)
             os.system('cp %s/timing.* %s' % (plotdata.outdir, timing_plotdir))

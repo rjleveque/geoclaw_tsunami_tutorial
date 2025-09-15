@@ -439,42 +439,6 @@ def setrun(claw_pkg='geoclaw'):
     flagregions.append(flagregion)
 
 
-    # For Copalis Beach:
-
-    # Level 6 is 3 sec
-    flagregion = FlagRegion(num_dim=2)
-    flagregion.name = 'Region_3sec'
-    flagregion.minlevel = 5
-    flagregion.maxlevel = 6
-    flagregion.t1 = 0.
-    flagregion.t2 = 1e9
-    flagregion.spatial_region_type = 1  # Rectangle
-    flagregion.spatial_region = [-124.25,-124.12,46.9,47.25]
-    flagregions.append(flagregion)
-
-    # Level 7 is 1 sec
-    flagregion = FlagRegion(num_dim=2)
-    flagregion.name = 'Region_1sec'
-    flagregion.minlevel = 5
-    flagregion.maxlevel = 7
-    flagregion.t1 = 0.
-    flagregion.t2 = 1e9
-    flagregion.spatial_region_type = 1  # Rectangle
-    flagregion.spatial_region = [-124.25,-124.12,47.05,47.2]
-    flagregions.append(flagregion)
-
-    # Level 8 is 1/3 sec
-    flagregion = FlagRegion(num_dim=2)
-    flagregion.name = 'Region_onethird'
-    flagregion.minlevel = 5
-    flagregion.maxlevel = 8
-    flagregion.t1 = 30*3600.
-    flagregion.t2 = 1e9
-    flagregion.spatial_region_type = 1  # Rectangle
-    flagregion.spatial_region = [-124.22, -124.1, 47.09, 47.18]
-    flagregions.append(flagregion)
-
-
     # ---------------
     # GAUGES:
     # ---------------

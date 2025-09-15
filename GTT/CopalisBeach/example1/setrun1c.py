@@ -275,6 +275,12 @@ def setrun(claw_pkg='geoclaw'):
     # ---------------
     amrdata = rundata.amrdata
 
+    # maximum size of each grid patch (in each direction):
+    amrdata.max1d = 60
+
+    # initial size of work array for AMR patches:
+    amrdata.memsize = 10000000
+
     # max number of refinement levels:
     amrdata.amr_levels_max = 7
 
@@ -440,13 +446,14 @@ def setrun(claw_pkg='geoclaw'):
 
 
     # For Copalis Beach:
+    t_fine = 1800.  # when to turn on finest level refinement (seconds)
 
     # Level 6 is 3 sec
     flagregion = FlagRegion(num_dim=2)
     flagregion.name = 'Region_3sec'
     flagregion.minlevel = 5
     flagregion.maxlevel = 6
-    flagregion.t1 = 0.
+    flagregion.t1 = t_fine
     flagregion.t2 = 1e9
     flagregion.spatial_region_type = 1  # Rectangle
     flagregion.spatial_region = [-124.25,-124.12,46.9,47.25]
@@ -457,7 +464,7 @@ def setrun(claw_pkg='geoclaw'):
     flagregion.name = 'Region_1sec'
     flagregion.minlevel = 5
     flagregion.maxlevel = 7
-    flagregion.t1 = 0.
+    flagregion.t1 = t_fine
     flagregion.t2 = 1e9
     flagregion.spatial_region_type = 1  # Rectangle
     flagregion.spatial_region = [-124.25,-124.12,47.05,47.2]
@@ -468,7 +475,7 @@ def setrun(claw_pkg='geoclaw'):
     flagregion.name = 'Region_onethird'
     flagregion.minlevel = 5
     flagregion.maxlevel = 8
-    flagregion.t1 = 30*3600.
+    flagregion.t1 = t_fine
     flagregion.t2 = 1e9
     flagregion.spatial_region_type = 1  # Rectangle
     flagregion.spatial_region = [-124.22, -124.1, 47.09, 47.18]

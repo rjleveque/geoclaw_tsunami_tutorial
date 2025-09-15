@@ -22,10 +22,10 @@ These runs were done on a Macbook Pro with the M1 chip and 6 OpenMP threads.
 
 |example | finest-level grid resolution | elapsed wall time | Total CPU time |
 |---:|---:|---:|---:|
-|setrun1a |24 arcsec  (level 3)| 35 seconds | 180 seconds |
-|setrun1b | 6 arcsec  (level 5)| 253 seconds | 1378 seconds |
-|setrun1c | 1 arcsec  (level 7)| 533 seconds | 2967 seconds |
-|setrun1d | 1/3 arcsec  (level 8)| 1920 seconds | 11018 seconds |
+|setrun1a |24 arcsec  (level 3)| 35 seconds | 181 seconds |
+|setrun1b | 6 arcsec  (level 5)| 314 seconds | 1716 seconds |
+|setrun1c | 1 arcsec  (level 7)| 465 seconds | 2602 seconds |
+|setrun1d | 1/3 arcsec  (level 8)| 1780 seconds | 10275 seconds |
 
 ## Comparison of the inundation
 
