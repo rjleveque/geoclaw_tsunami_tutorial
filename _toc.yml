@@ -32,3 +32,4 @@ parts:
     chapters:
     - file: intro_resources
     - file: biblio
+    - file: testing
