@@ -10,6 +10,11 @@ etc.
 See [](output1a_annotated) for more discussion of the output that is printed to
 the screen when you run the code using the `setrun1a.py` script described here.
 
+:::{warning}
+If you want to run the code in this directory, you should copy it
+elsewhere first; see [](workflow:copy).
+:::
+
 ## Makefiles
 
 There are corresponding Makefiles labeled `Makefile1a`, `Makefile1b`, etc.

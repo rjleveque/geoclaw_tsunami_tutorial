@@ -62,7 +62,7 @@ top level of the Clawpack directory, do the following:
     $ git clone https://github.com/clawpack/apps
 ```
 
-
+(workflow:copy)=
 ## Make your own copy before running examples or notebooks
 
 If you make changes to any of the examples, or run a notebook (as you will

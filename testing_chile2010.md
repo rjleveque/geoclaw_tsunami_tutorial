@@ -19,7 +19,7 @@ See also the Clawpack documentation under
 for more information about some of the steps below.
 
 You could do this test in the directory listed above, or following the
-[](workflow), you could first copy this directory elsewhere.  For example,
+[](workflow), you might want to [](workflow:copy).  For example,
 if you have created an environment variable `$MYCLAW` that points to your
 own version of things:
 

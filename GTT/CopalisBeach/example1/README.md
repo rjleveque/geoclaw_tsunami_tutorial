@@ -44,7 +44,8 @@ for [rendering results.md](results).
 ## Note:
 
 - If you want to run the code in this directory, you should copy it
-  elsewhere first (see [](../../../workflow)).
+  elsewhere first (see [](workflow:copy)).
+
 
 - If you make any changes in the code and modify the results, then rerunning
   the notebooks may result in images that no longer match the descriptions.
