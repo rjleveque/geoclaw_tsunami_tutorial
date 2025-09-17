@@ -20,6 +20,7 @@ parts:
     - file: intro_examples
     - file: GTT/CopalisBeach/README
     - file: GTT/CopalisBeach/example1/README
+    - file: GTT/CopalisBeach/example1/setrun_description
     - file: GTT/CopalisBeach/example1/results
     - file: GTT/CopalisBeach/example2/README
     - file: GTT/CopalisBeach/exercise1/README
@@ -28,6 +29,10 @@ parts:
     - file: GTT/topo/CopalisTopo
     - file: GTT/dtopo/README
     - file: GTT/dtopo/ASCE_SIFT_Region2
+  - caption: Further discussion topics
+    chapters:
+    - file: intro_topics
+    - file: coordinates
   - caption: Resources
     chapters:
     - file: intro_resources

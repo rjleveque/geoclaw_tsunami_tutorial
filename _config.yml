@@ -61,4 +61,5 @@ parse:
   myst_dmath_double_inline: true  # Allow display math ($$) inline
   myst_substitutions:
     WEBSITE : "https://rjleveque.github.io/geoclaw_tsunami_tutorial/"
+    CLAWDOCS : "https://www.clawpack.org"
 

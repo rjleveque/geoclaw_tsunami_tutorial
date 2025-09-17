@@ -76,7 +76,7 @@ def setrun(claw_pkg='geoclaw'):
     # ---------------
 
     # Number of space dimensions:
-    clawdata.num_dim = num_dim
+    clawdata.num_dim = num_dim      # should always be 2 in GeoClaw
 
     # Lower and upper edge of computational domain:
 
@@ -107,8 +107,7 @@ def setrun(claw_pkg='geoclaw'):
     # Initial time:
     # -------------
 
-    t0 = 0            # Start at time 0
-    clawdata.t0 = t0  # Start time in seconds
+    clawdata.t0 = 0.  # Start time in seconds
 
     # Restart from checkpoint file of a previous run?
     # If restarting, t0 above should be from original run, and the
@@ -124,7 +123,6 @@ def setrun(claw_pkg='geoclaw'):
 
     # Specify at what times the results should be written to fort.q files.
     # Note that the time integration stops after the final output time.
-    # The solution at initial time t0 is always written in addition.
 
     clawdata.output_style = 1
 
@@ -136,9 +134,8 @@ def setrun(claw_pkg='geoclaw'):
 
     elif clawdata.output_style == 2:
         # Specify a list of output times.
-        tfinal = 2*3600.
-        dtout = 15*60.
-        clawdata.output_times = [0.,60.] + list(np.arange(dtout, tfinal+1, dtout))
+        # e.g. at 0 and 60 seconds and then less frequently:
+        clawdata.output_times = [0.,60., 1800., 3600., 5400.]
 
     elif clawdata.output_style == 3:
         # Output every iout timesteps with a total of ntot time steps:
@@ -147,10 +144,9 @@ def setrun(claw_pkg='geoclaw'):
         clawdata.output_t0 = True
 
 
-    clawdata.output_format = 'binary32'        # 'ascii' or 'binary'
-    clawdata.output_q_components = 'all'     # need all
-    clawdata.output_aux_components = 'none'  # eta=h+B is in q
-    clawdata.output_aux_onlyonce = False     # output aux arrays each frame
+    clawdata.output_format = 'binary32'      # 'ascii', 'binary', or 'binary32'
+    clawdata.output_q_components = 'all'     # output all 3 components h,hu,hv
+
 
     # ---------------------------------------------------
     # Verbosity of messages to screen during integration:
@@ -311,14 +307,11 @@ def setrun(claw_pkg='geoclaw'):
     # print info about each regridding up to this level:
     amrdata.verbosity_regrid = 3
 
-
+    # ------------------------------
     # Set data specific to GeoClaw:
+    # ------------------------------
 
-    try:
-        geo_data = rundata.geo_data
-    except:
-        print("*** Error, this rundata has no geo_data attribute")
-        raise AttributeError("Missing geo_data attribute")
+    geo_data = rundata.geo_data
 
     # == Physics ==
     geo_data.gravity = 9.81
@@ -354,10 +347,6 @@ def setrun(claw_pkg='geoclaw'):
     # 30-sec topo:
     topo_file = os.path.join(topodir, 'etopo22_30s_-130_-122_40_50_30sec.asc')
     topofiles.append([3, topo_file])
-
-    # 3 arcsec topo
-    #topo_file = os.path.join(topodir, 'nw_pacific_3sec_cropped.asc')
-    #topofiles.append([3, topo_file])
 
     # 1/3 arcsec topo
     topo_file = os.path.join(topodir, 'Copalis_13s.asc')
@@ -401,12 +390,6 @@ def setrun(claw_pkg='geoclaw'):
     # ---------------
     # REGIONS:
     # ---------------
-    # old-style regions, not being used here:
-    rundata.regiondata.regions = []
-    # to specify regions of refinement append lines of the form
-    #  [minlevel,maxlevel,t1,t2,x1,x2,y1,y2]
-
-    # new-style flagregions are more descriptive:
 
     flagregions = rundata.flagregiondata.flagregions  # empty list initially
 
@@ -434,7 +417,6 @@ def setrun(claw_pkg='geoclaw'):
     flagregion.t1 = 0.
     flagregion.t2 = 1e9
     flagregion.spatial_region_type = 1  # Rectangle
-    #flagregion.spatial_region = [-126.6,-124.,46.27,47.68]
     flagregion.spatial_region = [-126.6,-124.,46.27,47.68]
     flagregions.append(flagregion)
 

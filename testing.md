@@ -9,3 +9,14 @@
 - Testing replacement: {{ WEBSITE }} is a url?
 - Testing [website]({{ WEBSITE }})
 - Testing <a href="{{ WEBSITE }}">website in raw html</a>
+- Testing <a href="{{ CLAWDOCS }}/fgmax.html">website in raw html</a>
+
+## Latex
+
+$\int e^x \, dx$ or {math}`\int e^x \, dx`.  Display:
+
+$$
+\int e^x \, dx
+$$
+
+
