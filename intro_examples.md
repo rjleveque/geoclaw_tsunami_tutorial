@@ -3,5 +3,6 @@
 A collection of GeoClaw examples are under development.
 
 - [Copalis Beach examples](GTT/CopalisBeach/README)
-  - [CopalisTopo notebook](GTT/topo/CopalisTopo)
+- [](GTT/topo/README)
+- [](GTT/dtopo/README)
 - More to come
