@@ -7,6 +7,9 @@ often found in a file `setrun.py`.  In this example directory several
 different running conditions set up in the files `setrun1a.py`, `setrun1b.py`,
 etc.
 
+See [](output1a_annotated) for more discussion of the output that is printed to
+the screen when you run the code using the `setrun1a.py` script described here.
+
 ## Makefiles
 
 There are corresponding Makefiles labeled `Makefile1a`, `Makefile1b`, etc.

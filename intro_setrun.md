@@ -10,6 +10,12 @@ and [](intro_resources).
 
 ## Things to set/adjust in `setrun.py`
 
+:::{seealso}
+[Copalis Beach setrun
+description](GTT/CopalisBeach/example1/setrun_description)
+for an annotated `setrun` script explaining the commonly changed parameters.
+:::
+
 ### Computational domain
 
 - How large should it be? (Outflow boundaries)
@@ -129,6 +135,14 @@ different from `sea_level`.
   [Boussinesq solver documentation](https://www.clawpack.org/bouss2d.html)
 
 ## Running GeoClaw
+
+### Basic workflow and output
+
+:::{seealso}
+- [](workflow) 
+- [](testing_chile2010)
+- [](GTT/CopalisBeach/example1/output1a_annotated)
+:::
 
 ### Using OpenMP, how many threads?
 

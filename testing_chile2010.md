@@ -162,3 +162,13 @@ module to facilitate
 compiling and running the code and making plots from within a notebook,
 and is mostly useful for creating tutorials.
 
+## Next steps
+
+The [](GTT/CopalisBeach/README) step you through setting  up and
+running GeoClaw in more detail, in particular these pages refer to the code in
+`GTT/CopalisBeach/example1`: 
+
+- [](GTT/CopalisBeach/example1/README)
+- [Copalis Beach setrun description](GTT/CopalisBeach/example1/setrun_description)
+- [](GTT/CopalisBeach/example1/output1a_annotated)
+

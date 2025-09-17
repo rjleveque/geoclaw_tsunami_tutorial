@@ -13,8 +13,10 @@ this [Jupyter Book](https://jupyterbook.org/).
 
 This is a work in progress, being developed for training sessions in
 Autumn 2025,
-in particular for our collaborators at the Washington Geological Survey
-and in the NSF-funded Cascadia CoPes Hub, and will be evolving to meet these
+in particular for our collaborators at the [Washington Geological
+Survey](https://dnr.wa.gov/washington-geological-survey)
+and in the NSF-funded [Cascadia CoPes Hub](https://cascadiacopeshub.org/),
+and will be evolving to meet these
 needs.  It should also be useful to other new users of GeoClaw, and will be
 made more generic in the future.
 

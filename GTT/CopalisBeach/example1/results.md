@@ -1,4 +1,4 @@
-# Sample results
+# Sample results for Copalis Beach
 
 From the
 [GeoClaw Tsunami Tutorial](https://rjleveque.github.io/geoclaw_tsunami_tutorial)
@@ -10,11 +10,13 @@ exploring tsunami modeling.
 See [](README) for more about these examples.
 
 The `setrun` files defined in this directory are all nearly identical, but
-allow a different number of refinement levels.  The coarsest (3-level) run
-runs very quickly and shows how things are refined in most of the domain.
+allow a different number of refinement levels.  The coarsest (3-level) case
+runs quickly and shows how things are refined in most of the domain.
 The other versions add refinement levels only near Copalis Beach, and so the
 full domain plots look nearly identical and are not shown in the videos below.
 
+See [](setrun_description) for detailed description of the `setrun1a.py`
+script, and [](output1a_annotated) for more discussion of the output.
 
 ## Run times
 
