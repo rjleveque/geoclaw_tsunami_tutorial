@@ -9,10 +9,21 @@ This is just a test page for trying things out and debugging the Jupyter book...
 
 ## Why don't `wiki:` and `doi:` citations work like they should?
 
+You should also be able to hover over references as illustrated in the
+myst documentation
+- [wiki](https://mystmd.org/guide/external-references#wikipedia-links)
+- [doi](https://mystmd.org/guide/external-references#linking-dois)
+
+My `_config.yml` contains
+
+    myst_url_schemes: ["mailto", "http", "https", "wiki", "doi"]
+
+but these don't work...
+
 - [ghost forest](wiki:Ghost_forest) should resolve to
   https://en.wikipedia.org/wiki/Ghost_forest
-- [This paper DOI 10.1029/91JB02346](doi:10.1029/91JB02346)  % not working
-- This works: [DOI 10.1029/91JB02346](https://doi.org/10.1029/91JB02346)
+- Not working: [This paper](doi:10.1029/91JB02346)  % not working
+- This works but no hover: [This paper](https://doi.org/10.1029/91JB02346)
 
 
 ## using macros for websites?

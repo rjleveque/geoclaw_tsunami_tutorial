@@ -156,11 +156,14 @@ results.
 
 - [chile2010a](https://www.clawpack.org/gallery/_static/apps/notebooks/geoclaw/chile2010a/chile2010a.html) -- Examples of grid refinement.
 - [chile2010b](https://www.clawpack.org/gallery/_static/apps/notebooks/geoclaw/chile2010b/chile2010b.html) -- Examples of gauges.
+- [Video of a webinar going through these
+  examples](https://csdms.colorado.edu/wiki/Presenters-0439), from CSDMS in 2019.
 
 These notebooks use the [`clawpack.clawutil.nbtools`](https://github.com/clawpack/clawutil/blob/master/src/python/clawutil/nbtools.py)
 module to facilitate
 compiling and running the code and making plots from within a notebook,
 and is mostly useful for creating tutorials.
+
 
 ## Next steps
 
@@ -172,3 +175,11 @@ running GeoClaw in more detail, in particular these pages refer to the code in
 - [Copalis Beach setrun description](GTT/CopalisBeach/example1/setrun_description)
 - [](GTT/CopalisBeach/example1/output1a_annotated)
 
+
+:::{seealso}
+This [Tutorial on flooding in the Quillayute River](https://github.com/clawpack/geoclaw_tutorial_csdms2024)
+at La Push, WA also goes through some
+of the basics of setting up and running GeoClaw.
+(Presented at the [CSDMS](https://csdms.colorado.edu/wiki/Main_Page) Annual
+Meeting in 2024.)
+:::
