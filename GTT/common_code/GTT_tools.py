@@ -3,7 +3,13 @@ import shutil
 import pooch
 
 #GTT = os.environ['GTT']
-GTT = os.path.abspath('..')
+#GTT = os.path.abspath('..')
+
+s = os.path.abspath('.')
+while s[-3:] != 'GTT':
+    s,s2 = os.path.split(s)
+GTT = s
+print('setting GTT = ',GTT)
 
 # remote repository:
 data_repository_url = \
