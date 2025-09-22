@@ -30,16 +30,16 @@ GTTdata = pooch.create(path=GTT_cache,
 
 GTTdata.load_registry(registry_file_path)
 
-def fetch(file_path, destination=None, force=False):
+def fetch(file_path, destination=None, force=False, verbose=False):
 
     relpath, fname = os.path.split(file_path)
     if destination is None:
         extraction_path = os.path.join(GTT,relpath)
     else:
         extraction_path = os.path.abspath(destination)
-    #print('+++ extraction_path = ',extraction_path)
+    if verbose: print('extraction_path = ',extraction_path)
     new_file_fullpath = os.path.join(extraction_path, fname)
-    #print('+++ new_file_fullpath = ', new_file_fullpath)
+    if verbose: print('new_file_fullpath = ', new_file_fullpath)
 
     file_exists =  os.path.isfile(new_file_fullpath) or \
                    os.path.isdir(new_file_fullpath)
@@ -51,9 +51,18 @@ def fetch(file_path, destination=None, force=False):
         zip_file_path = GTTdata.fetch(file_path + '.zip')
         assert os.path.isfile(zip_file_path), '*** problem fetching %s' \
                 % zip_file_path
-        #print('+++ Now exists: ',zip_file_path)
+        if verbose: print('Now exists: ',zip_file_path)
 
         shutil.unpack_archive(zip_file_path, extraction_path)
-        #print(f'+++ extracted {extraction_path}/{fname}')
+        if verbose: print(f'Extracted {extraction_path}/{fname}')
+
     else:
         print('Specify force=True to overwrite')
+
+    if verbose:
+        if os.path.isfile(new_file_fullpath):
+            print('File exists: ', new_file_fullpath)
+        elif os.path.isdir(new_file_fullpath):
+            print('Directory exists: ', new_file_fullpath)
+        else:
+            print('Could not find expected fullpath: ', new_file_fullpath)
