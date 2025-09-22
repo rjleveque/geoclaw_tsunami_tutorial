@@ -53,7 +53,8 @@ def fetch(file_path, destination=None, force=False, verbose=False):
                 % zip_file_path
         if verbose: print('Now exists: ',zip_file_path)
 
-        shutil.unpack_archive(zip_file_path, extraction_path)
+        # this works for directory but not for single files, puts Users/...
+        shutil.unpack_archive(zip_file_path, new_file_fullpath)
         if verbose: print(f'Extracted {extraction_path}/{fname}')
 
     else:
