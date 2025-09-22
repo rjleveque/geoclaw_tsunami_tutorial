@@ -9,6 +9,12 @@ exploring tsunami modeling.
 
 See [](README) for more about these examples.
 
+:::{warning}
+This page may be broken due to issues with downloading sample results
+needed for displaying the plots when building the book on Github.
+Check back later.
+:::
+
 The `setrun` files defined in this directory are all nearly identical, but
 allow a different number of refinement levels.  The coarsest (3-level) case
 runs quickly and shows how things are refined in most of the domain.
