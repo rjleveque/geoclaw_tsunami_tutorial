@@ -5,7 +5,7 @@ From the
 
 The directory `$GTT/CopalisBeach`
 contains some example simulations of tsunamis inundating the coastal region
-around [Copalis Beach, WA (-124.1733, 47.1134)](https://maps.app.goo.gl/RW275B5TzY4oQakaA) 
+around [Copalis Beach, WA (-124.1733, 47.1134)](https://maps.app.goo.gl/RW275B5TzY4oQakaA)
 
 ## Contents
 
@@ -22,32 +22,31 @@ around [Copalis Beach, WA (-124.1733, 47.1134)](https://maps.app.goo.gl/RW275B5T
   based on a farfield event, such as
   Alaska 1964 (or AKmaxWA), Tohoku 2011, or Kamchatka 2025.
 
+(copalis:input)=
 ## Input files
 
+:::{warning}
+These instructions need to be updated.  Still work in progres...
+:::
+
 The examples use some topofiles and a dtopofile that can be
-downloaded from an online archive in order to quickly get into the
-GeoClaw simulation examples.
+downloaded from an online data repository in order to quickly get into the
+GeoClaw simulation examples:
 
-The topofiles can be obtained by executing these commands:
+    $ python fetch_input_data.py
 
-    $ cd $GTT/topo
-    $ python fetch_CopalisTopo.py
+Alternatively, you can run these notebooks found in the `$GTT/topo` and
+`$GTT/dtopo` directories, which were used to create the files:
 
-The dtopofiles can be obtained by executing this command:
-
-    $ cd $GTT/dtopo
-    $ python fetch_ASCE_SIFT_Region2.py
-    
-
-Alternatively, you can run these notebooks, which were used to create the files:
-
-- [](../topo/fetch_etopo22) - creates 
-  `topofiles/etopo22_30s_-130_-122_40_50_30sec.asc`
-  with 15 arcsecond resolution, covering full domain
-- [](../topo/CopalisTopo) - creates
-  `topofiles/Copalis_13s.asc` with 1/3 arcsecond resolution
-- [](../dtopo/ASCE_SIFT_Region2) - creates
-  `dtopofiles/ASCE_SIFT_Region2.dtt3`, an earthquake source
+- [](../topo/fetch_etopo22), which creates
+  `$GTT/topo/topofiles/etopo22_30s_-130_-122_40_50_30sec.asc`
+  with 15 arcsecond resolution, covering full domain.
+- [](../topo/CopalisTopo), which creates
+  `$GTT/topo/topofiles/Copalis_13s.asc`
+  with 1/3 arcsecond resolution.
+- [](../dtopo/ASCE_SIFT_Region2), which creates
+  `$GTT/dtopo/dtopofiles/ASCE_SIFT_Region2.dtt3`,
+  an earthquake source.
   `
 
 The hypothetical earthquake being modeled is one that was developed to mimic
@@ -80,5 +79,3 @@ the earthquake of January 26, 1700, the last major CSZ event.
 - For more information about this paleoseismology, see *The Orphan Tsunami* by
   Brian Atwater et al. {cite}`orphan_tsunami`.
 :::
-
-
