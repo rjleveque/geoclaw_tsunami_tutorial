@@ -2,7 +2,8 @@ import os,sys
 import shutil
 import pooch
 
-GTT = os.environ['GTT']
+#GTT = os.environ['GTT']
+GTT = os.path.abspath('..')
 
 # remote repository:
 data_repository_url = \
