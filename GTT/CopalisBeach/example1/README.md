@@ -24,7 +24,8 @@ location.
 - `Makefile1a`, a standard GeoClaw `Makefile` but using `setrun1a.py`
   and redirecting output/plots to `_output1a` / `_plots1a`.
 - There are similar `Makefile1b`, `Makefile1c`, `Makefile1d` files
-- `fetch_sample_results.py` a script to fetch the `_plots` directories from
+- `fetch_sample_results.ipynb` a notebook to fetch the `sample_results`
+  directory (which includes the 4 `_plots` directories) from
   an online data repository (so you can view them without running the code).
 
 
@@ -41,8 +42,8 @@ from all 4 examples via:
 
     $ python fetch_sample_results.py
 
-or run the equivalent [`fetch_sample_results.py.ipynb`](fetch_input_data)
-notebook that explains what is happening when sample results are fetched,
+or run the notebook `fetch_sample_results.ipynb`, [](fetch_sample_results),
+which explains what is happening when sample results are fetched,
 and why this notebook is required for building the Jupyter book version
 of this page (for those interested).
 
