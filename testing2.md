@@ -12,6 +12,10 @@ kernelspec:
 
 # Executable cells in markdown
 
+:::{warning}
+This is just a test page for trying things out and debugging the Jupyter book...
+:::
+
 This file adapted from
 [this JupyterBook example](https://jupyterbook.org/en/stable/file-types/myst-notebooks.html#structure-of-myst-notebooks).
 

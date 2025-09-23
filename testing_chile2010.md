@@ -76,7 +76,9 @@ if you want to change any of the data in these files, do not modify them
 directly.  Instead modify `setrun.py`, which is much more user-friendly,
 and is always used to create the `.data` files.
 
-See [](intro_setrun) for more information on modifying `setrun.py`.
+See [](intro_setrun) for more information on modifying `setrun.py`, and
+[](GTT/CopalisBeach/example1/setrun_description) for an annotated `setrun.py`
+for [](GTT/CopalisBeach/example1/README).
 
 ### View kml files
 
