@@ -1,3 +1,15 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Sample results for Copalis Beach
 
 From the
@@ -8,6 +20,16 @@ contains some initial GeoClaw `setrun` and `setplot` functions to start
 exploring tsunami modeling.
 
 See [](README) for more about these examples.
+
+#### Fetch the sample results
+
+The code cell hidden below runs `fetch_sample_results.py` to download the
+subdirectory `sample_results` that provides the figures shown on this page.
+
+```{code-cell}
+:tags: [hide-input, hide-output]
+run fetch_sample_results.py
+```
 
 :::{warning}
 This page may be broken due to issues with downloading sample results

@@ -27,7 +27,7 @@ location.
 - `fetch_sample_results.ipynb` a notebook to fetch the `sample_results`
   directory (which includes the 4 `_plots` directories) from
   an online data repository (so you can view them without running the code).
-
+- `fetch_sample_results.py` Python script version
 
 ## Sample results
 
