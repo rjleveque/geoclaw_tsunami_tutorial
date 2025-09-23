@@ -44,13 +44,19 @@ def fetch(file_path, destination=None, force=False, verbose=False):
     file_exists =  os.path.isfile(new_file_fullpath) or \
                    os.path.isdir(new_file_fullpath)
 
+    if force and file_exists:
+        #shutil.rmtree(new_file_fullpath)
+        print(f'Removing {new_file_fullpath}')
+        os.system(f'rm -rf {new_file_fullpath}')
+
     if force or not file_exists:
         zip_file_path = GTTdata.fetch(file_path + '.zip')
         assert os.path.isfile(zip_file_path), '*** problem fetching %s' \
                 % zip_file_path
         if verbose: print('Now exists: ',zip_file_path)
 
-        shutil.unpack_archive(zip_file_path, new_file_fullpath)
+        #shutil.unpack_archive(zip_file_path, new_file_fullpath)
+        shutil.unpack_archive(zip_file_path, extraction_path)
         if verbose: print(f'Extracted {extraction_path}/{fname}')
 
     else:
