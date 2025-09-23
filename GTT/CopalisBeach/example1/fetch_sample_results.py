@@ -12,5 +12,5 @@ sys.path.insert(0,f'{GTT}/common_code')
 
 import GTT_tools  # from $GTT/common_code
 
-GTT_tools.fetch('CopalisBeach/example1/sample_results', force=True, verbose=True)
+GTT_tools.fetch('CopalisBeach/example1/sample_results', verbose=True)
 
