@@ -18,24 +18,26 @@ print('path to GTT_data is\n     ', GTT_data)
 data_repository_url = \
     'https://depts.washington.edu/clawpack/geoclaw/GTT_data'
 
-def copy_and_zip(relpath, verbose=False):
-    fullpath = os.path.join(GTT,relpath)
-    repopath = os.path.join(GTT_data, relpath)
+def copy_and_zip(file_path, verbose=False):
+    relpath, fname = os.path.split(file_path)
+    fullpath = os.path.join(GTT,file_path)
+    fullpath_dir = os.path.split(fullpath)[0]
+    repopath = os.path.join(GTT_data, file_path)
     zip_file_path = repopath + '.zip'
     repopath_dir = os.path.split(repopath)[0]
     os.system(f'mkdir -p {repopath_dir}')
-    #print('+++ repopath = ',repopath)
-    #print('+++ fullpath = ',fullpath)
-    #print('+++ os.path.isdir(fullpath) = ',os.path.isdir(fullpath))
-    if os.path.isdir(fullpath):
-        shutil.make_archive(repopath, 'zip', fullpath)
-    elif os.path.isfile(fullpath):
-        with zipfile.ZipFile(zip_file_path, 'w') as zip_file:
-            zip_file.write(fullpath)
+    if 1:
+        print('+++ repopath = ',repopath)
+        print('+++ fullpath = ',fullpath)
+        print('+++ os.path.isfile(fullpath) = ',os.path.isfile(fullpath))
+        print('+++ os.path.isdir(fullpath) = ',os.path.isdir(fullpath))
+
+    if os.path.isfile(fullpath) or os.path.isdir(fullpath):
+        shutil.make_archive(repopath, 'zip', root_dir=fullpath_dir, base_dir=fname)
     else:
         raise ValueError('*** file not found: ', fullpath)
     if verbose:
-        print(f'converted {fullpath} to {zip_file_path}')
+        print(f'Created {zip_file_path}')
 
 def make_registry(backup=True, verbose=True):
     registry_file_path = os.path.join(GTT_data_repository, 'registry.txt')
@@ -61,3 +63,6 @@ def make_all(verbose=True):
         copy_and_zip(datapath, verbose)
 
     make_registry(backup=True, verbose=True)
+
+if __name__ == '__main__':
+    make_all()

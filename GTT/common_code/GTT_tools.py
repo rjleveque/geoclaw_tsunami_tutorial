@@ -43,9 +43,6 @@ def fetch(file_path, destination=None, force=False, verbose=False):
 
     file_exists =  os.path.isfile(new_file_fullpath) or \
                    os.path.isdir(new_file_fullpath)
-    if file_exists:
-        print('Not overwriting file or directory that already exists:\n', \
-              new_file_fullpath)
 
     if force or not file_exists:
         zip_file_path = GTTdata.fetch(file_path + '.zip')
@@ -53,17 +50,18 @@ def fetch(file_path, destination=None, force=False, verbose=False):
                 % zip_file_path
         if verbose: print('Now exists: ',zip_file_path)
 
-        # this works for directory but not for single files, puts Users/...
         shutil.unpack_archive(zip_file_path, new_file_fullpath)
         if verbose: print(f'Extracted {extraction_path}/{fname}')
 
     else:
+        print('Not overwriting file or directory that already exists:\n', \
+              new_file_fullpath)
         print('Specify force=True to overwrite')
 
     if verbose:
         if os.path.isfile(new_file_fullpath):
-            print('File exists: ', new_file_fullpath)
+            print('File now exists: ', new_file_fullpath)
         elif os.path.isdir(new_file_fullpath):
-            print('Directory exists: ', new_file_fullpath)
+            print('Directory now exists: ', new_file_fullpath)
         else:
             print('Could not find expected fullpath: ', new_file_fullpath)

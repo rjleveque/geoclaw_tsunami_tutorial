@@ -12,7 +12,7 @@ See [](README) for more about these examples.
 :::{warning}
 This page may be broken due to issues with downloading sample results
 needed for displaying the plots when building the book on Github.
-Check back later.
+If plots are missing, please check back later.
 :::
 
 The `setrun` files defined in this directory are all nearly identical, but
@@ -98,7 +98,7 @@ as described in [](README).
 Archived versions of all of these `_plots` directories are fetched to the
 `sample_results` directory if you run the `fetch_sample_results.py` script,
 as described in [](README), so that you can view them without needing to
-perform all the runs.
+perform all the runs. *(Script is still being debugged.)*
 It is these versions that supply the illustrations on this page.
 :::
 
