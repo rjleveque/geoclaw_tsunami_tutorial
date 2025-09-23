@@ -36,4 +36,8 @@ parts:
     chapters:
     - file: intro_resources
     - file: biblio
+  - caption: Juptyer Book notes and issues
+    chapters:
     - file: testing
+    - file: testing2
+
