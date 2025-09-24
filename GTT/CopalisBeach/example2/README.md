@@ -23,8 +23,11 @@ Plan to illustrate...
 - Fancier gauge plots
 - Etc.
 
-## Note:
-
-As in [](../example1/README), these examples are not intended to be modified
+:::{warning}
+As in [](../example1/README), these examples are not intended to be modified,
 and notebooks illustraing postprocessing results will use a
-`fetch_output.py` script to get the expected output directories.
+`fetch_sample_results.py` script to get the expected output directories.
+
+See [](workflow:copy) if you want to modify the examples and run them yourself.
+:::
+

@@ -120,8 +120,7 @@ as described in [](README).
 Archived versions of all of these `_plots` directories are fetched to the
 `sample_results` directory if you run the `fetch_sample_results.py` script,
 as described in [](README), so that you can view them without needing to
-perform all the runs. *(Script is still being debugged.)*
-It is these versions that supply the illustrations on this page.
+perform all the runs. 
 :::
 
 

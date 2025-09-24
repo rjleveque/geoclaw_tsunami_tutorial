@@ -36,7 +36,7 @@ commands used to create both `_output1a` and `_plots1a`.  The script
 `make_all.sh` puts these commands in a loop to create 4 sets of results and
 plots.
 
-## The setrun function
+## The setrun function, annotated
 
 Let's take a closer look at the file `setrun1a.py`.  Much of what is in this
 file is standard boilerplate that rarely changes between GeoClaw runs, and
@@ -78,7 +78,7 @@ Note several things about the number of cells chosen:
 - The domain is 5 degrees by 4 degrees and we are specifying 15 cells per
   degree, so the spatial resolution will be $\Delta x = \Delta y = 60/15 = 4$
   arcminutes.
-- See [](../../../coordinates) for discussion of what this spatial resolution is in
+- See [](coordinates) for discussion of what this spatial resolution is in
   meters, and why you might not want to choose $\Delta x = \Delta y$ in when
   working in longitude-latitude coordinates.
 
@@ -103,7 +103,7 @@ Often `t0 = 0`, but you could start the simulation at some other time.
 :::{warning}
 If you are providing a `dtopo` file for moving topography then you should
 normally make sure that the first time in that file is later than `t0`.
-See [geoclaw#??](issue).
+See [geoclaw issue #679](https://github.com/clawpack/geoclaw/issues/679).
 :::
 
 Normally `clawdata.restart == False` and a new simulation is run starting

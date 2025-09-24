@@ -1,3 +1,5 @@
+
+(coordinates)=
 # Coordinates and grid resolution
 
 ## meters vs longitude-latitude
@@ -29,6 +31,7 @@ as mathematicians we specify the horizontal coordinate first in describing
 points on a map.
 :::
 
+(coordinates:resolution)=
 ## Choice of grid resolution
 
 When written in meter coordinates, the PDEs used in GeoClaw are isotropic (on a

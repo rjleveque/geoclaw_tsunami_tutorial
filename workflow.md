@@ -119,3 +119,22 @@ you are working entirely on your own (in which case you still need to
 collaborate with your past and future self, and using version control makes
 this far easier!)  There are many excellent git tutorials online.
 
+(workflow:run)=
+## Workflow for running GeoClaw and processing results
+
+The typical workflow for running GeoClaw and making plots from the output is
+explained in [](testing_chile2010).
+
+For more details on setting up a run via `setrun.py`, see
+[](GTT/CopalisBeach/example1/README) and the annotated `setrun.py` in
+[](GTT/CopalisBeach/example1/setrun_description).
+More complicated examples will be
+covered in additional examples yet to be incorporated.
+
+:::{seealso}
+The following pages list many topics, with links to more information on how to
+do specific things:
+- [](intro_setrun)
+- [](intro_postproc)
+:::
+

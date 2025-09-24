@@ -16,14 +16,18 @@ similar to those used in [](../example1/README).
 A list of things to try doing, which will require adapting some code from
 [](../example2/README).
 
+:::{warning}
+Do not run the code in this directory.
 You should copy this directory to your own working directory `$MYGTT`,
-as explained in [](../../../workflow), and then make modifications.
+as explained in [](workflow:copy), and then make modifications.
 Otherwise you may run into merge conflicts when you try to update the
 tutorial repository with a `git pull`!
 
 You may want to make several copies of this directory to experiment with
 different modifications.
+:::
 
+Some ideas (WIP)...
 - Add gauges at the following locations: ...
 - Add an fgmax grid over some different region than in `example2`.
   Create plots on suitable backgroud images.
