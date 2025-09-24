@@ -33,8 +33,12 @@ GTTdata.load_registry(registry_file_path)
 def check_cache(data_paths=GTTdata.registry_files):
     """
     For each data_path in data_paths (by default all files in the registry),
-    check the hash of the data_path in cache against GTTdata.registry[data_path]
+    compare the hash of the data_path in cache to GTTdata.registry[data_path]
     to see if it is out of date.
+
+    Note that this assumes the registry is up to date with the remote
+    data repository, which is should be if a `git pull` has recently been
+    done in $GTT.
     """
     missing = []
     out_of_date = []
@@ -64,6 +68,27 @@ def check_cache(data_paths=GTTdata.registry_files):
             print('    ', data_path)
 
 
+def up_to_date(data_path):
+    """
+    Check if a file is up to date with the remote data repository version
+    """
+    target_file = os.path.join(GTT, data_path.replace('.zip',''))
+    cached_file = os.path.join(GTT_cache, data_path)
+
+    cached_file_missing = not os.path.isfile(cached_file)
+    if not cached_file_missing:
+        cached_file_hash = pooch.file_hash(cached_file)
+        registry_hash = GTTdata.registry[data_path]
+        out_of_date = cached_file_hash != registry_hash
+
+    if cached_file_missing:
+        print('cached file missing: ', cached_file)
+    elif out_of_date:
+        print('cached file out of date, with hash ',cached_file_hash)
+        print('  registry_hash = ', registry_hash)
+    else:
+        print('cached file up to date: ', cached_file)
+
 
 def fetch(file_path, destination=None, force=False, verbose=False):
 
@@ -85,7 +110,11 @@ def fetch(file_path, destination=None, force=False, verbose=False):
         os.system(f'rm -rf {new_file_fullpath}')
 
     if force or not file_exists:
-        zip_file_path = GTTdata.fetch(file_path + '.zip')
+        try:
+            zip_file_path = GTTdata.fetch(file_path + '.zip')
+        except:
+            print('*** registry file might be out of date, git pull?')
+            raise
         assert os.path.isfile(zip_file_path), '*** problem fetching %s' \
                 % zip_file_path
         if verbose: print('Now exists: ',zip_file_path)

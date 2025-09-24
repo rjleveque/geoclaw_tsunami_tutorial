@@ -38,6 +38,7 @@ parts:
     - file: biblio
   - caption: Juptyer Book notes and issues
     chapters:
+    - file: GTT/datasets/README
     - file: testing
     - file: testing2
 
