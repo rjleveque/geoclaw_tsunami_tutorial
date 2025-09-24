@@ -120,6 +120,17 @@ you are working entirely on your own (in which case you still need to
 collaborate with your past and future self, and using version control makes
 this far easier!)  There are many excellent git tutorials online.
 
+(workflow:sample_results)=
+### Sample results
+
+Some example directories have a script `fetch_sample_results.py` to fetch
+sample results (e.g. the `_plots` directory containing plots generated after
+running the code).  Executing this allows you to explore the results without
+having to run the code. This script is also run to fetch the sample results
+that are shown on the pages built by Jupyter Book such as 
+[](GTT/CopalisBeach/example1/results).
+(See [](datasets) for more information about how this works.)
+
 (workflow:run)=
 ## Workflow for running GeoClaw and processing results
 

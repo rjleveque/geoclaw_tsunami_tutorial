@@ -1,4 +1,5 @@
 
+(datasets)=
 # Fetching data and results
 
 The `geoclaw_tsunami_tutorial/GTT/datasets` directory contains this
@@ -67,6 +68,16 @@ in the proper location in `GTT`.
 :class: note
 - Describe hash codes and updating in more detail.
 - Use of [pooch](https://www.fatiando.org/pooch/dev/index.html).
+- Problem: The hash of a zip file can change even when the data in it that
+  we care about does not (since the zip file also contains some metadata
+  such as when it was created?)  This is annoying.
+- It would be nice to just use rsync, which would manage updating,
+  compressing, keeping track of hashes, etc.  But users can't use without
+  login or ssh keys.   Or put the data
+  repository on a server with an rsync daemon running??
+- Could alternatively use a git submodule to store all the data? But the
+  it gets versioned and grows in size if changes are made,  large files are
+  always downloaded even for examples not run, etc.
 - Are there better ways? E.g. some version of ["Git for
   data"](https://www.dolthub.com/blog/2020-03-06-so-you-want-git-for-data/)?
 :::
