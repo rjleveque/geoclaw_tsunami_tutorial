@@ -38,6 +38,11 @@ but these don't work...
 Testing with some text from the Jupyter notebook for Chapter 7 of
 [Riemann Problems and Jupyter Solutions](https://www.clawpack.org/riemann_book/html/Index.html) {cite:p}`RPJS`.
 
+Why don't the equation references work properly in this? They do in other
+simple tests....
+
+### Chapter 7: Shallow Water Waves
+
 In this chapter we study a model for shallow water waves in one dimension:  
 \begin{align}
     h_t + (hu)_x & = 0, \label{SW_mass} \\
@@ -45,7 +50,7 @@ In this chapter we study a model for shallow water waves in one dimension:
 \end{align}  
 Here $h$ is the depth, $u$ is the velocity, and $g$ is a constant representing the force of gravity.  These equations are "depth averaged" and neglect vertical velocity and any vertical variations in the horizontal velocity.  Viscosity and compressibility are neglected, and the pressure is assumed to be hydrostatic.  Nevertheless, this is a surprisingly effective model for many applications, particularly when the wavelength is long compared to the fluid depth.
 
-# Hyperbolic structure
+#### Hyperbolic structure
 We can write (\ref{SW_mass})-(\ref{SW_mom}) in the canonical form $q_t + f(q)_x = 0$ if we define  
 \begin{align}
 q & = \begin{pmatrix} h \\ hu \end{pmatrix}, & f & = \begin{pmatrix} hu \\ hu^2 + \frac{1}{2}gh^2 \end{pmatrix}.
@@ -72,7 +77,7 @@ Notice that -- unlike acoustics, but similar to the LWR traffic model -- the eig
 
 Equation (\ref{SW:char-speeds}).
 
-## The Riemann problem
+#### The Riemann problem
 Consider the Riemann problem with left and right states
 
 \begin{align*}
@@ -87,3 +92,15 @@ Typically the Riemann solution consists of two waves, one related to each of the
 In the figure we have one wave going in each direction, but since the wave speeds depend on $q$ and can have either sign, it is possible to have both waves going left, or both going right.  In these cases, the flow is said to be *supercritical*.
 
 To solve the Riemann problem, we must find $q_m$.  To do so we must find a state that can be connected to $q_\ell$ by a 1-shock or 1-rarefaction and to $q_r$ by a 2-shock or 2-rarefaction.  We must also ensure that the resulting waves satisfy the entropy condition.
+
+## Testing iframe
+
+Try embedding the shallow water Riemann solution interactive widget shown
+at the bottom of https://www.clawpack.org/riemann_book/
+
+<iframe
+    width="600"
+    height="530"
+    src="./images/shallow_water_verysmall.html"
+    frameborder="0"
+    allowfullscreen></iframe>
