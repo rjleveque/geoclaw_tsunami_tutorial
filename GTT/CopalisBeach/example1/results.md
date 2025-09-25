@@ -10,6 +10,7 @@ kernelspec:
   name: python3
 ---
 
+(copalis:example1:results)=
 # Sample results for Copalis Beach
 
 From the
@@ -120,7 +121,7 @@ as described in [](README).
 Archived versions of all of these `_plots` directories are fetched to the
 `sample_results` directory if you run the `fetch_sample_results.py` script,
 as described in [](README), so that you can view them without needing to
-perform all the runs. 
+perform all the runs.
 :::
 
 
@@ -128,6 +129,10 @@ perform all the runs.
 
 Shown around Copalis Beach with different finest-level resolution,
 at time 50 minutes.
+
+These plots also show the location of 3 gauges.  See [](#copalis:gauge_comparison)
+below for comparisons of time series at these gauges as computed with
+the different resolutions shown here.
 
 ### 24" resolution
 
@@ -145,6 +150,41 @@ at time 50 minutes.
 ### 1/3" resolution
 
 ![](./sample_results/_plots1d/frame0005fig1.png)
+
+(copalis:gauge_comparison)=
+## Gauge comparisons
+
+The plots below were created by the Python script `compare_gauges.py`.
+It reads the gauge results for a gauge from each of the 4 `_output` directories
+and plots the time series together on the same plot.
+
+Time series at two different gauges are shown: Gauge 101 is just offshore,
+initially in about 5 meters depth, and Gauge 102 is onshore, at a point
+that is initially dry.
+
+Note that we plot different quantities at the gauges: at the offshore Gauge 101
+it is best to look at the water surface elevation (relative to the
+vertical datum of the topofile used in this region), while at the onshore
+Gauge 102 it is better to look at the water depth above the topography.
+
+See [](gauges) for discussion of why this choice is best, and several other
+types of plots that you might want to produce at gauges.
+
+![](./sample_results/GaugeComparison.png)
+
+Note from these gauge plots:
+
+- Even the very coarse and badly under-resolved
+  simulation of case `1a` produces reasonable estimates of the maximum wave
+  height `eta` offshore at Gauge 101 and also the maximum inundation depth `h`
+  at the onshore Gauge 102.
+
+- Adding more levels of refinement improves the resolution of the results
+  significantly from case `1a` to `1b` to `1c`, but there is little difference
+  between the case `1c` results with 1 arcsec resolution and case `1d` with
+  1/3 arcsec resolution.  This is a good indication that the results are
+  converging to the "correct" solution for this particular model (solving the
+  shallow water equations with the given topo and dtopo files).
 
 
 ## Videos

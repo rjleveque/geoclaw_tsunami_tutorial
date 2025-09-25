@@ -118,7 +118,7 @@ def setplot(plotdata):
     plotaxes.xlimits = [-124.25, -124.1]
     plotaxes.ylimits = [47.06, 47.18]
 
-    #plotaxes.afteraxes = addgauges
+    plotaxes.afteraxes = addgauges  # show the gauge locations
 
     # Water
     plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
@@ -162,7 +162,8 @@ def setplot(plotdata):
     time_scale = 1./60.
     time_label = 'minutes'
 
-    plotfigure = plotdata.new_plotfigure(name='Gauges',figno=300,type='each_gauge')
+    plotfigure = plotdata.new_plotfigure(name='Gauge depth',
+                                         figno=300,type='each_gauge')
     plotfigure.figsize = (10,5)
     plotfigure.clf_each_gauge = True
 
@@ -170,6 +171,10 @@ def setplot(plotdata):
     plotaxes = plotfigure.new_plotaxes()
     plotaxes.time_scale = time_scale
     plotaxes.time_label = time_label
+    plotaxes.ylabel = 'meters'
+    plotaxes.xlabel_fontsize = 15
+    plotaxes.ylabel_fontsize = 15
+    plotaxes.title_fontsize = 20
     plotaxes.xlimits = 'auto'
     plotaxes.ylimits = 'auto'
     plotaxes.title = 'Water depth h'
@@ -177,6 +182,68 @@ def setplot(plotdata):
     plotitem = plotaxes.new_plotitem(plot_type='1d_plot')
     plotitem.plot_var = 0
     plotitem.plotstyle = 'b-'
+
+
+    plotfigure = plotdata.new_plotfigure(name='Gauge eta',
+                                         figno=301,type='each_gauge')
+    plotfigure.figsize = (10,5)
+    plotfigure.clf_each_gauge = True
+
+    # Set up for axes in this figure:
+    plotaxes = plotfigure.new_plotaxes()
+    plotaxes.time_scale = time_scale
+    plotaxes.time_label = time_label
+    plotaxes.ylabel = 'meters relative to topo vdatum'
+    plotaxes.xlabel_fontsize = 15
+    plotaxes.ylabel_fontsize = 15
+    plotaxes.title_fontsize = 20
+    plotaxes.xlimits = 'auto'
+    plotaxes.ylimits = 'auto'
+    plotaxes.title = 'Surface eta = B+h'
+    plotaxes.grid = True
+    plotitem = plotaxes.new_plotitem(plot_type='1d_plot')
+    plotitem.plot_var = -1   # eta is the last component in the q array
+    plotitem.plotstyle = 'b-'
+
+
+    plotfigure = plotdata.new_plotfigure(name='Gauge Level',
+                                         figno=303,type='each_gauge')
+    plotfigure.figsize = (10,5)
+    plotfigure.clf_each_gauge = True
+
+    # Set up for axes in this figure:
+    plotaxes = plotfigure.new_plotaxes()
+    plotaxes.time_scale = time_scale
+    plotaxes.time_label = time_label
+    plotaxes.ylabel = 'AMR Level'
+    plotaxes.xlabel_fontsize = 15
+    plotaxes.ylabel_fontsize = 15
+    plotaxes.title_fontsize = 20
+    plotaxes.xlimits = 'auto'
+    plotaxes.ylimits = [0,9]
+    plotaxes.title = 'AMR Refinement Level'
+    plotaxes.grid = True
+    plotitem = plotaxes.new_plotitem(plot_type='1d_plot')
+    def level(current_data):
+        L = current_data.gaugesoln.level
+        return L
+    plotitem.plot_var = level
+    plotitem.plotstyle = 'b-'
+
+    # after the plot is made, add text labeling the resolution of each level:
+    def label_resolutions(current_data):
+        from matplotlib.pyplot import text
+        res = ['4 arcmin', '2 arcmin', '24 arcsec', '12 arcsec',
+               '6 arcsec', '3 arcsec', '1 arcsec', '1/3 arcsec']
+        for k in range(len(res)):
+            level = k+1
+            text(61, level+0.05, f'Level {level}: {res[k]}',
+                 ha='left', va='bottom', color='b', fontsize=12)
+        print(res)
+
+    plotaxes.afteraxes = label_resolutions
+
+
 
     # Plots of timing (CPU and wall time):
 
