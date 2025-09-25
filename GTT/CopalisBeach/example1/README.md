@@ -12,7 +12,17 @@ exploring tsunami modeling.  See [](../README) for more about the Copalis
 Beach location and a list of other examples and tutorials based on this
 location.
 
-## Contents (Work in Progress):
+## Tutorial pages
+
+These pages discuss the four tsunami simulations that are set up in this
+directory:
+
+- [](results)
+- [](gauges)
+- [](output1a_annotated)
+- [](setrun_description)
+
+## Contents of the directory `$GTT/CopalisBeach/example1`
 
 - `setrun1a.py`, an first pass to model on coarse grids (up to AMR level 3)
 - `setrun1b.py`, a modified version to include up to AMR level 5

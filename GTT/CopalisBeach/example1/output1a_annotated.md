@@ -4,11 +4,44 @@ To run the example set up in `setrun1a.py` (which is described in detail in
 [](setrun_description) and make the plots, you can execute the commands found
 in `make_example1a.sh` or type the shell command
 
-    $ bash make_example1a.sh
+    $ source make_example1a.sh
 
-Here is (part of) the output that appears on the screen when you run this
-(which is also captured in the file `sample_results/geoclaw_output1a.txt`)
-with some annotations...
+Here's the contents of that file, the shell commands that are executed by
+running the script:
+
+    #!/bin/bash
+
+    # clean up any old results:
+    rm -rf _output1a _plots1a
+
+    # make sure the code is compiled:
+    make .exe -f Makefile1a | tee geoclaw_output1a.txt
+
+    # create .data files (appending screen output):
+    make data -f Makefile1a | tee -a geoclaw_output1a.txt
+
+    # run GeoClaw:
+    echo ==========> Running GeoClaw...
+    make output -f Makefile1a | tee -a geoclaw_output1a.txt
+
+    # plot the results:
+    echo ==========> Plotting results...
+    make plots -f Makefile1a | tee -a geoclaw_output1a.txt
+
+Note that the unix `tee` command is used to both print the usual output to the
+screen and capture it to a file, appending to it for each command.
+A copy of this output is in the file `sample_results/geoclaw_output1a.txt`.
+
+An annotated version of this output follows, to explain what is going on...
+
+#### Compiling the code: `make .exe`
+
+The code
+
+    # make sure the code is compiled:
+    make .exe -f Makefile1a | tee geoclaw_output1a.txt
+
+produces:
 
 
     make: Nothing to be done for `.exe'.
@@ -17,6 +50,16 @@ with some annotations...
 Nothing is done by `make .exe` since the code was previously compiled when I
 ran this.
 :::
+
+#### Creating the data files: `make .data`
+
+The code
+
+    # create .data files (appending screen output):
+    make data -f Makefile1a | tee -a geoclaw_output1a.txt
+
+forces recreation of the `.data` files based on `setrun1a.py` (as specified
+in `Makefile1a`, and produces:
 
     rm -f .data
     python setrun1a.py              geoclaw                  
@@ -69,9 +112,17 @@ ran this.
 
 :::{note}
 Some things were printed out above from the `make data` command.
+:::
+
+#### Running the GeoClaw executable: `make output`
 
 Next it starts running the compiled GeoClaw Fortran code...
-:::
+
+The code
+
+    make output -f Makefile1a | tee -a geoclaw_output1a.txt
+
+produces:
 
     rm -f .output
     python /Users/rjl/git/clawpack/clawutil/src/python/clawutil/runclaw.py xgeoclaw _output1a                     \
@@ -458,10 +509,18 @@ output time.
     =========================================================================
 
 
-:::{note}
-Next the plots are made, with screen output shown below:
-:::
+#### Making plots:  `make .plots`
 
+
+Next the plots are made.  All of the Makefiles in this directory reference the
+same `setplot.py`, so each of the four examples produces the same set of plots
+(but with different simulation output).
+
+The code
+
+    make plots -f Makefile1a | tee -a geoclaw_output1a.txt
+
+produces:
 
     rm -f .plots
     python /Users/rjl/git/clawpack/visclaw/src/python/visclaw/plotclaw.py _output1a                     _plots1a                     setplot.py             

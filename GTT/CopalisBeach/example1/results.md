@@ -32,11 +32,6 @@ subdirectory `sample_results` that provides the figures shown on this page.
 run fetch_sample_results.py
 ```
 
-:::{warning}
-This page may be broken due to issues with downloading sample results
-needed for displaying the plots when building the book on Github.
-If plots are missing, please check back later.
-:::
 
 The `setrun` files defined in this directory are all nearly identical, but
 allow a different number of refinement levels.  The coarsest (3-level) case
@@ -110,7 +105,7 @@ for these runs output every 10 minutes was specified).  Again we see that
 the majority of the work was done on Level 8.  Note also the gray section
 above the yellow Level 8 section on the plot.  This shows the amount of time
 spent on "overhead" related to the way the AMR is implemented.  This cost
-of using AMR is tiny compared to the coast savings inherent in putting finer
+of using AMR is tiny compared to the cost savings inherent in putting finer
 grids only where they are really needed!
 
 

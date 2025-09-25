@@ -29,11 +29,6 @@ discussion of the results obtained from 4 runs with different resolutions.
 run fetch_sample_results.py
 ```
 
-:::{warning}
-This page may be broken due to issues with downloading sample results
-needed for displaying the plots when building the book on Github.
-If plots are missing, please check back later.
-:::
 
 ## Plots created by `setplot.py`
 
