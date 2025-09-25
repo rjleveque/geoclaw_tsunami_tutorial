@@ -25,17 +25,14 @@ around [Copalis Beach, WA (-124.1733, 47.1134)](https://maps.app.goo.gl/RW275B5T
 (copalis:input)=
 ## Input files
 
-:::{warning}
-These instructions need to be updated.  Still work in progres...
-:::
-
 The examples use some topofiles and a dtopofile that can be
 downloaded from an online data repository in order to quickly get into the
 GeoClaw simulation examples:
 
+    $ cd $GTT/CopalisBeach
     $ python fetch_input_data.py
 
-Alternatively, you can run these notebooks found in the `$GTT/topo` and
+Alternatively, you can run the notebooks listed below, found in the `$GTT/topo` and
 `$GTT/dtopo` directories, which were used to create the files:
 
 - [](../topo/fetch_etopo22), which creates

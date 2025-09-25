@@ -1,3 +1,4 @@
+(dtopodir)=
 # dtopo directory
 
 The `geoclaw_tsunami_tutorial/GTT/dtopo` directory contains scripts and

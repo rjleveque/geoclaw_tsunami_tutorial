@@ -1,3 +1,4 @@
+(topodir)=
 # topo directory
 
 The `geoclaw_tsunami_tutorial/GTT/topo` directory contains scripts and
