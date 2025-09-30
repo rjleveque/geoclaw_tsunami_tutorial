@@ -29,6 +29,26 @@ discussion of the results obtained from 4 runs with different resolutions.
 run fetch_sample_results.py
 ```
 
+## Gauge locations
+
+All of the `setrun` functions provided in this directory set the same 3
+synthetic gauges via these lines:
+
+    gauges = rundata.gaugedata.gauges   # empty list initially
+
+    gauges.append([101, -124.1899537, 47.1159722, 0, 1e9])     # slightly offshore
+    gauges.append([102, -124.1800463, 47.1159722, 0, 1e9])     # onshore
+    gauges.append([103, -124.1706019, 47.1159722, 0, 1e9])     # in river
+
+:::{admonition} Todo
+:class: note
+Explain why/how gauges are shifted away from cell edges.
+:::
+
+The `gauges.kml` file created from any of these `setrun` files
+shows the locations of the gauges specified:
+
+![](CopalisGauges.jpg)
 
 ## Plots created by `setplot.py`
 
@@ -300,14 +320,14 @@ In practice you might want to:
 - Set the time at which gauges are being recorded to the time you think the
   interesting behavior will start.  In `setrun1c.py` we set the gauges as e.g.
 
-      gauges.append([101, -124.19, 47.116, 0., 1e9])
+      gauges.append([101, -124.1899537, 47.1159722, 0, 1e9])
 
-  This says that Gauge 101 is at lon-lat location `(-124.19, 47.116)`
+  This says that Gauge 101 is at lon-lat location `(-124.1899537, 47.1159722)`
   and should be
   recording data from time `0.` to `1e9` (i.e. for the entire simulation
   no matter how large  `tfinal` is, since `1e9` is essentially infinite).
   For the simulation shown here, it might be better to replace the start
-  time `0.` by `38*60.` for example, to only record gauges after 38 minutes.
+  time `0` by `38*60.` for example, to only record gauges after 38 minutes.
 
 - Set refinement `flagregions` to force refinement to the highest level after
   some time to insure you are not seeing spurious artifacts of level switching.
@@ -321,3 +341,17 @@ In practice you might want to:
   may be well worth it to reduce confusion (e.g. when doing the final
   "production run" for a tsunami hazard assessment project).
 :::
+
+(gauge103)=
+### Gauge 103 in river
+
+:::{admonition} Todo
+:class: note
+Add discussion of what happens when gauge is on initially-dry land on coarse
+levels but in an initially-wet cell on finer levels. This leads to
+discontinuities in both `h` and `eta` at 30 minutes...
+:::
+
+![](./sample_results/_plots1c/gauge0103fig300.png)
+
+![](./sample_results/_plots1c/gauge0103fig301.png)

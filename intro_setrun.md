@@ -68,6 +68,11 @@ for an annotated `setrun` script explaining the commonly changed parameters.
 - Using [Ruled Rectangles](http://www.clawpack.org/ruled_rectangles.html)
   for refinement regions, e.g.
   [MakeFlagregionsCoast notebook](https://www.clawpack.org/gallery/_static/apps/notebooks/geoclaw/MakeFlagregionsCoast.html)
+- [Guiding AMR with adjoint flagging](https://www.clawpack.org/adjoint.html)
+  See also the example in `$CLAW/geoclaw/examples/tsunami/chile2010_adjoint`
+  and its [README in the Clawpack
+  Gallery](https://www.clawpack.org/gallery/_static/geoclaw/examples/tsunami/chile2010_adjoint/README.html).
+  Additional examples in the paper {cite}`DavisLeVeque:adjoint2016`.
 
 ### Duration of simulation and time between outputs
 

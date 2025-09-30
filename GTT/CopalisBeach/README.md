@@ -18,9 +18,11 @@ around [Copalis Beach, WA (-124.1733, 47.1134)](https://maps.app.goo.gl/RW275B5T
 
 - [](exercise1/README), An example to try modifying yourself.
 
-- Additional examples and exercises to appear, in particular ones
-  based on a farfield event, such as
-  Alaska 1964 (or AKmaxWA), Tohoku 2011, or Kamchatka 2025.
+- [](example3/README), An example with a far-field earthquake source
+  (AKmaxWA?)
+
+- [](example4/README), An example with a trans-Pacific tsunami,
+  perhaps Kamchatka 2025.
 
 (copalis:input)=
 ## Input files

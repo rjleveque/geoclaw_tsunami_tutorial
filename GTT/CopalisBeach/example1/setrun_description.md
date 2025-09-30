@@ -325,6 +325,12 @@ regridding that is performed.
     # ---------------
     amrdata = rundata.amrdata
 
+    # maximum size of each grid patch (in each direction):
+    amrdata.max1d = 60    # default is 60
+
+    # initial size of work array for AMR patches:
+    amrdata.memsize = 10000000    # default is 1000000
+
     # max number of refinement levels:
     amrdata.amr_levels_max = 3
 
@@ -558,17 +564,16 @@ See [Setting a Speed Limit to Avoid Instabilities](https://www.clawpack.org/spee
 
     # Note: it is best to center gauges in cells at finest resolution
     # (not done here)
-    gauges.append([101, -124.19, 47.116, 0., 1e9])
-    gauges.append([102, -124.18, 47.116, 0., 1e9])
-    gauges.append([103, -124.17, 47.116, 0., 1e9])
-
+    gauges.append([101, -124.1899537, 47.1159722, 0, 1e9])     # slightly offshore
+    gauges.append([102, -124.1800463, 47.1159722, 0, 1e9])     # onshore
+    gauges.append([103, -124.1706019, 47.1159722, 0, 1e9])     # in river
 
     rundata.gaugedata.file_format = 'ascii'  # often use 'binary32'
     #rundata.gaugedata.min_time_increment = 5 # minimum seconds between outputs
 
 :::{admonition} Todo
 :class: note
-*Add description*
+*Add description and discussion of shifting gauges away from cell edges*
 :::
 
 ### create kml files

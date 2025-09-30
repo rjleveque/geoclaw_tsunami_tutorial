@@ -2,8 +2,8 @@ from pylab import *
 import os
 from clawpack.pyclaw.gauges import GaugeSolution
 
-#rundir = '.'  # to use the results in _output1a, etc from this directory
-rundir = 'sample_results'  # to use the results from the data repository
+rundir = '.'  # to use the results in _output1a, etc from this directory
+#rundir = 'sample_results'  # to use the results from the data repository
 
 
 c = ['k','g','b','r']  # colors for lines

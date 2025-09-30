@@ -80,7 +80,7 @@ def setplot(plotdata):
     plotitem.colorbar_shrink = 0.7
     plotitem.colorbar_label = 'meters'
     plotitem.amr_celledges_show = [0,0,0]
-    plotitem.patchedges_show = 0
+    plotitem.patchedges_show = 1
 
     # Land
     plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
@@ -131,7 +131,7 @@ def setplot(plotdata):
     plotitem.colorbar_shrink = 0.7
     plotitem.colorbar_label = 'meters'
     plotitem.amr_celledges_show = [0,0,0]
-    plotitem.amr_patchedges_show = [0,0,0,0,0,0,0,0]
+    plotitem.amr_patchedges_show = [0,0,0,0,1,0,0,0]
 
     # Land
     plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
@@ -239,7 +239,6 @@ def setplot(plotdata):
             level = k+1
             text(61, level+0.05, f'Level {level}: {res[k]}',
                  ha='left', va='bottom', color='b', fontsize=12)
-        print(res)
 
     plotaxes.afteraxes = label_resolutions
 

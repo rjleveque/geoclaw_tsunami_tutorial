@@ -12,12 +12,9 @@ import numpy as np
 # if some values in .data files show up as e.g. np.float64(3600.0)
 # this will restore old behavior and just print 3600.0:
 #np.set_printoptions(legacy="1.25")
-# fixed in master after v5.12.0
+# fixed in clawpack versions >= v5.13.0
 
 from clawpack.amrclaw.data import FlagRegion
-#from clawpack.geoclaw import fgmax_tools, fgout_tools
-#from clawpack.geoclaw.data import ForceDry
-
 
 try:
     CLAW = os.environ['CLAW']
@@ -271,6 +268,12 @@ def setrun(claw_pkg='geoclaw'):
     # ---------------
     amrdata = rundata.amrdata
 
+    # maximum size of each grid patch (in each direction):
+    amrdata.max1d = 60    # default is 60
+
+    # initial size of work array for AMR patches:
+    amrdata.memsize = 10000000   # default is 1000000
+
     # max number of refinement levels:
     amrdata.amr_levels_max = 3
 
@@ -429,12 +432,9 @@ def setrun(claw_pkg='geoclaw'):
     # for gauges append tuples/lists of the form
     #   [gaugeno, x, y, t1, t2]
 
-    # Note: it is best to center gauges in cells at finest resolution
-    # (not done here)
-    gauges.append([101, -124.19, 47.116, 0., 1e9])
-    gauges.append([102, -124.18, 47.116, 0., 1e9])
-    gauges.append([103, -124.17, 47.116, 0., 1e9])
-
+    gauges.append([101, -124.1899537, 47.1159722, 0, 1e9])     # slightly offshore
+    gauges.append([102, -124.1800463, 47.1159722, 0, 1e9])     # onshore
+    gauges.append([103, -124.1706019, 47.1159722, 0, 1e9])     # in river
 
     rundata.gaugedata.file_format = 'ascii'  # often use 'binary32'
     #rundata.gaugedata.min_time_increment = 5 # minimum seconds between outputs

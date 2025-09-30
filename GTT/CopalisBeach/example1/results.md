@@ -44,6 +44,9 @@ script, and [](output1a_annotated) for more discussion of the output.
 
 ## Run times
 
+Here's a summary of some run times, but note that these may vary from run
+to run (even on the same computer), particularly for short runs.
+
 These runs were done on a Macbook Pro with the M1 chip and 6 OpenMP threads.
 
 |example | finest-level grid resolution | elapsed wall time | Total CPU time |

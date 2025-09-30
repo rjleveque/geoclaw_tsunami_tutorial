@@ -22,6 +22,8 @@ parts:
       - file: GTT/CopalisBeach/example1/gauges
       - file: GTT/CopalisBeach/example2/README
       - file: GTT/CopalisBeach/exercise1/README
+      - file: GTT/CopalisBeach/example3/README
+      - file: GTT/CopalisBeach/example4/README
     - file: GTT/topo/README
       sections:
       - file: GTT/topo/fetch_etopo22
