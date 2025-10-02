@@ -5,3 +5,4 @@ ghp-import
 clawpack
 netCDF4
 pooch
+cloudpathlib
