@@ -80,5 +80,10 @@ in the proper location in `GTT`.
   always downloaded even for examples not run, etc.
 - Are there better ways? E.g. some version of ["Git for
   data"](https://www.dolthub.com/blog/2020-03-06-so-you-want-git-for-data/)?
+- Some other possibilities:
+  - [cloudpathlib](https://cloudpathlib.drivendata.org/stable/caching/)
+  - xarray uses a separate github data repository
+    [xarray-data](https://github.com/pydata/xarray-data)
+    with a [load_dataset function](https://docs.xarray.dev/en/latest/generated/xarray.tutorial.load_dataset.html)
 :::
 

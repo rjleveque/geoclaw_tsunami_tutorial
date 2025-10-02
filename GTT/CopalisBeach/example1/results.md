@@ -11,7 +11,7 @@ kernelspec:
 ---
 
 (copalis:example1:results)=
-# Sample results for Copalis Beach
+# Sample results for example1
 
 From the
 [GeoClaw Tsunami Tutorial](https://rjleveque.github.io/geoclaw_tsunami_tutorial)

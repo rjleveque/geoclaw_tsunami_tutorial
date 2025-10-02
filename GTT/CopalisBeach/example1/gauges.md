@@ -11,7 +11,7 @@ kernelspec:
 ---
 
 (copalis:example1:gauges)=
-# Gauge plots for Copalis Beach
+# Gauge plots for example1
 
 From the
 [GeoClaw Tsunami Tutorial](https://rjleveque.github.io/geoclaw_tsunami_tutorial)
