@@ -80,7 +80,7 @@ def setplot(plotdata):
     plotitem.colorbar_shrink = 0.7
     plotitem.colorbar_label = 'meters'
     plotitem.amr_celledges_show = [0,0,0]
-    plotitem.patchedges_show = 1
+    plotitem.patchedges_show = 0
 
     # Land
     plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
@@ -131,7 +131,7 @@ def setplot(plotdata):
     plotitem.colorbar_shrink = 0.7
     plotitem.colorbar_label = 'meters'
     plotitem.amr_celledges_show = [0,0,0]
-    plotitem.amr_patchedges_show = [0,0,0,0,1,0,0,0]
+    plotitem.amr_patchedges_show = [0,0,0,0,0,0,0,0]
 
     # Land
     plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')

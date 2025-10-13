@@ -79,8 +79,9 @@ def setplot(plotdata):
     plotitem.colorbar_extend = 'both'
     plotitem.colorbar_shrink = 0.7
     plotitem.colorbar_label = 'meters'
-    plotitem.amr_celledges_show = [0,0,0]
-    plotitem.patchedges_show = 1
+    plotitem.amr_celledges_show = [1,0,0]
+    plotitem.amr_patchedges_show = [1]
+    plotitem.amr_patchedges_color = ['k','g','r','c','b','m','k']
 
     # Land
     plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')

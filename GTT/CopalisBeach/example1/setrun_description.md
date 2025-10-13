@@ -38,6 +38,13 @@ plots.
 
 ## The setrun function, annotated
 
+:::{seealso}
+- [Specifying GeoClaw parameters in setrun.py](https://www.clawpack.org/setrun_geoclaw.html)
+- [Specifying AMRClaw run-time parameters in setrun.py](https://www.clawpack.org/setrun_amrclaw.html)
+
+However, this documentation is out of date and does not include all options.
+:::
+
 Let's take a closer look at the file `setrun1a.py`.  Much of what is in this
 file is standard boilerplate that rarely changes between GeoClaw runs, and
 typically a new problem is set up by copying some `setrun.py` as a template
@@ -112,7 +119,7 @@ either to extend it out further in time or because you ran out of time on
 a supercomputer and the run aborted, for example.  You can only restart if
 you saved *checkpoint files* from the original run and `clawdata.restart_file`
 indicates where to find the *checkpoint file* from which to do the restart.
-See [??](checkpoint_restart) for more details.
+See [](checkpoint_restart) for more details.
 
 ### Output times and style
 
@@ -167,6 +174,7 @@ Note that for `output_style` 1 and 3 there is also a parameter
 an output frame at time `t0` is produced (the initial conditions, often a
 flat ocean in tsunami simulations).
 
+
 :::{tip}
 If you set
 
@@ -188,7 +196,13 @@ The next block of code:
     clawdata.output_q_components = 'all'     # output all 3 components h,hu,hv
 
 
-specifies the format of the output.  See [??]().
+specifies the format of the output.  
+
+
+:::{seealso}
+[Output data styles and formats](https://www.clawpack.org/output_styles.html)
+in the Clawpack documentation.
+:::
 
 ### Verbosity
 
@@ -313,10 +327,11 @@ regridding that is performed.
         # and at the final time.
         clawdata.checkpt_interval = 5
 
-:::{admonition} Todo
-:class: note
-*Add description*
-:::
+Setting `clawdata.checkpt_style = 0` means that no checkpoint files will
+be generated for this quick run.
+
+See [](checkpoint_restart) for more discussion of these parameters.
+
 ### AMR parameters
 
 
@@ -331,6 +346,19 @@ regridding that is performed.
     # initial size of work array for AMR patches:
     amrdata.memsize = 10000000    # default is 1000000
 
+The `amrdata.max1d` parameter controls how large individual grid patches
+can be in each dimension, so in this example the 2D patches are
+at most 60x60 grid cells.  This is the default value if you do not
+specify this parameter in `setrun.py` and is usually a good choice.
+
+The `amrdata.memsize` determines how much memory is allocated for a work
+array used for keeping the solution on all the grid patches at all levels
+of the AMR solution.  The default value in GeoClaw is currently 1e6, which
+is generally too small, so here it is set to 1e7.  (If this work array size
+is exceeded, the code automatically extends the array so the code does
+not die, but it takes some time to do this re-allocation and copying of
+data, so nice to avoid.)
+
     # max number of refinement levels:
     amrdata.amr_levels_max = 3
 
@@ -343,6 +371,28 @@ regridding that is performed.
     amrdata.refinement_ratios_y = refinement_ratios
     amrdata.refinement_ratios_t = refinement_ratios
 
+:::{note}
+These are the AMR parameters you will most frequently need to change for a
+new problem or to increase the resolution of the problem you are solving.
+:::
+
+In this `setrun1a.py`, we specify that only 3 levels of refinement are allowed.
+(The other examples in this directory have larger values of
+`amrdata.amr_levels_max`.)  The `refinement_ratios` array consists of integers
+telling how much to refine the grid from one level to the next.  This is
+done here in a way that refinement ratios are the same in `x, y` and `t`,
+but they need not be.
+
+From Level 1 to 2, the grid is refined by a factor of 2 and from Level 2 to 3
+by a factor of 5.  The array `refinement_ratios` can be longer than necessary,
+and here it includes the refinement ratios that will be used for levels 4--8
+in the other examples in this directory.
+
+:::{note}
+The refinement in time is also controlled by the Courant number
+specified, described below...
+:::
+
     # Specify type of each aux variable in amrdata.auxtype.
     # This must be a list of length maux, each element of which is one of:
     #   'center',  'capacity', 'xleft', or 'yleft'  (see documentation).
@@ -352,6 +402,8 @@ regridding that is performed.
     # Flag using refinement routine flag2refine rather than richardson error
     amrdata.flag_richardson = False    # use Richardson?
     amrdata.flag2refine = True
+
+For GeoClaw run, the parameters above typically never change.
 
     # steps to take on each level L between regriddings of level L+1:
     amrdata.regrid_interval = 3
@@ -367,17 +419,48 @@ regridding that is performed.
     # print info about each regridding up to this level:
     amrdata.verbosity_regrid = 3
 
+The parameters above specify that every 3 time steps on each AMR level the
+finer grids should be regridded, which means that cells on the current level
+are tested against various criteria and some are flagged as needed refinement
+(see below).  The flagged cells are then clustered into rectangular patches,
+but before doing so a buffer of 2 cells around each flagged cell is also
+flagged.  This helps insure that propagationg waves do not escape from the
+refined region before the next regridding happens.  The `clustering_cutoff`
+determines how many unflagged points are allowed in the rectangular
+patches, and 0.7 is generally fine.
+
 :::{admonition} Todo
 :class: note
-*Add description*
+*Add more description*
 :::
-
-### `geo_data` parameters
 
 
     # ------------------------------
     # Set data specific to GeoClaw:
     # ------------------------------
+
+    # Refinement settings
+    refinement_data = rundata.refinement_data
+    refinement_data.variable_dt_refinement_ratios = True
+    refinement_data.wave_tolerance = 0.1
+
+For GeoClaw some additional AMR parameters are set (all the parameters
+so far also exist in the more general AMRClaw code, if AMR is applied
+to other problems such as advection, acoustics, gas dynamics, etc.)
+
+You normally want to set `variable_dt_refinement_ratios = True`, which
+allows GeoClaw to adjust the refinement ratio in time to be something
+different than specified earlier. (**explain**).
+
+`wave_tolerance = 0.1` means that cells might be flagged for refinement if
+the magnitude of the surface elevation `abs(eta)` is greater than 0.1 meter.
+This is only used, however, for cells that are allowed to be flagged to
+a higher level but not required to be flagged, as explained further below
+in [](setrun_flagregions).
+
+### `geo_data` parameters
+
+    geo_data = rundata.geo_data
 
     # == Physics ==
     geo_data.gravity = 9.81            # m/s**2
@@ -458,12 +541,6 @@ See [Manning friction term documentation](https://www.clawpack.org/manning.html)
 
 See [Setting a Speed Limit to Avoid Instabilities](https://www.clawpack.org/speed_limit.html)
 
-### Refinement parameters
-
-    # Refinement settings
-    refinement_data = rundata.refinement_data
-    refinement_data.variable_dt_refinement_ratios = True
-    refinement_data.wave_tolerance = 0.1
 
 :::{admonition} Todo
 :class: note
@@ -512,6 +589,7 @@ See [Setting a Speed Limit to Avoid Instabilities](https://www.clawpack.org/spee
 *Add description*
 :::
 
+(setrun_flagregions)=
 ### flagregions to guide AMR
 
     # ---------------

@@ -410,14 +410,32 @@ def setrun(claw_pkg='geoclaw'):
     flagregion.spatial_region = [x1-0.2, x2+0.2, y1-0.2, y2+0.2]
     flagregions.append(flagregion)
 
+    # dtopo region - force refinement even before there is any deformation
+    # to the resolution needed to resolve the initial waves well.
+    # This region forces a certain level of refinement over a short time.
+    # Normally this would cover all of dtopo, but for this simplified
+    # test problem the domain is truncated and we are only going out to
+    # a short time so we don't need to refine even all of the dtopo within
+    # the domain.
+    flagregion = FlagRegion(num_dim=2)
+    flagregion.name = 'Region_dtopo'
+    flagregion.minlevel = 4
+    flagregion.maxlevel = 4
+    flagregion.t1 = 0.
+    flagregion.t2 = 10.
+    flagregion.spatial_region_type = 1  # Rectangle
+    flagregion.spatial_region = [-126.6,-124.,45.5,48.5]
+    flagregions.append(flagregion)
+
+
     # Region12sec - 24 to  12 sec:
-    # Level 4 is 12 sec
+    # This allows 4 levels, starting after the dtopo deformation ends
     # (other regions below will force/allow more refinement)
     flagregion = FlagRegion(num_dim=2)
     flagregion.name = 'Region_12sec'
     flagregion.minlevel = 3
     flagregion.maxlevel = 4
-    flagregion.t1 = 0.
+    flagregion.t1 = 10.
     flagregion.t2 = 1e9
     flagregion.spatial_region_type = 1  # Rectangle
     flagregion.spatial_region = [-126.6,-124.,46.27,47.68]

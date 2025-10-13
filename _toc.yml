@@ -35,6 +35,7 @@ parts:
     chapters:
     - file: intro_topics
     - file: coordinates
+    - file: checkpoint_restart
   - caption: Resources
     chapters:
     - file: intro_resources
