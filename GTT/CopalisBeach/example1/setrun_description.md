@@ -424,16 +424,13 @@ finer grids should be regridded, which means that cells on the current level
 are tested against various criteria and some are flagged as needed refinement
 (see below).  The flagged cells are then clustered into rectangular patches,
 but before doing so a buffer of 2 cells around each flagged cell is also
-flagged.  This helps insure that propagationg waves do not escape from the
+flagged.  This helps insure that propagating waves do not escape from the
 refined region before the next regridding happens.  The `clustering_cutoff`
 determines how many unflagged points are allowed in the rectangular
 patches, and 0.7 is generally fine.
 
-:::{admonition} Todo
-:class: note
-*Add more description*
-:::
-
+(wave_tolerance)=
+### Additional refinement settings for GeoClaw
 
     # ------------------------------
     # Set data specific to GeoClaw:
@@ -477,6 +474,10 @@ in [](setrun_flagregions).
     geo_data.manning_coefficient =.025
     geo_data.friction_depth = 200     # how deep to apply friction term
     geo_data.speed_limit = 20.        # limit on speed sqrt(u**2 + v**2)
+
+Some of these parameters are described below...
+
+#### Physics
 
 You won't be changing `gravity` unless you are modeling tsunamis on Mars,
 for example, as has been done (e.g. [??]), in which case the poorly named
@@ -539,13 +540,13 @@ See [Manning friction term documentation](https://www.clawpack.org/manning.html)
 
     geo_data.speed_limit = 20.  # limit on speed sqrt(u**2 + v**2)
 
+Very large speeds sometimes arise in cells that have a small amount of
+water and a large jump in topography to a neighboring lower cell with a lower
+surface elevation eta.  This parameter specifies that any cell where the
+fluid speed is greater than 20 m/s should be scaled back to this level, which
+reduces the chances of the code blowing up and aborting.
 See [Setting a Speed Limit to Avoid Instabilities](https://www.clawpack.org/speed_limit.html)
 
-
-:::{admonition} Todo
-:class: note
-*Add description*
-:::
 
 ### topo files
 
@@ -567,9 +568,16 @@ See [Setting a Speed Limit to Avoid Instabilities](https://www.clawpack.org/spee
     topo_file = os.path.join(topodir, 'Copalis_13s.asc')
     topofiles.append([3, topo_file])
 
-:::{admonition} Todo
-:class: note
-*Add description*
+The two topo files specified here are created by the Jupyter notebooks
+[](fetch_etopo22) and [](CopalisTopo), respectively. They both have
+`topotype = 3` as described in the
+[Topography data documentation](https://www.clawpack.org/topo.html).
+
+:::{warning}
+Normally additional topography files with intermediate resolution would be used,
+e.g. 2-arcsec topography around a larger coastal region than where the 1/3"
+is provided.  To keep this example simple, additional topography has been
+omitted here.
 :::
 
 ### dtopo files
@@ -579,15 +587,17 @@ See [Setting a Speed Limit to Avoid Instabilities](https://www.clawpack.org/spee
     # DTOPO:
     # ---------------
     # == setdtopo.data values ==
+    # for moving topography, append lists of the form  [dtopo_type, fname]
+    # to the initially empty list rundata.dtopo_data.dtopofiles:
     dtopo_data = rundata.dtopo_data
     dtopofile = os.path.join(dtopodir, 'ASCE_SIFT_Region2.dtt3')
-    dtopo_data.dtopofiles = [[3, dtopofile]]
+    dtopo_data.dtopofiles.append([3, dtopofile])
     dtopo_data.dt_max_dtopo = 0.2  # max timestep (sec) while topo is changing
 
-:::{admonition} Todo
-:class: note
-*Add description*
-:::
+The dtopo file `ASCE_SIFT_Region2.dtt3` is created by the Jupyter notebook
+[](ASCE_SIFT_dtopo_Region2), with `dtopo_type == 3`, see the
+[dtopo file documentation](https://www.clawpack.org/dtopo.html).
+
 
 (setrun_flagregions)=
 ### flagregions to guide AMR
@@ -612,6 +622,46 @@ See [Setting a Speed Limit to Avoid Instabilities](https://www.clawpack.org/spee
     flagregion.spatial_region = [x1-0.2, x2+0.2, y1-0.2, y2+0.2]
     flagregions.append(flagregion)
 
+See [Specifying flagregions for adaptive
+refinement](https://www.clawpack.org/flagregions.html) for
+general discussion of using flagregions to guide adaptive refinement.
+
+For this initial coarse grid simulation, we only specify three flagregions
+to guide the adaptive mesh refinement.  The first flagregion `Region_domain`
+defined above specifies that the entire computational domain can be refined to
+2 levels for all time
+(but refinement beyond Level 1 is not forced anywhere by this region).
+
+    # dtopo region - force refinement even before there is any deformation
+    # to the resolution needed to resolve the initial waves well.
+    # This region forces a certain level of refinement over a short time.
+    # Normally this would cover all of dtopo, but for this simplified
+    # test problem the domain is truncated and we are only going out to
+    # a short time so we don't need to refine even all of the dtopo within
+    # the domain.
+    flagregion = FlagRegion(num_dim=2)
+    flagregion.name = 'Region_dtopo'
+    flagregion.minlevel = 4
+    flagregion.maxlevel = 4
+    flagregion.t1 = 0.
+    flagregion.t2 = 10.
+    flagregion.spatial_region_type = 1  # Rectangle
+    flagregion.spatial_region = [-126.6,-124.,45.5,48.5]
+    flagregions.append(flagregion)
+
+The second region `Region_dtopo` specifies a `spatial_region` around the
+earthquake source should be refined to Level 4 starting at time 0.
+Since the initial conditions are an ocean at rest, this is necessary to
+insure that ample refinement is present in the region where the deformation
+takes place.
+
+This forced refinement ends at time
+time 10 seconds.  By this time the surface elevation is far from zero in the
+source region and so the next flagregion together with the
+`wave_tolerance` specified below insures that the
+region with large waves near the coast of interest remains refined to
+Level 4.
+
     # Region12sec - 24 to  12 sec:
     # Level 4 is 12 sec
     # (other regions below will force/allow more refinement)
@@ -625,9 +675,27 @@ See [Setting a Speed Limit to Avoid Instabilities](https://www.clawpack.org/spee
     flagregion.spatial_region = [-126.6,-124.,46.27,47.68]
     flagregions.append(flagregion)
 
-:::{admonition} Todo
-:class: note
-*Add description*
+
+This flagregion specifies a rectangle where at least 3 levels and possibly 4
+levels are used, and covers the coastal region of interest and a signficant
+distance offshore.
+
+
+:::{note}
+When flagging cells at level L for possible refinement to Level L+1, GeoClaw
+finds all flagregions that contain the cell center, and then uses the
+maximum of all the `flagregion.minlevel` values for such flagregions and
+marks the cell for refinement if this maximum is larger than L.  It also
+uses the maximum of all the `flagregion.maxlevel` values and insures that the
+cell will not be flagged for refinement if this value is less then L+1.
+If the cell is allowed to be flagged but not required to be, then the default
+criterion is to flag the cell if `abs(eta) > wave_tolerance`, the value set
+earlier in [](wave_tolerance).
+:::
+
+:::{seealso}
+See [AMR refinement criteria](https://www.clawpack.org/refinement.html) for
+more details about refinement criteria.
 :::
 
 ### Gauges
@@ -649,9 +717,12 @@ See [Setting a Speed Limit to Avoid Instabilities](https://www.clawpack.org/spee
     rundata.gaugedata.file_format = 'ascii'  # often use 'binary32'
     #rundata.gaugedata.min_time_increment = 5 # minimum seconds between outputs
 
+See the [Gauges documentation](https://www.clawpack.org/gauges.html) for
+general information about specifying gauge locations and related parameters.
+
 :::{admonition} Todo
 :class: note
-*Add description and discussion of shifting gauges away from cell edges*
+*Add more description and discussion of shifting gauges away from cell edges*
 :::
 
 ### create kml files

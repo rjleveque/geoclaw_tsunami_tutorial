@@ -360,11 +360,12 @@ def setrun(claw_pkg='geoclaw'):
     # DTOPO:
     # ---------------
     # == setdtopo.data values ==
+    # for moving topography, append lists of the form  [dtopo_type, fname]
+    # to the initially empty list rundata.dtopo_data.dtopofiles:
     dtopo_data = rundata.dtopo_data
     dtopofile = os.path.join(dtopodir, 'ASCE_SIFT_Region2.dtt3')
-    dtopo_data.dtopofiles = [[3, dtopofile]]
+    dtopo_data.dtopofiles.append([3, dtopofile])
     dtopo_data.dt_max_dtopo = 0.2  # max timestep (sec) while topo is changing
-
 
     # ---------------
     # qinit:
