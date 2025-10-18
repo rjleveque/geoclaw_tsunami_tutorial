@@ -1,12 +1,9 @@
 import os,sys
 import shutil
-# import pooch  # testing without using pooch
 from cloudpathlib import CloudPath
-
 
 #GTT = os.environ['GTT']  # Doesn't work on Github
 
-#print('file = ', __file__)  # full path to this file
 common_code_dir = os.path.split(__file__)[0]  # drop filename
 GTT = os.path.split(common_code_dir)[0]  # drop subdirectory
 print('setting GTT = ',GTT)
@@ -22,12 +19,6 @@ if 0:
     # NOT USED YET
     GTT_cache = GTT + '_cache'
     print('path to GTT_cache is\n     ', GTT_cache)
-
-# location of reposity registry:
-# NOT USED
-GTT_data_repository = GTT + '_data_repository'
-#print('path to GTT_data_repository is\n     ', GTT_data_repository)
-registry_file_path = os.path.join(GTT_data_repository, 'registry.txt')
 
 
 def fetch(file_path, destination=None, force=False, verbose=False):
