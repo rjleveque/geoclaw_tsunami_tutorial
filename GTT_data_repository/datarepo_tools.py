@@ -53,9 +53,14 @@ def copy_and_zip(file_path, verbose=False):
 
 if __name__ == '__main__':
 
-    for dataset in all_datasets:
+    if 0:
+        datasets = all_datasets  # to copy and zip all
+    else:
+        # specify the new/modified datasets to copy and zip:
+        datasets = ['CopalisBeach/example1/sample_results']
+
+    for dataset in datasets:
         copy_and_zip(dataset, verbose=True)
 
     print('To rsync to remote data repository:')
-    print("""rsync -avz GTT_data/ \
-        clawpack@homer.u.washington.edu:public_html/geoclaw/GTT_data/""")
+    print("""rsync -avz GTT_data/ clawpack@homer.u.washington.edu:public_html/geoclaw/GTT_data/""")

@@ -265,7 +265,7 @@ We normally set `verbosity_regrid = 0` to suppress printing regridding info,
 but this can be useful and is turned on here so you can see the pattern of
 regridding that is performed.
 
-### Time stepping paramers
+### Time stepping parameters
 
     # --------------
     # Time stepping:
@@ -290,9 +290,11 @@ regridding that is performed.
     # Maximum number of time steps to allow between output times:
     clawdata.steps_max = 5000
 
+See [Specifying classic run-time parameters in setrun.py](https://www.clawpack.org/setrun.html) for a description of these parameters.
+
 :::{admonition} Todo
 :class: note
-*Add description*
+*Add more description*
 :::
 
 ### checkpoint files
@@ -569,8 +571,8 @@ See [Setting a Speed Limit to Avoid Instabilities](https://www.clawpack.org/spee
     topofiles.append([3, topo_file])
 
 The two topo files specified here are created by the Jupyter notebooks
-[](fetch_etopo22) and [](CopalisTopo), respectively. They both have
-`topotype = 3` as described in the
+[](../../topo/fetch_etopo22) and [](../../topo/CopalisTopo), respectively.
+They both have `topotype = 3` as described in the
 [Topography data documentation](https://www.clawpack.org/topo.html).
 
 :::{warning}
@@ -595,7 +597,7 @@ omitted here.
     dtopo_data.dt_max_dtopo = 0.2  # max timestep (sec) while topo is changing
 
 The dtopo file `ASCE_SIFT_Region2.dtt3` is created by the Jupyter notebook
-[](ASCE_SIFT_dtopo_Region2), with `dtopo_type == 3`, see the
+[](../../dtopo/ASCE_SIFT_fRegion2), with `dtopo_type == 3`, see the
 [dtopo file documentation](https://www.clawpack.org/dtopo.html).
 
 
@@ -677,8 +679,14 @@ Level 4.
 
 
 This flagregion specifies a rectangle where at least 3 levels and possibly 4
-levels are used, and covers the coastal region of interest and a signficant
+levels are used, and covers the coastal region of interest and a significant
 distance offshore.
+
+For this `setrun1a.py`, recall that `amr_max_levels = 3`, so in fact 4 levels
+will never be used and this flagregion would have the same effect if we set
+`maxlevel = 3`. But for the other examples in this directory, at least
+4 levels are allowed, and so `maxlevel = 4` allows finer grids in this
+region.
 
 
 :::{note}
@@ -710,20 +718,63 @@ more details about refinement criteria.
 
     # Note: it is best to center gauges in cells at finest resolution
     # (not done here)
-    gauges.append([101, -124.1899537, 47.1159722, 0, 1e9])     # slightly offshore
-    gauges.append([102, -124.1800463, 47.1159722, 0, 1e9])     # onshore
-    gauges.append([103, -124.1706019, 47.1159722, 0, 1e9])     # in river
+    gauges.append([101, -124.1895833, 47.1162500, 0, 1e9]) # slightly offshore
+    gauges.append([102, -124.1804167, 47.1162500, 0, 1e9]) # onshore
+    gauges.append([103, -124.1704167, 47.1162500, 0, 1e9]) # in river
+
+
+The three gauges specified here have longitudes and latitudes that
+were chosen so that each gauge is in the center of a grid cell for any grid
+patch that is on a grid with resolution 3", which means it is also centered
+on grids with resolution 1" or 1/3" (so on AMR levels 6, 7, and 8)
+See [Nearshore interpolation](https://www.clawpack.org/nearshore_interp.html)
+for a discussion of why this is desirable in general.
+
+:::{note}
+For the coarse simulation set up in this `setrun1a.py`, these gauges are
+not centered on the finest grid resolution we are using near shore, which is 24"
+on Level 3. But this raises no issues for this particular problem.
+See [](copalis_example1_gauges) for some discussion of other issues that can arise
+when interpreting the gauge results in and AMR simulation in regions where the
+maximum refinement level changes with time.
+:::
+
 
     rundata.gaugedata.file_format = 'ascii'  # often use 'binary32'
+
+Setting `file_format = 'ascii'` produces files in the `_output` directory
+with names like `gauge00101.txt` that contains a header followed by
+all the gauge time series output,
+with columns `level, t, h, hu, hv, eta`.  The integer `level` is the finest AMR
+refinement level that covered the gauge location at each time and the values
+`h, hu, hv, eta` were obtained from a patch at that level (either by
+interpolation or as the value in the containing grid cell, as described
+in [Nearshore interpolation](https://www.clawpack.org/nearshore_interp.html).)
+
+For problems with many gauges or lots of time points it may be better to
+use a binary format, setting `file_format` to `binary` or `binary32`, in
+which case `gauge00101.txt` contains only the header information and the
+arrays of time series are in `gauge00101.bin`, stored either as full
+"double precision" 64-bit floating point numbers or as 32-bit "single precision"
+values, which is generally plenty of significant figures for gauge output
+and gives files that are half as large.
+
     #rundata.gaugedata.min_time_increment = 5 # minimum seconds between outputs
 
+Since this line is commented out, a new line of gauge output is printed for
+every time step on the finest level that covers the gauge, giving the best
+possible resolution in time. If `min_time_increment` is set to some value
+greater than 0, then a new line is printed only if at least this much time
+(in seconds) has passed since the last time a value was printed.  Larger
+values of this parameter lead to smaller file sizes and may still give adequate
+temporal resolution.
+
+:::{seealso}
 See the [Gauges documentation](https://www.clawpack.org/gauges.html) for
 general information about specifying gauge locations and related parameters.
-
-:::{admonition} Todo
-:class: note
-*Add more description and discussion of shifting gauges away from cell edges*
 :::
+
+
 
 ### create kml files
 

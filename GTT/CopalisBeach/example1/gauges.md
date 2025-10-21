@@ -10,7 +10,7 @@ kernelspec:
   name: python3
 ---
 
-(copalis:example1:gauges)=
+(copalis_example1_gauges)=
 # Gauge plots for example1
 
 From the

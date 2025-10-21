@@ -314,6 +314,12 @@ def setrun(claw_pkg='geoclaw'):
     # Set data specific to GeoClaw:
     # ------------------------------
 
+    # Refinement settings
+    refinement_data = rundata.refinement_data
+    refinement_data.variable_dt_refinement_ratios = True
+    refinement_data.wave_tolerance = 0.1
+
+
     geo_data = rundata.geo_data
 
     # == Physics ==
@@ -331,11 +337,6 @@ def setrun(claw_pkg='geoclaw'):
     geo_data.manning_coefficient =.025
     geo_data.friction_depth = 200
     geo_data.speed_limit = 20.  # limit on speed sqrt(u**2 + v**2)
-
-    # Refinement settings
-    refinement_data = rundata.refinement_data
-    refinement_data.variable_dt_refinement_ratios = True
-    refinement_data.wave_tolerance = 0.1
 
     # ---------------
     # TOPO:
@@ -488,9 +489,9 @@ def setrun(claw_pkg='geoclaw'):
     # for gauges append tuples/lists of the form
     #   [gaugeno, x, y, t1, t2]
 
-    gauges.append([101, -124.1899537, 47.1159722, 0, 1e9])     # slightly offshore
-    gauges.append([102, -124.1800463, 47.1159722, 0, 1e9])     # onshore
-    gauges.append([103, -124.1706019, 47.1159722, 0, 1e9])     # in river
+    gauges.append([101, -124.1895833, 47.1162500, 0, 1e9]) # slightly offshore
+    gauges.append([102, -124.1804167, 47.1162500, 0, 1e9]) # onshore
+    gauges.append([103, -124.1704167, 47.1162500, 0, 1e9]) # in river
 
     rundata.gaugedata.file_format = 'ascii'  # often use 'binary32'
     #rundata.gaugedata.min_time_increment = 5 # minimum seconds between outputs
