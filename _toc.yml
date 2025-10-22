@@ -7,6 +7,8 @@ parts:
   - caption: Overview and introduction
     chapters:
     - file: prerequisites
+      sections:
+      - file: python_environment
     - file: workflow
     - file: testing_chile2010
     - file: intro_setrun

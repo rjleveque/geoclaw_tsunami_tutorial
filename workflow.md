@@ -3,6 +3,9 @@
 
 ## Tutorial repository
 
+The files in this repository can be viewed online at:
+https://github.com/rjleveque/geoclaw_tsunami_tutorial.
+
 To run the examples in this tutorial, you will need to clone the git
 repository that contains them (along with all the markdown files and Jupyter
 notebooks that create these tutorial pages):

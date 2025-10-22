@@ -315,6 +315,12 @@ def setrun(claw_pkg='geoclaw'):
     # Set data specific to GeoClaw:
     # ------------------------------
 
+    # Refinement settings
+    refinement_data = rundata.refinement_data
+    refinement_data.variable_dt_refinement_ratios = True
+    refinement_data.wave_tolerance = 0.1
+
+
     geo_data = rundata.geo_data
 
     # == Physics ==
@@ -332,11 +338,6 @@ def setrun(claw_pkg='geoclaw'):
     geo_data.manning_coefficient =.025
     geo_data.friction_depth = 200
     geo_data.speed_limit = 20.  # limit on speed sqrt(u**2 + v**2)
-
-    # Refinement settings
-    refinement_data = rundata.refinement_data
-    refinement_data.variable_dt_refinement_ratios = True
-    refinement_data.wave_tolerance = 0.1
 
     # ---------------
     # TOPO:
@@ -361,11 +362,12 @@ def setrun(claw_pkg='geoclaw'):
     # DTOPO:
     # ---------------
     # == setdtopo.data values ==
+    # for moving topography, append lists of the form  [dtopo_type, fname]
+    # to the initially empty list rundata.dtopo_data.dtopofiles:
     dtopo_data = rundata.dtopo_data
     dtopofile = os.path.join(dtopodir, 'ASCE_SIFT_Region2.dtt3')
-    dtopo_data.dtopofiles = [[3, dtopofile]]
+    dtopo_data.dtopofiles.append([3, dtopofile])
     dtopo_data.dt_max_dtopo = 0.2  # max timestep (sec) while topo is changing
-
 
     # ---------------
     # qinit:
@@ -488,9 +490,9 @@ def setrun(claw_pkg='geoclaw'):
     # for gauges append tuples/lists of the form
     #   [gaugeno, x, y, t1, t2]
 
-    gauges.append([101, -124.1899537, 47.1159722, 0, 1e9])     # slightly offshore
-    gauges.append([102, -124.1800463, 47.1159722, 0, 1e9])     # onshore
-    gauges.append([103, -124.1706019, 47.1159722, 0, 1e9])     # in river
+    gauges.append([101, -124.1895833, 47.1162500, 0, 1e9]) # slightly offshore
+    gauges.append([102, -124.1804167, 47.1162500, 0, 1e9]) # onshore
+    gauges.append([103, -124.1704167, 47.1162500, 0, 1e9]) # in river
 
     rundata.gaugedata.file_format = 'ascii'  # often use 'binary32'
     #rundata.gaugedata.min_time_increment = 5 # minimum seconds between outputs
@@ -512,14 +514,13 @@ def setrun(claw_pkg='geoclaw'):
     # grid resolution at 1" level
     dx_fine = 1/3600.
 
-    #We specified the domain edges to be whole numbers
-    #So whole numbers are at a cell centers. The fgmax_extent numbers
-    #below are at 1/3" cell centers also.
-
     fg = fgmax_tools.FGmaxGrid()  # define a new object to add to list
     fg.point_style = 2            # uniform rectangular x-y grid
-    #fgmax_extent = [-124.195, -124.156, 47.108, 47.146] # better to center:
+
+    # fgmax_extent gives first and last grid points, which we choose
+    # to be cell centers on a grid with dx = 1/3600.:
     fgmax_extent = [-124.19486111, -124.15597222, 47.10791667, 47.14597222]
+
     fg.x1 = fgmax_extent[0]
     fg.x2 = fgmax_extent[1]
     fg.y1 = fgmax_extent[2]
@@ -534,8 +535,6 @@ def setrun(claw_pkg='geoclaw'):
     fg.interp_method = 0      # 0 ==> pw const in cells, recommended
     # add fg to the list of fgmax_grids, which is written to fgmax_grids.data
     fgmax_grids.append(fg)
-
-
 
 
 
@@ -554,7 +553,7 @@ def setrun(claw_pkg='geoclaw'):
     dx2 = dx_fgout/2.
     fgout_extent = [x1-dx2, x2+dx2, y1-dx2, y2+dx2]
 
-    dt_fgout = 30  # seconds
+    dt_fgout = 60  # seconds
     
     fgout = fgout_tools.FGoutGrid() 
     fgout.fgno = 1
@@ -566,8 +565,8 @@ def setrun(claw_pkg='geoclaw'):
     fgout.y2 = fgout_extent[3]
     fgout.nx = int(round((fgout.x2 - fgout.x1)/dx_fgout))
     fgout.ny = int(round((fgout.y2 - fgout.y1)/dy_fgout))
-    fgout.tstart = 0.
-    fgout.tend = clawdata.tfinal
+    fgout.tstart = 1800.
+    fgout.tend = 3600.
     fgout.nout = int(round(((fgout.tend - fgout.tstart)/dt_fgout))) + 1
     fgout_grids.append(fgout)
 

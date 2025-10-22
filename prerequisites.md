@@ -19,7 +19,7 @@ that contains the examples for this tutorial.
 Running Clawpack code requires using Makefiles and is generally done from
 the command line in a linux or MacOS shell (and on a Mac you must also
 install the 
-[xcode command line tools](https://developer.apple.com/xcode/resources/).
+[xcode command line tools](https://developer.apple.com/xcode/resources/)).
 The use of Windows is not generally supported for Clawpack.
 
 After installing clawpack, you should
@@ -37,6 +37,13 @@ to include other paths) via::
     $ export PYTHONPATH=$PYTHONPATH:$CLAW
 See the clawpack documentation on
 [Python path](https://www.clawpack.org/python_path.html).
+
+You need at least a few Python packages for running GeoClaw and visualizing
+results, such as `numpy` and `matplotlib`. There are many other Python tools
+that are useful and/or required for some of the examples in this tutorial,
+listed in the file `requirements_geo.txt`.
+See [](python_environment) for instructions on creating a virtual
+environment in Python with these tools installed.
 
 ## Using the DesignSafe Jupyter Hub
 
