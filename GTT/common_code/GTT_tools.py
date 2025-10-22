@@ -14,12 +14,6 @@ data_repository_url = \
 
 remote_path = CloudPath(data_repository_url)
 
-if 0:
-    # local cache for downloaded files:
-    # NOT USED YET
-    GTT_cache = GTT + '_cache'
-    print('path to GTT_cache is\n     ', GTT_cache)
-
 
 def fetch(file_path, destination=None, force=False, verbose=False):
     """

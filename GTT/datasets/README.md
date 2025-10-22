@@ -42,48 +42,14 @@ providing sample results:
 
 The top level of this repository `geoclaw_tsunami_tutorial` contains a
 subdirectory `GTT` (which is where `$GTT` points, if you followed the
-[](workflow).  It also contains subdirectories `$GTT_data_repository` and
-`GTT_cache`.  The directory `$GTT_data_repository` is nearly empty and just
+[](workflow).  It also contains a subdirectory `$GTT_data_repository`, which
+is nearly empty and just
 contains some tools for building the remote repository, which you can ignore.
-It also contains a file `$GTT_data_repository/registry.txt` that
-contains a list of data files or directories that can be fetched
-from the remote repository, along with a hash of the zip file of each, used to
-check if you have the most recent version.
-
-This repository `geoclaw_tsunami_tutorial` also contains a 
-subdirectory `GTT_cache` that is populated by zip files of the large data sets
-as they are fetched from the remote repository.  You should not need to directly
-work with files in the directory and if you are trying to clean up the space
-being used, you could remove its contents with no adverse effects.
 
 A script like `$GTT/CopalisBeach/example1/fetch_sample_results.py` gives a
 list of files or directories to download (in this case only `sample_results`)
 and then uses tools in the module `$GTT/common_code/GTT_tools.py`
-to fetch the zip file from the online repository and store it in `GTT_cache`
-(with the same subdirectory structure as in `GTT`).
-It also unzips the file and puts the resulting `sample_results` directory
-in the proper location in `GTT`.
+to fetch the zip file from the online repository, unzip it, and put it in
+the proper location in `GTT`.
 
-:::{admonition} Todo
-:class: note
-- Describe hash codes and updating in more detail.
-- Use of [pooch](https://www.fatiando.org/pooch/dev/index.html).
-- Problem: The hash of a zip file can change even when the data in it that
-  we care about does not (since the zip file also contains some metadata
-  such as when it was created?)  This is annoying.
-- It would be nice to just use rsync, which would manage updating,
-  compressing, keeping track of hashes, etc.  But users can't use without
-  login or ssh keys.   Or put the data
-  repository on a server with an rsync daemon running??
-- Could alternatively use a git submodule to store all the data? But the
-  it gets versioned and grows in size if changes are made,  large files are
-  always downloaded even for examples not run, etc.
-- Are there better ways? E.g. some version of ["Git for
-  data"](https://www.dolthub.com/blog/2020-03-06-so-you-want-git-for-data/)?
-- Some other possibilities:
-  - [cloudpathlib](https://cloudpathlib.drivendata.org/stable/caching/)
-  - xarray uses a separate github data repository
-    [xarray-data](https://github.com/pydata/xarray-data)
-    with a [load_dataset function](https://docs.xarray.dev/en/latest/generated/xarray.tutorial.load_dataset.html)
-:::
 

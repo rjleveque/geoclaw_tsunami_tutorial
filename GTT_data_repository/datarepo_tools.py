@@ -36,7 +36,7 @@ def copy_and_zip(file_path, verbose=False):
     zip_file_path = repopath + '.zip'
     repopath_dir = os.path.split(repopath)[0]
     os.system(f'mkdir -p {repopath_dir}')
-    if 1:
+    if 0:
         print('+++ repopath = ',repopath)
         print('+++ fullpath = ',fullpath)
         print('+++ os.path.isfile(fullpath) = ',os.path.isfile(fullpath))
@@ -54,7 +54,8 @@ def copy_and_zip(file_path, verbose=False):
 if __name__ == '__main__':
 
     if 0:
-        datasets = all_datasets  # to copy and zip all
+        # to copy and zip all datasets listed above:
+        datasets = all_datasets
     else:
         # specify the new/modified datasets to copy and zip:
         datasets = ['CopalisBeach/example1/sample_results']
