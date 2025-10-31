@@ -7,8 +7,13 @@ See [](../README) for more about the Copalis Beach location and a
 list of other examples and tutorials based on this location.
 
 The directory `$GTT/CopalisBeach/exercise1`
-contains bare bones GeoClaw `setrun` and `setplot` functions 
-similar to those used in [](../example1/README).
+contains bare bones GeoClaw `setrun` and `setplot` functions
+similar to those used for example 1b in [](../example1/README).
+This version
+
+## To run this code
+
+You should first try running this code as-is.  
 
 
 ## Exercises (Work in Progress):
@@ -39,4 +44,3 @@ Some ideas (WIP)...
   source. E.g. L1, CoPes Hub groundmotions, fakequakes, etc.
 - Make comparison plots for different resolutions or sources.
 - Etc.
-
