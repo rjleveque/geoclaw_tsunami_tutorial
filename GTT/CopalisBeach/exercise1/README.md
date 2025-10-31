@@ -9,7 +9,11 @@ list of other examples and tutorials based on this location.
 The directory `$GTT/CopalisBeach/exercise1`
 contains bare bones GeoClaw `setrun` and `setplot` functions
 similar to those used for example 1b in [](../example1/README).
-This version
+
+:::{warning}
+If you want to run the code in this directory, you should copy it
+elsewhere first (see [](workflow:copy)).
+:::
 
 ## To run this code
 

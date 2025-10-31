@@ -6,19 +6,46 @@ If you want to run the code in this directory, you should copy it
 elsewhere first (see [](workflow:copy)).
 :::
 
+(copalis:debug:fetch_input_data)=
+## Acquiring the input data
+
+The example in this directory requires two topo files and one dtopo file,
+and in `setrun.py` the location of these files is set by these lines:
+
+    topodir = '../../topo/topofiles'  # path to topofiles used below
+    dtopodir = '../../dtopo/dtopofiles'  # path to dtopofile used below
+
+You should be able to fetch these files from an online data repository
+using the script `../fetch_input_data.py`, e.g. via:
+
+    $ cd ..
+    $ python fetch_input_data.py
+
+Alternatively, you should be able to create them by running the Jupyter notebooks
+in the directories `../../topo` and `../../dtopo`, see
+[](topodir) and [](dtopodir).
+
+If you fail to have these files in the expected location, you will get an
+error when you try to `make data`, see [](copalis:debug:missing_topo).
+
+(copalis:debug:make_exe)=
+## Making the Fortran executable
+
 Before running the code in this directory, you should make sure the following
 environment variables are set:
 
 - `CLAW` should point to the top level of the `clawpack` repository code.
 - `PYTHONPATH` should include `$CLAW` (maybe other paths too, separated by `:`)
-- `FC, FFLAGS, OMP_NUM_THREADS` could be set, or else values in the Makefile
+- `FC`, `FFLAGS`, `OMP_NUM_THREADS` could be set, or else values in the Makefile
   are used (see [](makefile_description)).
 
 Then try doing this at the command line:
 
     $ make check
 
-This prints out the values of several variables.  You should see something like:
+This prints out the values of several environment/Makefile variables.
+
+You should see something like:
 
     ===================
     CLAW = /Users/rjl/clawpack_src/clawpack-v5.13.1
@@ -39,7 +66,47 @@ E.g. if you are running the dispersive version of geoclaw, which also uses
 MPI, then `RUNEXE` must be something like `mpiexec`.
 :::
 
-## make data
+
+## make executable
+
+You need to make the Fortran executable file specified by `EXE` in the
+`make check` output above.
+
+In general you can do:
+
+    $ make .exe
+
+to create the executable. If all the GeoClaw library routines are already
+compiled (because you've already run other problems), then this should be quick
+since it only requires linking them together into the `xgeoclaw` executable.
+
+If you see:
+
+    make: Nothing to be done for `.exe'.
+
+then the executable is already up to date, because you have already run the
+code in this directory and the Fortran code hasn't been changed since then.
+
+If this is your first time compiling GeoClaw you will see output from all the
+individual codes being compiled.
+
+:::{tip}
+You can force all the Fortran codes to be recompiled by doing:
+
+    $ make new
+
+This is usually not necessary, but may be worth trying if you seem to be
+getting some strange Fortran error.
+
+**This is necessary** if you want to change compilers, e.g. if you compiled
+everything with `gfortran` but now want to set `FC` to `ifx` to use the intel
+compiler instead (which may make an executable that runs faster,
+but is not free). Then you have to do `make new` to recompile everything.
+:::
+
+
+
+## make data files based on setrun.py
 
 Next try:
 
@@ -103,4 +170,84 @@ This should produce something like:
     Box:   -127.569034  -122.569034   44.032340   50.032340
     Created  ASCE_SIFT_Region2.kml
     touch .data
-    
+
+Much of this output is produced by these lines at the bottom of `setrun.py`:
+
+    # To create kml files of inputs:
+    from clawpack.geoclaw import kmltools
+    kmltools.make_input_data_kmls(rundata)
+
+which produces kml files that can be opened in Google Earth to see the
+footprints of various geographical things specified in setrun, including
+the computational domain, the extent of topofiles and the dtopofile, and
+AMR flagregions, along with the locations of gauges.
+
+(copalis:debug:missing_topo)=
+## Missing topo or dtopo files
+
+Make sure you acquired the topo and dtopo data needed for this example, see
+[](copalis:debug:fetch_input_data).
+
+If running `make data` gives you errors like the following:
+
+    ### Normal stuff up until...
+
+    Created  gauges.kml
+    Traceback (most recent call last):
+      File "/Users/rjl/git/geoclaw_tsunami_tutorial/GTT/CopalisBeach/exercise1/setrun.py", line 538, in <module>
+        kmltools.make_input_data_kmls(rundata)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+
+      ### many lines deleted...
+
+      File "/Users/rjl/clawpack_src/clawpack-v5.13.1/geoclaw/src/python/geoclaw/topotools.py", line 838, in read_header
+        with open(self.path, 'r') as topo_file:
+             ~~~~^^^^^^^^^^^^^^^^
+    FileNotFoundError: [Errno 2] No such file or directory: './etopo22_30s_-130_-122_40_50_30sec.asc'
+    make: *** [data] Error 1
+
+This is an indication that when trying to make the kml file corresponding to
+the topo file `etopo22_30s_-130_-122_40_50_30sec.asc`, it could not find
+the file (from which it needs to read the header information in order to
+know the extent of its footprint).
+
+This failed because I changed the line in `setrun.py` that specifies where
+to look for topo data to:
+
+    topodir = '.'
+
+so it was looking in this directory instead of in `../../topo/topofiles`,
+where the file is stored.
+
+Note that it did successfully make all the `*.data` files in this directory
+before trying to make the kml files, and if we look at `topo.data` we would
+see:
+
+    ### lines deleted
+
+    '/Users/rjl/git/geoclaw_tsunami_tutorial/GTT/CopalisBeach/exercise1/etopo22_30s_-130_-122_40_50_30sec.asc'
+       3   # topo_type
+
+    '/Users/rjl/git/geoclaw_tsunami_tutorial/GTT/CopalisBeach/exercise1/Copalis_13s.asc'
+       3   # topo_type
+
+which shows the full path of the files it is looking for.  Neither one is
+correct, but it throws an error and stops after trying to read the first one.
+
+If you try to run geoclaw with `make output` before fixing this problem,
+the Fortran code will run but will print out an error message and then
+quit without taking any time steps:
+
+    ### lines deleted
+
+    Reading data file: topo.data
+             first 5 lines are comments and will be skipped
+     Missing topography file:
+        /Users/rjl/git/geoclaw_tsunami_tutorial/GTT/CopalisBeach/exercise1/etopo22_30s_-130_-122_40_50_30sec.asc                                              
+    ==> runclaw: Done executing /Users/rjl/git/geoclaw_tsunami_tutorial/GTT/CopalisBeach/exercise1/xgeoclaw via clawutil.runclaw.py
+    ==> runclaw: Output is in  /Users/rjl/git/geoclaw_tsunami_tutorial/GTT/CopalisBeach/exercise1/_output
+
+:::{admonition} Todo
+:class: note
+*Add more debugging info*
+:::
