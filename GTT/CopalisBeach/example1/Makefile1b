@@ -21,9 +21,13 @@ PLOTDIR = _plots1b                    # Directory for plots
 
 
 # Environment variable FC should be set to fortran compiler, e.g. gfortran
+FC ?= gfortran
 
 # Compiler flags can be specified here or set as an environment variable
-FFLAGS ?= 
+FFLAGS ?= -O2 -fopenmp  # for gfortran
+
+# Number of OpenMP threads to use:
+OMP_NUM_THREADS ?= 6
 
 # ---------------------------------
 # package sources for this program:
@@ -35,7 +39,7 @@ include $(GEOLIB)/Makefile.geoclaw
 
 # ---------------------------------------
 # package sources specifically to exclude
-# (i.e. if a custom replacement source 
+# (i.e. if a custom replacement source
 #  under a different name is provided)
 # ---------------------------------------
 
@@ -58,4 +62,3 @@ SOURCES = \
 #-------------------------------------------------------------------
 # Include Makefile containing standard definitions and make options:
 include $(CLAWMAKE)
-

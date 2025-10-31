@@ -22,16 +22,6 @@ except:
     raise Exception("*** Must first set CLAW enviornment variable")
 
 
-try:
-    root_dir = os.environ['GTT']
-except:
-    raise Exception("*** Must first set GTT enviornment variable")
-    raise Exception("*** Perhaps to point to geoclaw_tsunami_tutorial/GTT")
-
-topodir =  root_dir + '/topo/topofiles'
-dtopodir = root_dir + '/dtopo/dtopofiles'
-
-
 #------------------------------
 def setrun(claw_pkg='geoclaw'):
 #------------------------------
@@ -348,6 +338,8 @@ def setrun(claw_pkg='geoclaw'):
     # for topography, append tuples/lists of the form:
     #    [topotype, fname]
 
+    topodir = '../../topo/topofiles'  # path to topofiles used below
+
     # 30-sec topo:
     topo_file = os.path.join(topodir, 'etopo22_30s_-130_-122_40_50_30sec.asc')
     topofiles.append([3, topo_file])
@@ -364,6 +356,8 @@ def setrun(claw_pkg='geoclaw'):
     # for moving topography, append lists of the form  [dtopo_type, fname]
     # to the initially empty list rundata.dtopo_data.dtopofiles:
     dtopo_data = rundata.dtopo_data
+
+    dtopodir = '../../dtopo/dtopofiles'  # path to dtopofile used below
     dtopofile = os.path.join(dtopodir, 'ASCE_SIFT_Region2.dtt3')
     dtopo_data.dtopofiles.append([3, dtopofile])
     dtopo_data.dt_max_dtopo = 0.2  # max timestep (sec) while topo is changing
