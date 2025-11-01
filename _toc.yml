@@ -17,17 +17,16 @@ parts:
     chapters:
     - file: intro_examples
     - file: GTT/CopalisBeach/README
+    - file: GTT/CopalisBeach/example1/README
       sections:
-      - file: GTT/CopalisBeach/example1/README
       - file: GTT/CopalisBeach/example1/setrun_description
       - file: GTT/CopalisBeach/example1/results
       - file: GTT/CopalisBeach/example1/gauges
-      - file: GTT/CopalisBeach/example2/README
-      - file: GTT/CopalisBeach/exercise1/README
+    - file: GTT/CopalisBeach/exercise1/README
+      sections:
       - file: GTT/CopalisBeach/exercise1/makefile_description
       - file: GTT/CopalisBeach/exercise1/debug
-      - file: GTT/CopalisBeach/example3/README
-      - file: GTT/CopalisBeach/example4/README
+    - file: GTT/CopalisBeach/example2/README
     - file: GTT/topo/README
       sections:
       - file: GTT/topo/fetch_etopo22

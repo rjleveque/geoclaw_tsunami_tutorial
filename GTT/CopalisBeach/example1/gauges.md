@@ -40,9 +40,18 @@ synthetic gauges via these lines:
     gauges.append([102, -124.1800463, 47.1159722, 0, 1e9])     # onshore
     gauges.append([103, -124.1706019, 47.1159722, 0, 1e9])     # in river
 
-:::{admonition} Todo
-:class: note
-Explain why/how gauges are shifted away from cell edges.
+:::{note}
+Each gauge is specified by a list `[gaugeno, x, y, t1, t2]`
+where `t1` and `t2` set the time interval over which the gauge will be
+recording data, here from time 0 to "forever".
+
+The gauge locations `x,y` specified above have been chosen to be centered
+in computational grid cells at the finest refinement levels used in this
+problem.  See [](centering_gauges) for a description of why this is
+desirable.
+
+This centering is performed by the Python script `center_gauges.py`
+in this directory.
 :::
 
 The `gauges.kml` file created from any of these `setrun` files

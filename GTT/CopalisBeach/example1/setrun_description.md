@@ -722,13 +722,20 @@ more details about refinement criteria.
     gauges.append([102, -124.1804167, 47.1162500, 0, 1e9]) # onshore
     gauges.append([103, -124.1704167, 47.1162500, 0, 1e9]) # in river
 
+Each gauge is specified by a list `[gaugeno, x, y, t1, t2]`
+where `t1` and `t2` set the time interval over which the gauge will be
+recording data, here from time 0 to "forever".
 
-The three gauges specified here have longitudes and latitudes that
+The three gauges specified here have longitudes `x` and latitudes `y` that
 were chosen so that each gauge is in the center of a grid cell for any grid
 patch that is on a grid with resolution 3", which means it is also centered
 on grids with resolution 1" or 1/3" (so on AMR levels 6, 7, and 8)
-See [Nearshore interpolation](https://www.clawpack.org/nearshore_interp.html)
+See [](centering_gauges) and
+[Nearshore interpolation](https://www.clawpack.org/nearshore_interp.html)
 for a discussion of why this is desirable in general.
+
+This centering is performed by the Python script `center_gauges.py`
+in this directory.
 
 :::{note}
 For the coarse simulation set up in this `setrun1a.py`, these gauges are

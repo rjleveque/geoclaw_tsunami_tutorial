@@ -1,9 +1,26 @@
 (copalis_debug)=
-# Debugging the Copalis example code
+# Running/debugging the Copalis exercise1 code
+
+From the
+[GeoClaw Tsunami Tutorial](https://rjleveque.github.io/geoclaw_tsunami_tutorial)
+
+The directory `$GTT/CopalisBeach/exercise1`
+contains GeoClaw `setrun` and `setplot` functions for one example run.
+See [](README) for some ideas of how you might try to modify these in this
+exercise.
+
+Getting the original code running is the first step in this exercise.
 
 :::{warning}
 If you want to run the code in this directory, you should copy it
 elsewhere first (see [](workflow:copy)).
+
+But if you follow this advice and are working in a different
+directory than the `$GTT` directory, then you may discover that
+files are not always where expected in these tutorials
+(still debugging this workflow!).  So some
+adjustments in paths may be necessary and perhaps the rest of this page will
+help with getting things running.
 :::
 
 (copalis:debug:fetch_input_data)=
@@ -28,8 +45,14 @@ in the directories `../../topo` and `../../dtopo`, see
 If you fail to have these files in the expected location, you will get an
 error when you try to `make data`, see [](copalis:debug:missing_topo).
 
+
+
 (copalis:debug:make_exe)=
 ## Making the Fortran executable
+
+:::{seealso}
+- [](makefile_description)
+:::
 
 Before running the code in this directory, you should make sure the following
 environment variables are set:
@@ -67,7 +90,7 @@ MPI, then `RUNEXE` must be something like `mpiexec`.
 :::
 
 
-## make executable
+### compile and link the Fortran code
 
 You need to make the Fortran executable file specified by `EXE` in the
 `make check` output above.
@@ -106,7 +129,7 @@ but is not free). Then you have to do `make new` to recompile everything.
 
 
 
-## make data files based on setrun.py
+## make data files based on `setrun.py`
 
 Next try:
 
@@ -235,7 +258,7 @@ which shows the full path of the files it is looking for.  Neither one is
 correct, but it throws an error and stops after trying to read the first one.
 
 If you try to run geoclaw with `make output` before fixing this problem,
-the Fortran code will run but will print out an error message and then
+the Fortran code will run, but will simply print out an error message and then
 quit without taking any time steps:
 
     ### lines deleted
@@ -247,7 +270,107 @@ quit without taking any time steps:
     ==> runclaw: Done executing /Users/rjl/git/geoclaw_tsunami_tutorial/GTT/CopalisBeach/exercise1/xgeoclaw via clawutil.runclaw.py
     ==> runclaw: Output is in  /Users/rjl/git/geoclaw_tsunami_tutorial/GTT/CopalisBeach/exercise1/_output
 
+If you do fix the problem, you should run
+
+    $ make data
+
+again with the correct `setrun.py` file before running the code.
+
+## Run the code
+
+Once you have created the executable and the data files, you can run the
+executable via:
+
+    $ make output
+
+This should create a directory named `_output`
+(as specified in the Makefile),
+copy all the `*.data` files into that directory, and then run the code from
+within that directory, where all of the output files will be written.
+
+This should produce an `_output` directory that contains all the `*.data` files
+used for this run and also the files
+
+    fort.t0000, ..., fort.t0009
+    fort.q0000, ..., fort.q0009
+    fort.b0000, ..., fort.b0009
+    gauge00101.txt, ..., gauge00103.txt
+    timing.txt, timing.csv
+
+:::{seealso}
+For information on the format of these files, see:
+- [Output data styles and formats](https://www.clawpack.org/output_styles.html)
+- [Gauges](https://www.clawpack.org/gauges.html)
+- [Timing Statistics](https://www.clawpack.org/timing.html)
+:::
+
 :::{admonition} Todo
 :class: note
-*Add more debugging info*
+Are there any problems that can arise at this stage to discuss?
+:::
+
+## Plotting the results
+
+This directory contains a python script `setplot.py` that determines how the
+output produced at each output time is plotted.
+
+To produce a directory `_plots`
+(the name is specified by `PLOTDIR` in the Makefile)
+that contains png files of a set of plots, along with html files to navigate
+them and also javascript animations of the plots over time, run this command:
+
+    make plots
+
+If this throws some sort of Python error, it may be that you do not have the
+Python packages installed that are being used. For the basic plots made here,
+`matplotlib` should be sufficient.
+
+If it runs properly, it should give a lot of output as it goes along and then
+end with something like:
+
+    Point your browser to:
+        file:///full/path/to/_plots/_PlotIndex.html
+
+Open this file in your browser to view the plots.
+
+:::{seealso}
+- [](setplot_description)
+- [Using `setplot.py` to specify the desired
+  plots](https://www.clawpack.org/setplot.html)
+  from the general Clawpack documentation.
+- [Interactive plotting with Iplotclaw](https://www.clawpack.org/plotting_python.html#interactive-plotting-with-iplotclaw)
+:::
+
+## Changing `setrun.py` and re-running the code
+
+Now try making a change to `setrun.py`, for example to make the code run
+much faster you could do a coarse-grid run by changing
+
+    amrdata.amr_levels_max = 6
+
+to
+
+    amrdata.amr_levels_max = 3
+
+If you want to save the output and/or plots from the original run before
+re-running this, you could move these directories, e.g.
+
+    $ mv _output _output_orig
+    $ mv _plots _plots_orig
+
+After changing `setrun.py`, to re-run the code you need to do:
+
+    $ make data  # to recreate the .data files from setrun.py
+    $ make output # to run the code
+    $ make plots # to make the plots
+
+Alternatively, you could simply do:
+
+    $ make .plots
+
+which checks dependencies and would see that it needs to re-make the `.data`
+files and then run the code before making the plots.
+
+:::{seealso}
+- [Clawpack Makefiles](https://www.clawpack.org/makefiles.html) documentation
 :::
