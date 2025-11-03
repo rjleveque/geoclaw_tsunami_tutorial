@@ -8,8 +8,9 @@ obtained via:
 
     git clone https://github.com/rjleveque/geoclaw_tsunami_tutorial.git
 
-This repository also contains all of the source files used to build
-this [Jupyter Book](https://jupyterbook.org/).
+This [github repository](https://github.com/rjleveque/geoclaw_tsunami_tutorial)
+also contains all of the source files (markdown files and Jupyter
+notebooks) used to build this [Jupyter Book](https://jupyterbook.org/).
 
 This is a work in progress, being developed for training sessions in
 Autumn 2025,

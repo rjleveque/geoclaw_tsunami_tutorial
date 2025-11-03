@@ -26,6 +26,7 @@ parts:
       sections:
       - file: GTT/CopalisBeach/exercise1/makefile_description
       - file: GTT/CopalisBeach/exercise1/debug
+      - file: GTT/CopalisBeach/exercise1/setplot_description
     - file: GTT/CopalisBeach/example2/README
     - file: GTT/topo/README
       sections:

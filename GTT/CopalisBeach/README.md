@@ -13,10 +13,10 @@ around [Copalis Beach, WA (-124.1733, 47.1134)](https://maps.app.goo.gl/RW275B5T
   resolutions, and timeframe and gauge plots specified in `setplot.py`.
   See also these [sample results](example1/results).
 
-- [](example2/README), More complicated examples illustrating many other
-  GeoClaw features.
-
 - [](exercise1/README), An example to try modifying yourself.
+
+- [](example2/README), More complicated examples illustrating some other
+  GeoClaw features.
 
 - [](example3/README), An example with a far-field earthquake source
   (AKmaxWA?)

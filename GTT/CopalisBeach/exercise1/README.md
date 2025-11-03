@@ -31,12 +31,12 @@ this, please see the following pages:
 
 - [](debug)
 - [](makefile_description)
+- [](setplot_description)
 
 
-## Exercises (Work in Progress):
 
-A list of things to try doing, which will require adapting some code from
-[](../example2/README).
+## Exercises
+
 
 :::{warning}
 Do not modify the code in this directory.
@@ -52,11 +52,19 @@ If you run into problems running the code after moving it, see the suggestions
 in [](debug).
 :::
 
-Some ideas (WIP)...
-- Add gauges at the following locations: ...
-- Compare different resolutions and/or refinement regions.
-- Leave out some topofile(s) and see how this affects the results.
-- Replace the `ASCE_SIFT_Region2` dtopo with a different CSZ earthquake
-  source. E.g. L1, CoPes Hub groundmotions, fakequakes, etc.
-- Make comparison plots for different resolutions or sources.
-- Etc.
+Hare are some tings you might try modifying in this example:
+
+- Add one or more new gauges in the computational domain.
+
+- The domain used in this example does not cover very much of the ocean, not
+  even the entire region of seafloor deformation defined by the
+  dtopo file.  Try enlarging the computational domain to see if that changes
+  the results.  (What happens if you enlarge it beyond the region covered by
+  the topo files being used?
+  Remember that the kml files produced by "make data" can
+  help you see how the domain relates to the topo and dtopo files.)
+
+- Compare different resolutions, refinement ratios, and/or refinement regions.
+
+- Try shifting this example to a different coastal region.  You may need to
+  download different topo files if you move very far.

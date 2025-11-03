@@ -44,7 +44,8 @@ in the directories `../../topo` and `../../dtopo`, see
 
 If you fail to have these files in the expected location, you will get an
 error when you try to `make data`, see [](copalis:debug:missing_topo).
-
+If you have the files in a different location,
+you could fix this by modifying the paths set in `setrun.py`.
 
 
 (copalis:debug:make_exe)=
@@ -90,7 +91,7 @@ MPI, then `RUNEXE` must be something like `mpiexec`.
 :::
 
 
-### compile and link the Fortran code
+### Compile and link the Fortran code
 
 You need to make the Fortran executable file specified by `EXE` in the
 `make check` output above.
@@ -129,7 +130,7 @@ but is not free). Then you have to do `make new` to recompile everything.
 
 
 
-## make data files based on `setrun.py`
+## Make data files based on `setrun.py`
 
 Next try:
 
@@ -270,7 +271,7 @@ quit without taking any time steps:
     ==> runclaw: Done executing /Users/rjl/git/geoclaw_tsunami_tutorial/GTT/CopalisBeach/exercise1/xgeoclaw via clawutil.runclaw.py
     ==> runclaw: Output is in  /Users/rjl/git/geoclaw_tsunami_tutorial/GTT/CopalisBeach/exercise1/_output
 
-If you do fix the problem, you should run
+If you do fix the problem in `setrun.py`, you should run
 
     $ make data
 
@@ -333,8 +334,10 @@ end with something like:
 
 Open this file in your browser to view the plots.
 
+See [](setplot_description) for an annotated version of the `setplot.py`
+file in this directory that explains how these plots have been specified.
+
 :::{seealso}
-- [](setplot_description)
 - [Using `setplot.py` to specify the desired
   plots](https://www.clawpack.org/setplot.html)
   from the general Clawpack documentation.
