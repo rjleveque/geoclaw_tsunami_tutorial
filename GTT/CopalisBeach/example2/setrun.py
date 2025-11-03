@@ -514,27 +514,28 @@ def setrun(claw_pkg='geoclaw'):
     # grid resolution at 1" level
     dx_fine = 1/3600.
 
-    fg = fgmax_tools.FGmaxGrid()  # define a new object to add to list
-    fg.point_style = 2            # uniform rectangular x-y grid
+    fgmax = fgmax_tools.FGmaxGrid()  # define a new object to add to list
+    fgmax.fgno = 1                   # id number for this fgmax grid
+    fgmax.point_style = 2            # uniform rectangular x-y grid
 
     # fgmax_extent gives first and last grid points, which we choose
     # to be cell centers on a grid with dx = 1/3600.:
     fgmax_extent = [-124.19486111, -124.15597222, 47.10791667, 47.14597222]
 
-    fg.x1 = fgmax_extent[0]
-    fg.x2 = fgmax_extent[1]
-    fg.y1 = fgmax_extent[2]
-    fg.y2 = fgmax_extent[3]
-    fg.dx = dx_fine
-    fg.dy = dx_fine
-    fg.tstart_max = 35*60.     # when to start monitoring max values
-    fg.tend_max = 1.e10        # when to stop monitoring max values
-    fg.dt_check = 10.          # target time (sec) increment between updating
-    fg.min_level_check = amrdata.amr_levels_max  # monitor on finest level only
-    fg.arrival_tol = 0.2      # tolerance for flagging arrival
-    fg.interp_method = 0      # 0 ==> pw const in cells, recommended
+    fgmax.x1 = fgmax_extent[0]
+    fgmax.x2 = fgmax_extent[1]
+    fgmax.y1 = fgmax_extent[2]
+    fgmax.y2 = fgmax_extent[3]
+    fgmax.dx = dx_fine
+    fgmax.dy = dx_fine
+    fgmax.tstart_max = 35*60.     # when to start monitoring max values
+    fgmax.tend_max = 1.e10        # when to stop monitoring max values
+    fgmax.dt_check = 10.          # target time (sec) increment between updating
+    fgmax.min_level_check = amrdata.amr_levels_max  # monitor on finest level only
+    fgmax.arrival_tol = 0.2      # tolerance for flagging arrival
+    fgmax.interp_method = 0      # 0 ==> pw const in cells, recommended
     # add fg to the list of fgmax_grids, which is written to fgmax_grids.data
-    fgmax_grids.append(fg)
+    fgmax_grids.append(fgmax)
 
 
 
@@ -544,7 +545,7 @@ def setrun(claw_pkg='geoclaw'):
 
     fgout_grids = rundata.fgout_data.fgout_grids  # empty list initially
     dx_fgout = 1/3600.  # degrees
-    dy_fgout = dx_fgout 
+    dy_fgout = dx_fgout
 
     # set the fgout_extent to be essentially the same as fgmax_extent
     # but for historical reasons, we need to specify edges rather than
@@ -554,8 +555,8 @@ def setrun(claw_pkg='geoclaw'):
     fgout_extent = [x1-dx2, x2+dx2, y1-dx2, y2+dx2]
 
     dt_fgout = 60  # seconds
-    
-    fgout = fgout_tools.FGoutGrid() 
+
+    fgout = fgout_tools.FGoutGrid()
     fgout.fgno = 1
     fgout.point_style = 2  # uniform rectangular x-y grid
     fgout.output_format = 'binary32'
