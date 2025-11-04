@@ -58,7 +58,7 @@ if __name__ == '__main__':
         datasets = all_datasets
     else:
         # specify the new/modified datasets to copy and zip:
-        datasets = ['CopalisBeach/example1/sample_results']
+        datasets = ['CopalisBeach/example2/sample_results']
 
     for dataset in datasets:
         copy_and_zip(dataset, verbose=True)

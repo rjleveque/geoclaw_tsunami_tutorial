@@ -126,9 +126,9 @@ def setrun(claw_pkg='geoclaw'):
 
     if clawdata.output_style==1:
         # Output nout frames at equally spaced times up to tfinal:
-        clawdata.num_output_times = 9
-        clawdata.tfinal = 1.5*3600.
-        clawdata.output_t0 = True  # output at initial (or restart) time?
+        clawdata.num_output_times = 0  # time frames will be output, only fg's
+        clawdata.tfinal = 1.*3600.
+        clawdata.output_t0 = False  # output at initial (or restart) time?
 
     elif clawdata.output_style == 2:
         # Specify a list of output times.
@@ -569,7 +569,7 @@ def setrun(claw_pkg='geoclaw'):
     fgmax.min_level_check = amrdata.amr_levels_max  # monitor on finest level only
     fgmax.arrival_tol = 0.2      # tolerance for flagging arrival
     fgmax.interp_method = 0      # 0 ==> pw const in cells, recommended
-    
+
     # append to the list of fgmax_grids, which is written to fgmax_grids.data
     fgmax_grids.append(fgmax)
 

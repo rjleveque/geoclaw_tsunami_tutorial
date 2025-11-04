@@ -120,6 +120,30 @@ to specify the fg grids:
 These same two modules also have some tools for reading in and processing
 the resulting output, as illustrated in [To Appear](fgmax_plots) and [To Appear](fgout_plots).
 
+We also set specify that **no output times for the full AMR time frames**,
+so that only the fgmax and fgout files will be produced in `_output`:
+
+    clawdata.output_style = 1
+
+    if clawdata.output_style==1:
+        # Output nout frames at equally spaced times up to tfinal:
+        clawdata.num_output_times = 0  # time frames will be output, only fg's
+        clawdata.tfinal = 1.*3600.
+        clawdata.output_t0 = False  # output at initial (or restart) time?
+
+Note that in addition to setting `num_output_times = 0` it is necessary to
+set `output_t0 = False` so that the solution is not output at the initial
+time `t0 = 0`.
+
+If you want to view the output frames you can modify these lines of course,
+but one advantage of using fgout grids is that these files are typically much
+smaller than the `fort.b` files produced for each time frame.
+The example in this directory has the same number of AMR levels (7) as
+`../example1/_output1c` and the single `fort.b0006` file in that directory
+(at 1 hour simulated time) is 16M, whereas the entire `_output` directory in
+this example (containing the fgmax and 31 frames of fgout files) is only 14M.
+
+
 ### Annotated fgout grid section
 
 Toward the bottom of the `setrun.py` file, the specification of the fgout
