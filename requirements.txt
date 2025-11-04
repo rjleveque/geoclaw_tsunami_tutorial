@@ -2,6 +2,7 @@
 jupyter-book<2.0
 matplotlib
 numpy
+scipy
 ghp-import
 clawpack
 netCDF4
