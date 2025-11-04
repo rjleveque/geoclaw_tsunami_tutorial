@@ -1,5 +1,5 @@
 # Some things that must be pip installed on Github to build the jupyter book
-jupyter-book
+jupyter-book<2.0
 matplotlib
 numpy
 ghp-import
