@@ -9,20 +9,25 @@ around [Copalis Beach, WA (-124.1733, 47.1134)](https://maps.app.goo.gl/RW275B5T
 
 ## Contents
 
-- [](example1/README), Some initial runs, illustrating different grid
-  resolutions, and timeframe and gauge plots specified in `setplot.py`.
-  See also these [sample results](example1/results).
+- [](example1/README): 
 
-- [](exercise1/README), An example to try modifying yourself.
+  Some initial runs, illustrating different grid
+  resolutions.  See these [sample results](example1/results) and
+  [](example1/gauges) for some tips on interpreting time series produced at
+  synthetic gauges.
 
-- [](example2/README), More complicated examples illustrating some other
-  GeoClaw features.
+- [](exercise1/README): 
 
-- [](example3/README), An example with a far-field earthquake source
-  (AKmaxWA?)
+  An example to try modifying yourself, with some
+  instructions and hints for [](exercise1/debug) and a description of
+  how using `setplot.py` for [](exercise1/setplot_description).
 
-- [](example4/README), An example with a trans-Pacific tsunami,
-  perhaps Kamchatka 2025.
+- [](example2/README): 
+
+  An example that produces output on fgout and fgmax grids.
+  Also tips on plotting these results.
+
+- *More to come.*
 
 (copalis:input)=
 ## Input files
