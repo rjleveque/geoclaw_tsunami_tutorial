@@ -342,9 +342,18 @@ fgmax point should be determined based on the first time the fgmax
 point is wet and the water surface elevation
 `eta` at this point exceeds 0.2 meters.
 
+:::{warning}
+The arrival time as calculated may be misleading, particularly if the
+leading wave is a trough and/or there is subsidence at the location of
+interest, in which case `eta` may be negative shortly after the earthquake
+and there can be significant wave action before
+the surface `eta` rises back up past 0.
+:::
+
 :::{note}
-There are better ways to monitor the arrival of the first wave (e.g. using
-`h` is better than `eta`), and in practical applications one often wants to
+We have found that there are better ways to monitor the arrival
+of the first wave (e.g. using `h` is better than `eta`),
+and in practical applications one often wants to
 keep track of several different times (e.g. when the water depth is first
 above or below some list of thresholds).  An improved version of the
 arrival time capabilities should be available in a future GeoClaw release.
