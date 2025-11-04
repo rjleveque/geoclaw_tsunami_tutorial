@@ -28,6 +28,8 @@ parts:
       - file: GTT/CopalisBeach/exercise1/debug
       - file: GTT/CopalisBeach/exercise1/setplot_description
     - file: GTT/CopalisBeach/example2/README
+      sections:
+      - file: GTT/CopalisBeach/example2/plot_fgmax
     - file: GTT/topo/README
       sections:
       - file: GTT/topo/fetch_etopo22

@@ -2,8 +2,9 @@
 
 The GeoClaw distribution includes a few examples.  A good place to start, both
 to make sure things are installed properly and to get a feel for the typical
-GeoClaw workflow, is with the example in `$CLAW/examples/tsunami/chile2010`.
-(Recall that `$CLAW` points to the top level of your `clawpack` installation).
+GeoClaw workflow, is with the example in 
+`$CLAW/examples/geoclaw/tsunami/chile2010`.
+(Recall that `$CLAW` points to the top level of your `clawpack` installation.)
 
 This example appears in the [GeoClaw Gallery](https://www.clawpack.org/gallery/gallery/gallery_geoclaw.html#chile-2010-tsunami) and the
 [README](https://www.clawpack.org/gallery/_static/geoclaw/examples/tsunami/chile2010/README.html) file linked there gives some more information about this example.
@@ -18,14 +19,15 @@ See also the Clawpack documentation under
 [Using the Fortran codes](https://www.clawpack.org/contents.html#using-the-fortran-codes)
 for more information about some of the steps below.
 
-You could do this test in the directory listed above, or following the
-[](workflow), you might want to [](workflow:copy).  For example,
-if you have created an environment variable `$MYCLAW` that points to your
-own version of things:
+You can do the tests suggested below in the directory where you find the
+chile2010 example, first moving into that directory:
 
-    $ cp -r $CLAW/examples/tsunami/chile2010 $MYCLAW/
+    $ cd $CLAW/examples/geoclaw/tsunami/chile2010
 
-will recursively copy the entire directory to `$MYCLAW/chile2010`.
+(Note that `$` here and elsewhere represents the terminal prompt, e.g.
+in a bash shell, so don't type that part.)  Or you could first copy this
+directory elsewhere and the example should still run.
+
 
 ### Make topo and dtopo files
 

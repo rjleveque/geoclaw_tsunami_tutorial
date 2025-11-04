@@ -82,14 +82,33 @@ what is desired for making an animation or doing postprocessing such as
 debris tracking.
 
 By contrast, for fgmax grids there is more flexibility in how the actual
-fgmax points are specified, with five different point style's supported
-(see the documentation linked above for details). If `point_style == 2`
+fgmax points are specified, with five different point style's supported.
+If `point_style == 2`
 then a uniform two-dimensional grid is used, but the grid is specified
 by giving the locations of the first and last *points* in each dimension,
 rather than *cell edges* of surrounding cells as in the case of fgout grids.
 This aligns better with how points are specified for the other point styles.
 
-## Specification of fgmax and fgout for this example
+:::{tip}
+The other point styles available for fgmax grids are:
+- 0: Simply a list of points without any structure.
+- 1: Equally spaced points on a one-dimensional transect.
+- 2: Uniformly spaced points on a two-dimensional grid.
+- 3: Four corners of a trapezoid are specified and the points are on ruled
+     surfaces connecting the edges.
+- 4: A subset of points on a two-dimensional uniform grid, with the selected
+     points indicated by a 0/1 array stored in the same format as a topofile.
+     This format is very useful for inundation modeling where it is only
+     necessary to monitor points near the coast with elevation below some
+     maximum beyond which water will never reach, and can greatly reduce the
+     computational work for fine grids on complex topographies.
+
+See the
+[Fixed grid monitoring documentation](https://www.clawpack.org/fgmax.html)
+for more details
+:::
+
+## Specification of fgout and fgmax for this example
 
 The `setrun.py` file in this directory is very similar to the one in
 [](../exercise1/README), with the addition of some lines shown below.
@@ -100,6 +119,98 @@ to specify the fg grids:
 
 These same two modules also have some tools for reading in and processing
 the resulting output, as illustrated in [To Appear](fgmax_plots) and [To Appear](fgout_plots).
+
+### Annotated fgout grid section
+
+Toward the bottom of the `setrun.py` file, the specification of the fgout
+grid appears.  Here's an annotated version of those lines:
+
+        # -----------------------------
+        # FGOUT GRIDS:
+        # ------------------------------
+
+        fgout_grids = rundata.fgout_data.fgout_grids  # empty list initially
+        fgout = fgout_tools.FGoutGrid()
+        fgout.fgno = 1         # ID number for this fgout grid
+        fgout.output_format = 'binary32'  # 4-byte (32-bit, single precision)
+
+We created a new object `fgout` and specified that the output should be saved
+as 4-byte (32 bit) single precision rather than the 8-byte "double precision"
+that is used for the computations.  This is usually plenty of resolution
+for plot or other post-processing purposes and makes the output files half as
+large, a consideration if producing many fgout frames at high resolution.
+
+        dx_fgout = dy_fgout = 1/3600.  # degrees
+
+        # Set the fgout_extent, which are edges of cells for which the fgout points
+        # will then be cell centers.
+        # These values were chosen so that they are all an integer number of
+        # dx_fgout or dy_fgout away from the domain edges (so fgout points are
+        # centered within computational cells of this size too).
+        fgout_extent = [-124.195, -124.155, 47.11, 47.145]
+
+        fgout.x1 = fgout_extent[0]
+        fgout.x2 = fgout_extent[1]
+        fgout.y1 = fgout_extent[2]
+        fgout.y2 = fgout_extent[3]
+        fgout.nx = int(round((fgout.x2 - fgout.x1)/dx_fgout))
+        fgout.ny = int(round((fgout.y2 - fgout.y1)/dy_fgout))
+
+As noted in the comment above, these cell edges were chosen so that fgout
+points will be exactly aligned with cell centers on a computational grid at
+the resolution of 1 arc-second.  This is not required, but may be useful in
+general, since with this alignment there is no difference
+between piecewise constant and bilinear interpolation, and the fgout grid
+exactly captures the values computed on the finest resolution (provided also
+that the fgout grid has that same resolution, which is not required in general).
+
+:::{warning}
+The values `fgout.nx` and `fgout.ny` are what are actually used in the Fortran
+code to set up the grid, and these specify the number of points in each
+dimension. The distance between points might not actually equal the
+desired `dx_fgout` and `dy_fgout` values if the extent specified does not
+contain an integer number of such cells.
+:::
+
+The next section of `setrun.py` is:
+
+        dt_fgout = 60  # seconds between fgout frames
+        fgout.tstart = 1800.
+        fgout.tend = 3600.
+        fgout.nout = int(round(((fgout.tend - fgout.tstart)/dt_fgout))) + 1
+
+We specify that the fgout grids should be output every 60 seconds from 30
+minutes to 1 hour of simulated time, computing how many frames `fgout.nout`
+this corresponds to.
+
+        # append to the list of fgout_grids, which is written to fgout_grids.data
+        fgout_grids.append(fgout)
+
+`fgout_grids` is initially an empty list and so we append the `fgout` object
+just created to this list.
+
+If you want to specify a second fgout grid, the entire fgout code block could
+be copied below this to set up a second version of `fgout` and append this
+to the list as well.  The bare bones version of this might look like:
+
+        fgout = fgout_tools.FGoutGrid()  # define a new object to add to list
+        fgout.fgno = 2                   # id number for this fgout grid
+        ## ... set parameters for the extent, resolution, etc.
+        fgout_grids.append(fgout)
+
+You can use the same name `fgout` in defining this second object, since
+a new Python object will be created by `fgout_tools.FGoutGrid()` and won't
+affect the object already in the `fgout_grids` list.  But be
+sure to give it a new ID `fgno` and to append it to the list already in use.
+
+When you do `make data`, the specification of fgout grids from `setrun.py`
+will be used to create the data file `fgout_grids.data` that will be read in
+by the Fortran code, so you can check this file to make sure the desired
+fgout grid(s) appear.
+
+The kml file `fgout0001.kml` created by `make data` (since `setrun.py` calls
+`kmltools.make_input_data_kmls(rundata)`) shows the footprint of the fgout
+grid with `fgno = 1`.
 
 ### Annotated fgmax grid section
 
@@ -134,32 +245,36 @@ what to monitor, but that's not yet available).
         # Now append to this list objects of class fgmax_tools.FGmaxGrid
         # specifying any fgmax grids.
 
-        # Points on a uniform 2d grid:
-        # grid resolution at 1" level
-        dx_fine = 1/3600.
-
         fgmax = fgmax_tools.FGmaxGrid()  # define a new object to add to list
         fgmax.fgno = 1                   # id number for this fgmax grid
         fgmax.point_style = 2            # uniform rectangular x-y grid
 
-        # fgmax_extent gives first and last grid points, which we choose
-        # to be cell centers on a grid with dx = 1/3600.:
-        fgmax_extent = [-124.19486111, -124.15597222, 47.10791667, 47.14597222]
+We created an `fgmax` object and specified that this fgmax grid will be a
+uniform rectangular grid of points.
 
-        fgmax.x1 = fgmax_extent[0]
-        fgmax.x2 = fgmax_extent[1]
-        fgmax.y1 = fgmax_extent[2]
-        fgmax.y2 = fgmax_extent[3]
-        fgmax.dx = dx_fine
-        fgmax.dy = dx_fine
+        # Set the fgmax points to be the same as the fgout points for this example,
+        # but note that we must specify the first and last points for fgmax grids
+        # (rather than cell edges as for the fgout grid) so shift by dx_fgout/2:
+
+        # grid resolution at 1" level
+        fgmax.dx = 1/3600.  # same as dx_fgout in this example
+        fgmax.dy = fgmax.dx
+
+        x1,x2,y1,y2 = fgout_extent
+
+        fgmax.x1 = x1 + fgmax.dx/2
+        fgmax.x2 = x2 - fgmax.dx/2
+        fgmax.y1 = y1 + fgmax.dy/2
+        fgmax.y2 = y2 - fgmax.dy/2
 
 
-We are creating an fgmax grid covering the `fgmax_extent` specified, with
-a grid spacing of 1 arc-second.
-Note that these values have been chosen so that the points will be centered
-in computational grid cells at this resolution based on the edges of the
-computational domain specified in `setrun.py`.  *[Add more about why centering
-is desirable]*.
+We are creating an fgmax grid with exactly the same points as the fgout
+points specified earlier, again with a grid spacing of 1 arc-second.
+And again note that the distance between the fgmax points resulting from
+this specification might not be exactly `fgmax.dx` and `fgmax.dy` if it
+needs to round off to obtain an integer number of points.  Instead of specifying
+`fgmax.dx` and `fgmax.dy` one can specify `fgmax.nx` and `fgmax.ny`, the number
+of points in each direction.
 
         fgmax.tstart_max = 35*60.     # when to start monitoring max values
         fgmax.tend_max = 1.e10        # when to stop monitoring max values
@@ -203,7 +318,7 @@ fgmax point should be determined based on the first time the fgmax
 point is wet and the water surface elevation
 `eta` at this point exceeds 0.2 meters.
 
-:::{warning}
+:::{note}
 There are better ways to monitor the arrival of the first wave (e.g. using
 `h` is better than `eta`), and in practical applications one often wants to
 keep track of several different times (e.g. when the water depth is first
@@ -230,7 +345,7 @@ to the list as well.  The bare bones version of this might look like:
 
         fgmax = fgmax_tools.FGmaxGrid()  # define a new object to add to list
         fgmax.fgno = 2                   # id number for this fgmax grid
-        # set parameters for the extent, resolution, etc.
+        ## ... set parameters for the extent, resolution, etc.
         fgmax_grids.append(fgmax)
 
 You can use the same name `fgmax` in defining this second object, since
@@ -247,10 +362,23 @@ The kml file `fgmax0001.kml` created by `make data` (since `setrun.py` calls
 `kmltools.make_input_data_kmls(rundata)`) shows the footprint of the fgmax
 grid with `fgno = 1`.
 
+:::{note}
+There are some differences between fgout and fgmax grids, some of which have
+already been noted. Some additional differences:
 
-### Annotated fgout grid section
+- fgout grids are written out for each fgout time with the same format as used
+  for the full AMR solution at each output time, but there is only a single
+  grid patch at each time.
 
-Toward the bottom of the `setrun.py` file, the specification of the fgout
-grid appears.  Here's an annotated version of those lines:
+- Each fgmax grid is written out only once at the end of the simulation and
+  has a very different format, listing each point sequentially in a format
+  that works for various different `point_style` choices beyond the uniform
+  two-dimensional grid.
 
-To appear.
+- It is not possible to specify that the fgmax output should be `binary64` or
+  `binary32`, as for fgout grids.  It is always ASCII.  Since each fgmax grid is
+  written only once at the end of the simulation, this is usually not a problem
+  but could be improved.
+
+-
+:::

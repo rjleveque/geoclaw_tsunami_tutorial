@@ -499,6 +499,40 @@ def setrun(claw_pkg='geoclaw'):
 
 
     # -----------------------------
+    # FGOUT GRIDS:
+    # ------------------------------
+
+    fgout_grids = rundata.fgout_data.fgout_grids  # empty list initially
+    fgout = fgout_tools.FGoutGrid()
+    fgout.fgno = 1         # ID number for this fgout grid
+    fgout.output_format = 'binary32'  # 4-byte (32-bit, single precision)
+
+    dx_fgout = dy_fgout = 1/3600.  # degrees
+
+    # Set the fgout_extent, which are edges of cells for which the fgout points
+    # will then be cell centers.
+    # These values were chosen so that they are all an integer number of
+    # dx_fgout or dy_fgout away from the domain edges (so fgout points are
+    # centered within computational cells of this size too).
+    fgout_extent = [-124.195, -124.155, 47.11, 47.145]
+
+    fgout.x1 = fgout_extent[0]
+    fgout.x2 = fgout_extent[1]
+    fgout.y1 = fgout_extent[2]
+    fgout.y2 = fgout_extent[3]
+    fgout.nx = int(round((fgout.x2 - fgout.x1)/dx_fgout))
+    fgout.ny = int(round((fgout.y2 - fgout.y1)/dy_fgout))
+
+    dt_fgout = 60  # seconds between fgout frames
+    fgout.tstart = 1800.
+    fgout.tend = 3600.
+    fgout.nout = int(round(((fgout.tend - fgout.tstart)/dt_fgout))) + 1
+
+    # append to the list of fgout_grids, which is written to fgout_grids.data
+    fgout_grids.append(fgout)
+
+
+    # -----------------------------
     # FGMAX GRIDS:
     # ------------------------------
     # set num_fgmax_val = 1 to save only max depth,
@@ -510,66 +544,34 @@ def setrun(claw_pkg='geoclaw'):
     # Now append to this list objects of class fgmax_tools.FGmaxGrid
     # specifying any fgmax grids.
 
-    # Points on a uniform 2d grid:
-    # grid resolution at 1" level
-    dx_fine = 1/3600.
-
     fgmax = fgmax_tools.FGmaxGrid()  # define a new object to add to list
     fgmax.fgno = 1                   # id number for this fgmax grid
     fgmax.point_style = 2            # uniform rectangular x-y grid
 
-    # fgmax_extent gives first and last grid points, which we choose
-    # to be cell centers on a grid with dx = 1/3600.:
-    fgmax_extent = [-124.19486111, -124.15597222, 47.10791667, 47.14597222]
+    # Set the fgmax points to be the same as the fgout points for this example,
+    # but note that we must specify the first and last points for fgmax grids
+    # (rather than cell edges as for the fgout grid) so shift by dx_fgout/2:
 
-    fgmax.x1 = fgmax_extent[0]
-    fgmax.x2 = fgmax_extent[1]
-    fgmax.y1 = fgmax_extent[2]
-    fgmax.y2 = fgmax_extent[3]
-    fgmax.dx = dx_fine
-    fgmax.dy = dx_fine
+    # grid resolution at 1" level
+    fgmax.dx = 1/3600.  # same as dx_fgout in this example
+    fgmax.dy = fgmax.dx
+
+    x1,x2,y1,y2 = fgout_extent
+
+    fgmax.x1 = x1 + fgmax.dx/2
+    fgmax.x2 = x2 - fgmax.dx/2
+    fgmax.y1 = y1 + fgmax.dy/2
+    fgmax.y2 = y2 - fgmax.dy/2
+
     fgmax.tstart_max = 35*60.     # when to start monitoring max values
     fgmax.tend_max = 1.e10        # when to stop monitoring max values
     fgmax.dt_check = 10.          # target time (sec) increment between updating
     fgmax.min_level_check = amrdata.amr_levels_max  # monitor on finest level only
     fgmax.arrival_tol = 0.2      # tolerance for flagging arrival
     fgmax.interp_method = 0      # 0 ==> pw const in cells, recommended
-    # add fg to the list of fgmax_grids, which is written to fgmax_grids.data
+    
+    # append to the list of fgmax_grids, which is written to fgmax_grids.data
     fgmax_grids.append(fgmax)
-
-
-
-    # -----------------------------
-    # FGOUT GRIDS:
-    # ------------------------------
-
-    fgout_grids = rundata.fgout_data.fgout_grids  # empty list initially
-    dx_fgout = 1/3600.  # degrees
-    dy_fgout = dx_fgout
-
-    # set the fgout_extent to be essentially the same as fgmax_extent
-    # but for historical reasons, we need to specify edges rather than
-    # first and last points (which are cell centered):
-    x1,x2,y1,y2 = fgmax_extent
-    dx2 = dx_fgout/2.
-    fgout_extent = [x1-dx2, x2+dx2, y1-dx2, y2+dx2]
-
-    dt_fgout = 60  # seconds
-
-    fgout = fgout_tools.FGoutGrid()
-    fgout.fgno = 1
-    fgout.point_style = 2  # uniform rectangular x-y grid
-    fgout.output_format = 'binary32'
-    fgout.x1 = fgout_extent[0]
-    fgout.x2 = fgout_extent[1]
-    fgout.y1 = fgout_extent[2]
-    fgout.y2 = fgout_extent[3]
-    fgout.nx = int(round((fgout.x2 - fgout.x1)/dx_fgout))
-    fgout.ny = int(round((fgout.y2 - fgout.y1)/dy_fgout))
-    fgout.tstart = 1800.
-    fgout.tend = 3600.
-    fgout.nout = int(round(((fgout.tend - fgout.tstart)/dt_fgout))) + 1
-    fgout_grids.append(fgout)
 
 
     # ---------------
