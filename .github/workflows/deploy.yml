@@ -34,6 +34,8 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Fetch input data and sample results needed for book:
         run: python fetch_all_data.py
 
       # Build the book
