@@ -172,13 +172,21 @@ which is mostly useful for creating tutorials.
 ## Next steps
 
 The [](GTT/CopalisBeach/README) step you through setting  up and
-running GeoClaw in more detail, in particular these pages refer to the code in
-`GTT/CopalisBeach/example1`: 
+running GeoClaw in more detail. You might start by reading through the
+example in `GTT/CopalisBeach/example1`: 
 
 - [](GTT/CopalisBeach/example1/README)
 - [Copalis Beach setrun description](GTT/CopalisBeach/example1/setrun_description)
 - [](GTT/CopalisBeach/example1/output1a_annotated)
 
+Although `GTT/CopalisBeach/example1` is a good place to start reading more
+about how GeoClaw is set up, to try running this example yourself and making
+modifications, it is better to start with `GTT/CopalisBeach/exercise1`,
+which is a more typical setup for a single run (whereas 4 different runs are
+compared in `example1`). In particular, see:
+
+- [](GTT/CopalisBeach/exercise1/README)
+- [](GTT/CopalisBeach/exercise1/debug)
 
 :::{seealso}
 This [Tutorial on flooding in the Quillayute River](https://github.com/clawpack/geoclaw_tutorial_csdms2024)

@@ -143,8 +143,16 @@ explained in [](testing_chile2010).
 For more details on setting up a run via `setrun.py`, see
 [](GTT/CopalisBeach/example1/README) and the annotated `setrun.py` in
 [](GTT/CopalisBeach/example1/setrun_description).
-More complicated examples will be
-covered in additional examples yet to be incorporated.
+
+To run/modify an example yourself, you might want to start with
+[](GTT/CopalisBeach/exercise1/README) and 
+[](GTT/CopalisBeach/exercise1/debug).
+
+The use of fgmax and fgout grids is covered in 
+[](GTT/CopalisBeach/example2/README).
+
+Other GeoClaw features will be
+covered in additional examples still under development.
 
 :::{seealso}
 The following pages list many topics, with links to more information on how to
