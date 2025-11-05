@@ -24,7 +24,7 @@ all_datasets = [
         'topo/topofiles/csz_shore.txt',
         'dtopo/dtopofiles/ASCE_SIFT_Region2.dtt3',
         'CopalisBeach/example1/sample_results',
-        'datasets/testfile.txt'
+        'CopalisBeach/example2/sample_results'
         ]
 
 
