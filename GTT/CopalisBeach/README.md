@@ -5,27 +5,27 @@ From the
 
 The directory `$GTT/CopalisBeach`
 contains some example simulations of tsunamis inundating the coastal region
-around [Copalis Beach, WA (-124.1733, 47.1134)](https://maps.app.goo.gl/RW275B5TzY4oQakaA)
+around [Copalis Beach, WA (-124.1733, 47.1134)](https://maps.app.goo.gl/RpYB52L5ziTYCwrB8)
 
 ## Contents
 
 - [](example1/README): 
+  Some sample runs, illustrating different grid resolutions.  
 
-  Some initial runs, illustrating different grid
-  resolutions.  See these [sample results](example1/results) and
-  [](example1/gauges) for some tips on interpreting time series produced at
-  synthetic gauges.
+    - [](example1/results): Comparison of results. 
+    - [](example1/setrun_description): Annotated description of `setrun.py`
+    - [](example1/gauges): Some tips on interpreting time series produced at
+      synthetic gauges.
 
-- [](exercise1/README): 
+- [](exercise1/README): An example to try running yourself, with some
+  suggested modifications.
 
-  An example to try modifying yourself, with some
-  instructions and hints for [](exercise1/debug) and a description of
-  how using `setplot.py` for [](exercise1/setplot_description).
+   - [](exercise1/debug): Instructions and tips for getting it running.
+   - [](exercise1/setplot_description): Annotated description of `setplot.py`
 
-- [](example2/README): 
+- [](example2/README): An example that produces output on fgout and fgmax grids.
 
-  An example that produces output on fgout and fgmax grids.
-  Also tips on plotting these results.
+   - [](example2/plot_fgmax): How to read in and plot the fgmax results.
 
 - *More to come.*
 

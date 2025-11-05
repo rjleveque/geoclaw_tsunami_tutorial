@@ -31,10 +31,18 @@ from datetime import timedelta
 
 from clawpack.geoclaw import fgout_tools
 
+if 1:
+    # use this to fetch sample_results from the online data repository:
+    import fetch_sample_results
+    outdir = 'sample_results/_output'
+else:
+    # use this if you have run the code locally to create '_output'
+    outdir = '_output'
+
+
 event = 'ASCE_SIFT'
 fgno = 1  # which fgout grid
 
-outdir = '_output'
 
 # look for fgout frames in outdir:
 fgout_frames = glob.glob(os.path.join(outdir, \
@@ -59,10 +67,10 @@ fgout_grid.read_fgout_grids_data()
 
 if 1:
     # background image:
-    GE_image = imread('fgmax0001.jpg')
-    GE_extent = [-124.19486111, -124.15597222, 47.10791667, 47.14597222]
+    fg_image = imread('fg_background.jpg')
+    fg_extent = [-124.195, -124.155, 47.11, 47.145]
 else:
-    GE_image = None
+    fg_image = None
 
 # Plot one frame of fgout data and define the Artists that will need to
 # be updated in subsequent frames:
@@ -76,9 +84,9 @@ ylat = fgout.Y.mean()  # for aspect ratio of plots
 fig = figure(figsize=(8,8))
 ax = axes()
 
-if GE_image is not None:
-    ax.imshow(GE_image, extent=GE_extent)
-    B = nan*fgout.B
+if fg_image is not None:
+    ax.imshow(fg_image, extent=fg_extent)
+    B = nan*fgout.B  # set to all nans so B doesn't plot
 else:
     # if no background image, use topography
     B = fgout.B
@@ -95,14 +103,20 @@ else:
 ax.set_xlim(plot_extent[:2])
 ax.set_ylim(plot_extent[2:])
 
-eta = ma.masked_where(fgout.h<0.01, fgout.eta)
+# Define zeta to be h onshore, h+B=eta offshore
+# Here we define onshore using the current fgout.B at each time
+# (rather than using the initial B0 as was done for fgmax)
 
-eta_plot = plottools.pcolorcells(fgout.X,fgout.Y,eta,
+onshore = fgout.B > 0
+zeta = where(onshore, fgout.h, fgout.h+fgout.B)
+zeta = ma.masked_where(fgout.h<0.01, zeta)
+
+zeta_plot = plottools.pcolorcells(fgout.X, fgout.Y, zeta,
                                  cmap=geoplot.tsunami_colormap)
 
-eta_plot.set_clim(-20,20)
+zeta_plot.set_clim(-20,20)
 
-cb = colorbar(eta_plot, extend='both', shrink=0.7)
+cb = colorbar(zeta_plot, extend='both', shrink=0.7)
 cb.set_label('meters')
 
 title_text = ax.set_title('%s\nSurface/Depth at time %s  (frame %i)' \
@@ -130,13 +144,15 @@ def update(fgframeno):
     title_text.set_text('%s\nSurface/Depth at time %s  (frame %i)' \
             % (event, timedelta(seconds=fgout.t), fgframeno))
 
-    if GE_image is None:
+    if fg_image is None:
         # replot topo B since grid resolution may have changed:
         B_plot.set_array(fgout.B.T.flatten())
 
-    # reset surface eta to current state:
-    eta = ma.masked_where(fgout.h<0.01, fgout.eta)
-    eta_plot.set_array(eta.T.flatten())
+    # reset zeta to current state:
+    onshore = fgout.B > 0
+    zeta = where(onshore, fgout.h, fgout.h+fgout.B)
+    zeta = ma.masked_where(fgout.h<0.01, zeta)
+    zeta_plot.set_array(zeta.T.flatten())
 
 
 if __name__ == '__main__':

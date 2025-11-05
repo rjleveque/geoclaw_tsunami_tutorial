@@ -6,6 +6,14 @@ From the
 See [](../README) for more about the Copalis Beach location and a
 list of other examples and tutorials based on this location.
 
+:::{seealso}
+
+- [](plot_fgmax): notebook to plot fgmax results,
+- `make_fgmax_kmz.py`: script to make a kmz file showing fgmax results,
+- `make_fgout_animation.py`: script to make an animation of fgout results.
+
+:::
+
 ## fgout and fgmax grids
 
 The directory `$GTT/CopalisBeach/example2`
