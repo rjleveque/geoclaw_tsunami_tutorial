@@ -37,6 +37,7 @@ parts:
     - file: GTT/dtopo/README
       sections:
       - file: GTT/dtopo/ASCE_SIFT_Region2
+    - file: GTT/CopalisBeach/MOST_comparison/README
   - caption: Detailed discussion of topics
     chapters:
     - file: intro_topics
