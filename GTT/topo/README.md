@@ -4,12 +4,16 @@
 The `geoclaw_tsunami_tutorial/GTT/topo` directory contains scripts and
 notebooks that download or create topo files.
 
-- `fetch_topo1.py`
-- `CopalisTopo.ipynb` which renders in the tutorial as [](CopalisTopo)
-- `fetch_etopo22.ipynb` which renders in the tutorial as [](fetch_etopo22)
+- [](fetch_etopo22) downloads the 30 arcsecond topofile used offshore.
+  This is a rendered version of the Jupyter notebook `fetch_etopo22.ipynb`.
+- [](CopalisTopo) creates the 1/3 arcsecond topofile used around Copalis Beach.
+  This is a rendered version of the Jupyter notebook `CopalisTopo.ipynb`.
 
 The subdirectory `topo/topofiles` contains the actual topofiles that are
 used as GeoClaw input in various examples. 
+
+Rather than generating these topofiles using the notebooks above,
+they can be downloaded using the script `../CopalisBeach/fetch_input_data.py`.
 
 :::{seealso}
 - [Topography data documentation](https://www.clawpack.org/topo.html)
