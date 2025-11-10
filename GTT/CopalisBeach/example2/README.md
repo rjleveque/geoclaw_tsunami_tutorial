@@ -10,6 +10,7 @@ list of other examples and tutorials based on this location.
 
 - [](plot_fgmax): notebook to plot fgmax results,
 - `make_fgmax_kmz.py`: script to make a kmz file showing fgmax results,
+- [](plot_fgout): notebook to plot fgout results,
 - `make_fgout_animation.py`: script to make an animation of fgout results.
 
 :::

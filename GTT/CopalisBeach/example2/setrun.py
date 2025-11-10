@@ -551,12 +551,13 @@ def setrun(claw_pkg='geoclaw'):
     # Set the fgmax points to be the same as the fgout points for this example,
     # but note that we must specify the first and last points for fgmax grids
     # (rather than cell edges as for the fgout grid) so shift by dx_fgout/2:
+    fgmax_extent = fgout_extent
 
     # grid resolution at 1" level
     fgmax.dx = 1/3600.  # same as dx_fgout in this example
     fgmax.dy = fgmax.dx
 
-    x1,x2,y1,y2 = fgout_extent
+    x1,x2,y1,y2 = fgmax_extent
 
     fgmax.x1 = x1 + fgmax.dx/2
     fgmax.x2 = x2 - fgmax.dx/2
