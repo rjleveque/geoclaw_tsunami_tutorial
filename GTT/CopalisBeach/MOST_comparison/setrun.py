@@ -15,6 +15,7 @@ import numpy as np
 # fixed in clawpack versions >= v5.13.0
 
 from clawpack.amrclaw.data import FlagRegion
+from clawpack.geoclaw import fgmax_tools, fgout_tools
 
 try:
     CLAW = os.environ['CLAW']
@@ -74,8 +75,8 @@ def setrun(claw_pkg='geoclaw'):
     clawdata.upper[1] = 48.5        # north latitude
 
     # Number of grid cells: Coarsest grid is 15 arcsec (1/240 degree)
-    clawdata.num_cells[0] =  240*(126 - 123.75)
-    clawdata.num_cells[1] =  240*(48.5 - 45)
+    clawdata.num_cells[0] =  540
+    clawdata.num_cells[1] =  840
 
     # ---------------
     # Size of system:
@@ -415,7 +416,7 @@ def setrun(claw_pkg='geoclaw'):
     flagregion.name = 'Region_Bgrid'
     flagregion.minlevel = 2
     flagregion.maxlevel = 2
-    flagregion.t1 = 10.
+    flagregion.t1 = 0.
     flagregion.t2 = 1e9
     flagregion.spatial_region_type = 1  # Rectangle
     flagregion.spatial_region = [-126.5, -124.1, 47.0, 47.4]
@@ -426,7 +427,7 @@ def setrun(claw_pkg='geoclaw'):
     flagregion.name = 'Region_Cgrid'
     flagregion.minlevel = 3
     flagregion.maxlevel = 3
-    flagregion.t1 = 10.
+    flagregion.t1 = 0.
     flagregion.t2 = 1e9
     flagregion.spatial_region_type = 1  # Rectangle
     flagregion.spatial_region = [-124.25, -124.14, 47.1, 47.18]
@@ -449,6 +450,13 @@ def setrun(claw_pkg='geoclaw'):
 
 
     # -----------------------------
+    # FGOUT GRIDS:
+    # ------------------------------
+
+    fgout_grids = rundata.fgout_data.fgout_grids  # empty list initially
+
+
+    # -----------------------------
     # FGMAX GRIDS:
     # ------------------------------
     # set num_fgmax_val = 1 to save only max depth,
@@ -457,12 +465,36 @@ def setrun(claw_pkg='geoclaw'):
     rundata.fgmax_data.num_fgmax_val = 2
     fgmax_grids = rundata.fgmax_data.fgmax_grids  # empty list initially
 
+    # Now append to this list objects of class fgmax_tools.FGmaxGrid
+    # specifying any fgmax grids.
 
-    # -----------------------------
-    # FGOUT GRIDS:
-    # ------------------------------
+    fgmax = fgmax_tools.FGmaxGrid()  # define a new object to add to list
+    fgmax.fgno = 1                   # id number for this fgmax grid
+    fgmax.point_style = 2            # uniform rectangular x-y grid
 
-    fgout_grids = rundata.fgout_data.fgout_grids  # empty list initially
+    # grid resolution at 1" level
+    fgmax.dx = 1/3600.  # same as dx_fgout in this example
+    fgmax.dy = fgmax.dx
+
+    fgmax_extent = [-124.195, -124.155, 47.11, 47.145]
+    x1,x2,y1,y2 = fgmax_extent
+
+    fgmax.x1 = x1 + fgmax.dx/2
+    fgmax.x2 = x2 - fgmax.dx/2
+    fgmax.y1 = y1 + fgmax.dy/2
+    fgmax.y2 = y2 - fgmax.dy/2
+
+    fgmax.tstart_max = 35*60.     # when to start monitoring max values
+    fgmax.tend_max = 1.e10        # when to stop monitoring max values
+    fgmax.dt_check = 10.          # target time (sec) increment between updating
+    fgmax.min_level_check = amrdata.amr_levels_max  # monitor on finest level only
+    fgmax.arrival_tol = 0.2      # tolerance for flagging arrival
+    fgmax.interp_method = 0      # 0 ==> pw const in cells, recommended
+
+    # append to the list of fgmax_grids, which is written to fgmax_grids.data
+    fgmax_grids.append(fgmax)
+
+
 
     # ---------------
     # FOR DEVELOPERS:

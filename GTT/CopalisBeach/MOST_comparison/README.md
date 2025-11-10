@@ -41,8 +41,8 @@ First we set the domain extent and resolution to match the A grid:
     clawdata.upper[1] = 48.5        # north latitude
 
     # Number of grid cells: Coarsest grid is 15 arcsec (1/240 degree)
-    clawdata.num_cells[0] =  240*(126 - 123.75)
-    clawdata.num_cells[1] =  240*(48.5 - 45)
+    clawdata.num_cells[0] =  540
+    clawdata.num_cells[1] =  840
 
 
 Next we specify three levels of AMR with the resolutions of the
@@ -107,7 +107,7 @@ Finally, the flagregions below specify three regions with each
     flagregion.name = 'Region_Bgrid'
     flagregion.minlevel = 2
     flagregion.maxlevel = 2
-    flagregion.t1 = 10.
+    flagregion.t1 = 0.
     flagregion.t2 = 1e9
     flagregion.spatial_region_type = 1  # Rectangle
     flagregion.spatial_region = [-126.5, -124.1, 47.0, 47.4]
@@ -118,7 +118,7 @@ Finally, the flagregions below specify three regions with each
     flagregion.name = 'Region_Cgrid'
     flagregion.minlevel = 3
     flagregion.maxlevel = 3
-    flagregion.t1 = 10.
+    flagregion.t1 = 0.
     flagregion.t2 = 1e9
     flagregion.spatial_region_type = 1  # Rectangle
     flagregion.spatial_region = [-124.25, -124.14, 47.1, 47.18]
