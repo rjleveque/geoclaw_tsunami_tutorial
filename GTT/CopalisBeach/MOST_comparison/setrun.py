@@ -68,15 +68,15 @@ def setrun(claw_pkg='geoclaw'):
 
     # Lower and upper edge of computational domain:
 
-    clawdata.lower[0] = -126.       # west longitude
-    clawdata.upper[0] = -123.75     # east longitude
+    clawdata.lower[0] = -128.5      # west longitude
+    clawdata.upper[0] = -123.5      # east longitude
 
     clawdata.lower[1] = 45.         # south latitude
-    clawdata.upper[1] = 48.5        # north latitude
+    clawdata.upper[1] = 49.         # north latitude
 
-    # Number of grid cells: Coarsest grid is 15 arcsec (1/240 degree)
-    clawdata.num_cells[0] =  540
-    clawdata.num_cells[1] =  840
+    # Number of grid cells: Coarsest grid is 4 arcminutes (1/15 degree)
+    clawdata.num_cells[0] =  5*15
+    clawdata.num_cells[1] =  4*15
 
     # ---------------
     # Size of system:
@@ -116,8 +116,8 @@ def setrun(claw_pkg='geoclaw'):
 
     if clawdata.output_style==1:
         # Output nout frames at equally spaced times up to tfinal:
-        clawdata.num_output_times = 6
-        clawdata.tfinal = 1.0*3600.
+        clawdata.num_output_times = 9
+        clawdata.tfinal = 1.5*3600.
         clawdata.output_t0 = True  # output at initial (or restart) time?
 
     elif clawdata.output_style == 2:
@@ -266,13 +266,13 @@ def setrun(claw_pkg='geoclaw'):
     amrdata.memsize = 10000000
 
     # max number of refinement levels:
-    amrdata.amr_levels_max = 3
+    amrdata.amr_levels_max = 4
 
     # List of refinement ratios at each level (length at least mxnest-1)
 
     # Set up for 8 levels here, possibly using fewer:
-    # dx = dy = 15", 3", 1/3"
-    refinement_ratios = [5,9]
+    # dx = dy = 4', 15", 3", 1/3"
+    refinement_ratios = [16,5,9]
     amrdata.refinement_ratios_x = refinement_ratios
     amrdata.refinement_ratios_y = refinement_ratios
     amrdata.refinement_ratios_t = refinement_ratios
@@ -339,6 +339,12 @@ def setrun(claw_pkg='geoclaw'):
     # for topography, append tuples/lists of the form:
     #    [topotype, fname]
 
+    topodir = '../../topo/topofiles'  # path to topofile used outside A,B,C
+
+    # 30-sec topo:
+    topo_file = os.path.join(topodir, 'etopo22_30s_-130_-122_40_50_30sec.asc')
+    topofiles.append([3, topo_file])
+
     topodir = './MOST_data'  # path to topofiles used below
 
     # A grid:
@@ -398,9 +404,9 @@ def setrun(claw_pkg='geoclaw'):
 
     flagregions = rundata.flagregiondata.flagregions  # empty list initially
 
-    # MOST A grid: (full computational domain)
+    # Computational domain:
     flagregion = FlagRegion(num_dim=2)
-    flagregion.name = 'Region_Agrid'
+    flagregion.name = 'Region_domain'
     flagregion.minlevel = 1
     flagregion.maxlevel = 1
     flagregion.t1 = 0.
@@ -411,11 +417,23 @@ def setrun(claw_pkg='geoclaw'):
     flagregion.spatial_region = [x1,x2,y1,y2]
     flagregions.append(flagregion)
 
+
+    # MOST A grid: 
+    flagregion = FlagRegion(num_dim=2)
+    flagregion.name = 'Region_Agrid'
+    flagregion.minlevel = 2
+    flagregion.maxlevel = 2
+    flagregion.t1 = 0.
+    flagregion.t2 = 1e9
+    flagregion.spatial_region_type = 1  # Rectangle
+    flagregion.spatial_region = [-126, -123.75, 45, 48.5]
+    flagregions.append(flagregion)
+
     # MOST B grid
     flagregion = FlagRegion(num_dim=2)
     flagregion.name = 'Region_Bgrid'
-    flagregion.minlevel = 2
-    flagregion.maxlevel = 2
+    flagregion.minlevel = 3
+    flagregion.maxlevel = 3
     flagregion.t1 = 0.
     flagregion.t2 = 1e9
     flagregion.spatial_region_type = 1  # Rectangle
@@ -425,8 +443,8 @@ def setrun(claw_pkg='geoclaw'):
     # MOST C grid
     flagregion = FlagRegion(num_dim=2)
     flagregion.name = 'Region_Cgrid'
-    flagregion.minlevel = 3
-    flagregion.maxlevel = 3
+    flagregion.minlevel = 4
+    flagregion.maxlevel = 4
     flagregion.t1 = 0.
     flagregion.t2 = 1e9
     flagregion.spatial_region_type = 1  # Rectangle
