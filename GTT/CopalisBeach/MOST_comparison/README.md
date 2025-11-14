@@ -23,6 +23,19 @@ topofile format for use as topofiles in this example.   The `setrun.py`
 file specifies 3 levels of fixed refinement with no regridding, and covering
 the same regions as the A, B, and C grids.
 
+:::{note}
+For GeoClaw, it is necessary to add a 4th coarser
+level on a larger domain covering more of the ocean in order to capture 
+the outgoing portion of the initial waves without artifacts coming
+from the domain boundaries.  MOST handles this by using a precomputed
+tsunami from the NOAA propagation database to provide boundary conditions
+at the edge of the A grid.
+:::
+
+:::{warning}
+This example still Work in Progress, and the `setrun.py` is for an
+old 3-level run that didn't work so well.
+:::
 
 ## Changes to `setrun.py`
 
