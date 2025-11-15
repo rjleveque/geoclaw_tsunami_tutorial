@@ -41,11 +41,44 @@ will often be referred to in this tutorial as e.g.
 `$GTT/topo/CopalisTopo.ipynb`, which is the Jupyter notebook that
 we will use to create a topofile for one of the examples.
 
+(workflow:pull)=
+### Updating the tutorials with git pull
+
 Since these tutorials will be evolving, in the future you may need to update the
 version on your computer, via::
 
-    $ cd $GTT
-    $ git pull
+    $ cd $GTT   # or you can be in any subdirectory
+    $ git pull  # fetches recent changes from Github and tries to merge in
+
+:::{hint}
+If you follow the suggested workflow below in [](workflow:copy), then
+you should not run into merge issues with `git pull`.
+
+But if you do get a message like:
+
+    error: Your local changes to the following files would be overwritten by merge:
+        GTT/CopalisBeach/exercise1/setrun.py
+    Please commit your changes or stash them before you merge.
+    Aborting
+
+it means that you made a local change to this file that conflicts with a
+change made in the Github repository.  Possibly many files will be listed as
+having conflicts.
+
+If you are sure you don't need to keep any of the changes you made, you
+can delete your local versions, e.g.
+
+    $ rm $GTT/CopalisBeach/exercise1/setrun.py
+
+(or move the file elsewhere if you do want to keep it)
+and then try `git pull` again.
+
+Or you can simply do:
+
+    git checkout main  # overwrites all your modified files with original versions
+    git pull           # should now work
+
+:::
 
 ## Clawpack apps respository
 
