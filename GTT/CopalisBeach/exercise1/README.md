@@ -33,6 +33,14 @@ this, please see the following pages:
 - [](makefile_description)
 - [](setplot_description)
 
+### To compare to the sample results
+
+You can compare your results with the archived sample results if you first
+fetch those using:
+
+    $ python fetch_sample_results.py
+
+Compare the plots you made in `_plots` to those in `sample_results/_plots`.
 
 
 ## Exercises
@@ -52,7 +60,43 @@ If you run into problems running the code after moving it, see the suggestions
 in [](debug).
 :::
 
-Hare are some tings you might try modifying in this example:
+Here are some tings you might try modifying in this example:
+
+- After copying this example elsewhere and running it, also run "make plots"
+  to create a webpage of results in the new directory and check that the
+  plots look the same as those in
+  `$GTT/CopalisBeach/exercise1/sample_results/_plots`.
+  
+  Then also use the script `compare_gauges.py` to compare the gauge
+  results in more detail by plotting the results from your run on top
+  of the sample results.
+
+- Try modifying the example to use a different set of AMR levels and
+  refinement regions to get down to the same resolution and see how this
+  affects the results and running time.  In particular, the example is set
+  up to use the first 6 levels from an AMR structure with resolutions
+
+      # dx = dy = 4', 2', 24", 12", 6", 3", 1", 1/3"
+
+  Try modifying `refinement_ratios` so that it uses fewer levels with:
+
+      # dx = dy = 4', 1', 12", 3", 1", 1/3"
+
+  Modify `compare_gauges.py` to see how much this affects the solution
+  at the gauges
+
+:::{hint}
+If you run compare_gauges interactively in
+[IPython](https://ipython.readthedocs.io/en/stable/) via:
+
+    $ ipython --pylab
+    In [1]: run compare_gauges
+
+then you can zoom in on the plots to see any differences more clearly.
+:::
+
+- Do more comparisons of different resolutions, refinement ratios, 
+  and/or refinement flagregions.
 
 - Add one or more new gauges in the computational domain.
 
@@ -64,7 +108,6 @@ Hare are some tings you might try modifying in this example:
   Remember that the kml files produced by "make data" can
   help you see how the domain relates to the topo and dtopo files.)
 
-- Compare different resolutions, refinement ratios, and/or refinement regions.
-
 - Try shifting this example to a different coastal region.  You may need to
   download different topo files if you move very far.
+
