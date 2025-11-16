@@ -82,6 +82,10 @@ Here are some tings you might try modifying in this example:
 
       # dx = dy = 4', 1', 12", 3", 1", 1/3"
 
+  Note that you will also want to modify the `minlevel` and `maxlevel`
+  values for some flagregions in order to impose the same grid resolutions
+  as originally in these regions.
+
   Modify `compare_gauges.py` to see how much this affects the solution
   at the gauges
 
