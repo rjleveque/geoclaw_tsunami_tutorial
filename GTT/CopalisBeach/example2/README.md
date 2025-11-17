@@ -13,7 +13,8 @@ list of other examples and tutorials based on this location.
 - [](plot_fgout): notebook to plot fgout results,
 - `make_fgout_animation.py`: script to make an animation of fgout results.
 - `fetch_sample_results.py`: fetch `_outdir` containing results needed
-  for running the above.
+  for running the above. (Or `make .output` should run GeoClaw to create
+  these results.)
 
 
 The `fetch_sample_results.py` scripts also fetches these sample results:

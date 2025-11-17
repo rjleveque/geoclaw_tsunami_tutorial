@@ -1,3 +1,20 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+```{code-cell}
+:tags: [remove-input, remove-output]
+run fetch_sample_results.py
+```
+
 (copalis:most_comparison)=
 # Comparison using the MOST model setup
 
@@ -172,7 +189,7 @@ be comparable to what was seen using `setrun1d.py` in `example1`.
 The script `compare_gauges.py` produces plots of the time series
 computed at the gauges for this comparison:
 
-![](./GaugeComparison.png)
+![](./sample_results/GaugeComparison.png)
 
 :::{note}
 This example is just to illustrate that fixed grid resolutions could be used
