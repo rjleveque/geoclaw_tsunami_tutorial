@@ -270,7 +270,6 @@ def setrun(claw_pkg='geoclaw'):
 
     # List of refinement ratios at each level (length at least mxnest-1)
 
-    # Set up for 8 levels here, possibly using fewer:
     # dx = dy = 4', 15", 3", 1/3"
     refinement_ratios = [16,5,9]
     amrdata.refinement_ratios_x = refinement_ratios
@@ -342,23 +341,23 @@ def setrun(claw_pkg='geoclaw'):
     topodir = '../../topo/topofiles'  # path to topofile used outside A,B,C
 
     # 30-sec topo:
-    topo_file = os.path.join(topodir, 'etopo22_30s_-130_-122_40_50_30sec.asc')
+    topo_file = f'{topodir}/etopo22_30s_-130_-122_40_50_30sec.asc'
     topofiles.append([3, topo_file])
 
     topodir = './MOST_data'  # path to topofiles used below
 
     # A grid:
-    topo_file = os.path.join(topodir, 'Copalia_Agrid_15s_etopo2022.asc')
+    topo_file = f'{topodir}/Copalia_Agrid_15s_etopo2022.asc'
     topofiles.append([3, topo_file])
-    
+
     # B grid:
-    topo_file = os.path.join(topodir, 'Copalis_Bgrid_3sec_mhw_13DEM_CUDEM_combine.asc')
+    topo_file = f'{topodir}/Copalis_Bgrid_3sec_mhw_13DEM_CUDEM_combine.asc'
     topofiles.append([3, topo_file])
-    
+
     # C grid:
-    topo_file = os.path.join(topodir, 'copalis_Cgrid_10m_mhw.asc')
+    topo_file = f'{topodir}/copalis_Cgrid_10m_mhw.asc'
     topofiles.append([3, topo_file])
-    
+
 
 
     # ---------------
@@ -418,7 +417,7 @@ def setrun(claw_pkg='geoclaw'):
     flagregions.append(flagregion)
 
 
-    # MOST A grid: 
+    # MOST A grid:
     flagregion = FlagRegion(num_dim=2)
     flagregion.name = 'Region_Agrid'
     flagregion.minlevel = 2
