@@ -30,6 +30,7 @@ parts:
     - file: GTT/CopalisBeach/example2/README
       sections:
       - file: GTT/CopalisBeach/example2/plot_fgmax
+      - file: GTT/CopalisBeach/example2/plot_fgout
     - file: GTT/topo/README
       sections:
       - file: GTT/topo/fetch_etopo22

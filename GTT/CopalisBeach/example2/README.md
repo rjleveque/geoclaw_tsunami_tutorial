@@ -12,6 +12,16 @@ list of other examples and tutorials based on this location.
 - `make_fgmax_kmz.py`: script to make a kmz file showing fgmax results,
 - [](plot_fgout): notebook to plot fgout results,
 - `make_fgout_animation.py`: script to make an animation of fgout results.
+- `fetch_sample_results.py`: fetch `_outdir` containing results needed
+  for running the above.
+
+
+The `fetch_sample_results.py` scripts also fetches these sample results:
+
+- `sample_results/CopalisBeach_ASCE_SIFT_fgmax1.kmz`: kmz file created by
+  `make_fgmax_kmz.py` (open in Google Earth or other GIS platform)
+- `sample_results/fgout_animation.mp4`: Animation created by
+  `make_fgout_animation.py`
 
 :::
 
@@ -127,10 +137,11 @@ to specify the fg grids:
     from clawpack.geoclaw import fgmax_tools, fgout_tools
 
 These same two modules also have some tools for reading in and processing
-the resulting output, as illustrated in [To Appear](fgmax_plots) and [To Appear](fgout_plots).
+the resulting output, as illustrated in the notebooks
+[](plot_fgmax) and [](plot_fgout) and the Python scripts in this directory.
 
-We also set specify that **no output times for the full AMR time frames**,
-so that only the fgmax and fgout files will be produced in `_output`:
+We also set specify **no output times for the full AMR time frames**,
+so that only the fgmax and fgout files will be produced in `_output`, via:
 
     clawdata.output_style = 1
 
@@ -150,7 +161,8 @@ smaller than the `fort.b` files produced for each time frame.
 The example in this directory has the same number of AMR levels (7) as
 `../example1/_output1c` and the single `fort.b0006` file in that directory
 (at 1 hour simulated time) is 16M, whereas the entire `_output` directory in
-this example (containing the fgmax and 31 frames of fgout files) is only 14M.
+this example (containing the fgmax results and 31 frames of fgout files)
+is only 14M.
 
 
 ### Annotated fgout grid section
@@ -422,5 +434,27 @@ already been noted. Some additional differences:
   written only once at the end of the simulation, this is usually not a problem
   but could be improved.
 
--
 :::
+
+## Plotting/animating fgout results
+
+See the notebook [](plot_fgout) for some illustrations of how to plot 
+frames of the fgout results for this problem.
+
+The script `make_fgout_animation.py` can be used to make an animation of
+the fgout results.  Run `fetch_sample_results.py` to fetch this
+animation for viewing even if you have not run the GeoClaw code.
+It should appear as `sample_results/fgout_animation.mp4`.
+
+## Plotting fgmax results
+
+See the notebook [](plot_fgmax): for some illustrations of how to plot 
+fgmax results.
+
+The script `make_fgmax_kmz.py` can be used to make a kmz file that can be
+opened in Google Earth (or some other GIS platforms) to view plots of the
+fgmax results.  Run `fetch_sample_results.py` to fetch this
+kmz file for viewing even if you have not run the GeoClaw code.
+It should appear as `sample_results/CopalisBeach_ASCE_SIFT_fgmax1.kmz`.
+
+
