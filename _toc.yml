@@ -29,8 +29,11 @@ parts:
       - file: GTT/CopalisBeach/exercise1/setplot_description
     - file: GTT/CopalisBeach/example2/README
       sections:
-      - file: GTT/CopalisBeach/example2/plot_fgmax
+      - file: GTT/CopalisBeach/example2/fgout_results
       - file: GTT/CopalisBeach/example2/plot_fgout
+      - file: GTT/CopalisBeach/example2/fgmax_results
+      - file: GTT/CopalisBeach/example2/plot_fgmax
+      - file: GTT/CopalisBeach/example2/plot_fgmax_folium
     - file: GTT/topo/README
       sections:
       - file: GTT/topo/fetch_etopo22

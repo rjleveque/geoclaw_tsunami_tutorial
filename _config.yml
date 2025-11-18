@@ -42,6 +42,8 @@ sphinx:
   config:
     html_extra_path: ['_extra_html']
     # e.g _extra_html/GTT/dtopo/abc.html is copied to GTT/dtopo/
+  extra_extensions:
+    - sphinx_iframes
 
 parse:
   myst_enable_extensions: 

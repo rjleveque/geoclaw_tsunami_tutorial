@@ -111,7 +111,7 @@ at the bottom of https://www.clawpack.org/riemann_book/
 
 <iframe
     width="600"
-    height="530"
-    src="./images/shallow_water_verysmall.html"
+    height="600"
+    src="https://www.clawpack.org/riemann_book/phase_plane/shallow_water_verysmall.html"
     frameborder="0"
     allowfullscreen></iframe>
