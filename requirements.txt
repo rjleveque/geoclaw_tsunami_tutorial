@@ -10,3 +10,5 @@ cloudpathlib
 pooch
 sphinx-iframes
 folium
+trame
+pyvista
