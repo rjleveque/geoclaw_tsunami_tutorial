@@ -11,7 +11,7 @@ kernelspec:
 ---
 
 ```{code-cell}
-:tags: [remove-input, remove-output]
+:tags: [hide-input, hide-output]
 run fetch_sample_results.py
 ```
 

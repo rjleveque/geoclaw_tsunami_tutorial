@@ -75,8 +75,8 @@ and then try `git pull` again.
 
 Or you can simply do:
 
-    git checkout main  # overwrites all your modified files with original versions
-    git pull           # should now work
+    git checkout main -- $GTT  # restores original of any modified files
+    git pull                   # should now work
 
 :::
 
