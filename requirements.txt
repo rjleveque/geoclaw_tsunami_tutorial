@@ -9,3 +9,4 @@ netCDF4
 cloudpathlib
 pooch
 sphinx-iframes
+folium
