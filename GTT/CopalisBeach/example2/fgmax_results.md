@@ -37,13 +37,35 @@ this directory without running the GeoClaw code.
 run fetch_sample_results.py
 ```
 
+## Reading and plotting fgmax results
+
+The notebook [](plot_fgmax) illustrates the basic approach to reading in
+fgmax results and producing various types of plots.
+
+## Creating kmz files to view on Google Earth
+
+The script `make_fgmax_kmz.py` creates a set of plots as png files with a
+kml file wrapper that allows them to be overlaid on Google Earth. All the
+files are combined into a self-contained kmz file, which is also available as
+`sample_results/CopalisBeach_ASCE_SIFT_fgmax1.kmz`.
+Producing and using this file allows you to zoom in on region of interest to
+better explore the fgmax results.
+
+The kmz file can also be uploaded to a project on
+[earth.google.com](https://earth.google.com/) so that others can also
+explore your fgmax results and interact via a webpage. The sample file
+produced in this example can be viewed at
+[this link](https://earth.google.com/earth/d/1skAI_uY0V0lD9MQbs96k14LCcPVRlGN-?usp=sharing).
+
+
+
 ## Plotting fgmax results on folium maps
 
 The notebook [](plot_fgmax_folium) produces an intereactive plot of the
 maximum water depth on top of a leaflet.js map produced using the Python
 package [folium](https://python-visualization.github.io/folium/latest/).
 
-The map created there is also saves as an html file that can be posted on
+The map created there is also saved as an html file that can be posted on
 the web for any viewer to interact with, or embedded in a webpage as is done
 here:
 
