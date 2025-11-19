@@ -56,5 +56,4 @@ parts:
     - file: GTT/datasets/README
     - file: testing
     - file: testing2
-    - file: GTT/testing/pyvista_trame
 
