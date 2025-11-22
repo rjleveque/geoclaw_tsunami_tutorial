@@ -8,6 +8,9 @@ notebooks that download or create topo files.
   This is a rendered version of the Jupyter notebook `fetch_etopo22.ipynb`.
 - [](CopalisTopo) creates the 1/3 arcsecond topofile used around Copalis Beach.
   This is a rendered version of the Jupyter notebook `CopalisTopo.ipynb`.
+- The scripts `pyvista_CopalisTopo.py` and `pyvista_CopalisTopo_sealevel.py`
+  can be used to visualize this topography in 3D, as described in
+  [](pyvista).
 
 The subdirectory `topo/topofiles` contains the actual topofiles that are
 used as GeoClaw input in various examples. 
