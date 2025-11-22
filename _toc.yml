@@ -38,6 +38,7 @@ parts:
       sections:
       - file: GTT/topo/fetch_etopo22
       - file: GTT/topo/CopalisTopo
+      - file: GTT/topo/pyvista
     - file: GTT/dtopo/README
       sections:
       - file: GTT/dtopo/ASCE_SIFT_Region2

@@ -20,9 +20,11 @@ The directory `$GTT/CopalisBeach/example2`
 contains a GeoClaw example that produces results on fgout and fgmax grids.
 
 :::{seealso}
-- [](README) for more about this example,
+- [](README) for more about this example, and general discussion of fgout
+  and fgmax grids.
 - [](plot_fgout) is a Jupyter notebook that plots the fgout results.
-- [chile2010_fgmax-fgout]() shows results from the example included with
+- [chile2010_fgmax-fgout](https://www.clawpack.org/gallery/_static/geoclaw/examples/tsunami/chile2010_fgmax-fgout/README.html) 
+  shows results from the example included with
   GeoClaw in `$CLAW/geoclaw/examples/tsunami/chile2010_fgmax-fgout`, which
   also illustrates how to make fgout animations, similar to what is
   described here, using the Chile 2010 event in the offshore region.

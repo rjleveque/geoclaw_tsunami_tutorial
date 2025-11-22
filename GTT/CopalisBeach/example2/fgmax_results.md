@@ -20,7 +20,8 @@ The directory `$GTT/CopalisBeach/example2`
 contains a GeoClaw example that produces results on fgout and fgmax grids.
 
 :::{seealso}
-- [](README) for more about this example,
+- [](README) for more about this example, and general discussion of fgout
+  and fgmax grids.
 - [](plot_fgmax) is a Jupyter notebook that plots the fgmax results.
 - [chile2010_fgmax-fgout]() shows results from the example included with
   GeoClaw in `$CLAW/geoclaw/examples/tsunami/chile2010_fgmax-fgout`, which
@@ -65,16 +66,7 @@ The notebook [](plot_fgmax_folium) produces an intereactive plot of the
 maximum water depth on top of a leaflet.js map produced using the Python
 package [folium](https://python-visualization.github.io/folium/latest/).
 
-The map created there is also saved as an html file that can be posted on
-the web for any viewer to interact with, or embedded in a webpage as is done
-here:
+Here is a screenshot, or see [](fgmax_folium_interactive) for an interactive
+view.
 
-<iframe
-    width="800"
-    height="800"
-    src="https://faculty.washington.edu/rjl/misc/folium_map_with_max_depth.html"
-    frameborder="0"
-    allowfullscreen>text
-</iframe>
-
-
+![](sample_results/fgmax_folium.jpg)
