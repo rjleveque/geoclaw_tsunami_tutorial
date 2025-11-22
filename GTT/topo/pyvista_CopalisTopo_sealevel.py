@@ -18,9 +18,15 @@ from pylab import *
 import pyvista as pv
 from clawpack.geoclaw import topotools
 
-topo = topotools.Topography('../topo/topofiles/Copalis_13s.asc')
+# Some parameters to modify as described in pyvista.md
 
-# extent to be used for fgmax and fgout in CopalisBeach/example2:
+warpfactor = 3  # amplification of elevations
+make_snapshots = False
+use_image_texture = True
+
+# load the topography
+topo = topotools.Topography('../topo/topofiles/Copalis_13s.asc')
+# crop it to the fgmax/fgout regions used in CopalisBeach/example2:
 fg_extent = [-124.195, -124.155, 47.11, 47.145]
 topo = topo.crop(fg_extent)
 
@@ -38,35 +44,33 @@ Bmax = 50.
 B = minimum(B, Bmax)
 
 topoxyz.point_data['B'] = B.flatten(order='C')
-warpfactor = 3  # amplification of elevations
 topowarp = topoxyz.warp_by_scalar('B', factor=warpfactor)
 
 
 global etamesh
-
-make_snapshots = False
-use_image_texture = False
 
 p = pv.Plotter(off_screen=make_snapshots)
 
 if use_image_texture:
     # Add GE image as texture:
     GE_file ='fg_rectangle.jpg'
-    GE_extent = fg_extent
+    GE_extent = fg_extent  # the [x1,x2,y1,y2] extent of the image
 
     texture = pv.read_texture(GE_file)
 
-    # map from lon-lat to meters from corner:
-    x1,x2 = (asarray(GE_extent[:2]) - topo.x[0]) * 111e3 * cos(topo.y.mean()*pi/180)
+    # map points from lon-lat to meters from lower left corner:
+    meanlat = topo.y.mean()  # mean latitude for aspect ratio
+    x1,x2 = (asarray(GE_extent[:2]) - topo.x[0]) * 111e3 * cos(meanlat*pi/180)
     y1,y2 = (asarray(GE_extent[2:]) - topo.y[0]) * 111e3
 
-    o = (x1, y1, 0.)
-    u = (x2, y1, 0.)
-    v = (x1, y2, 0.)
+    origin = (x1, y1, 0.)   # bottom left corner
+    point_u = (x2, y1, 0.)  # bottom right corner
+    point_v = (x1, y2, 0.)  # top right corner
 
-    mapped_surf = topowarp.texture_map_to_plane(o, u, v)
+    mapped_surf = topowarp.texture_map_to_plane(origin, point_u, point_v)
     p.add_mesh(mapped_surf,texture=texture)
 else:
+    # color mesh based on elevation:
     p.add_mesh(topowarp,cmap='gist_earth',clim=(-5,20))
 
 
@@ -83,7 +87,7 @@ p.camera_position =  [(723.397, -7287.272, 1911.49), (1762.85, -2652.806, -267.5
 
 def set_sea_level(sea_level):
     global etamesh
-    #p.clear() # causes seg fault
+    # replace water surface etamesh with a new version based on sea_level:
     eta = where(B < sea_level, sea_level, nan)
     topoxyz.point_data['eta'] = eta.flatten(order='C')
     etawarp = topoxyz.warp_by_scalar('eta', factor=warpfactor)
@@ -106,6 +110,8 @@ def set_sea_level(sea_level):
         print('p.camera_position = ', camera_position)
 
 if not make_snapshots:
+    # interactive view
+    print('interactive... close window to quit')
     p.add_title('MHW after sea level rise / subsidence')
     p.add_slider_widget(set_sea_level, [-5,5], value=0,
                         title='Change in Sea Level (m)',
@@ -114,8 +120,8 @@ if not make_snapshots:
 else:
     for slr in [0,1,2,3]:
         set_sea_level(slr)
-        p.add_title('MHW after %i m subsidence (or sea level rise)' % slr)
-        fname_png = 'CopalisTopo_mhw%im.png' % slr
+        p.add_title(f'MHW after {slr:.2f} m subsidence (or sea level rise)')
+        fname_png = f'CopalisTopo_mhw{100*slr:03.0f}cm.png'
         p.screenshot(fname_png)
         print('Created ',fname_png)
     p.close()

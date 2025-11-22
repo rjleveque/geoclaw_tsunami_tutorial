@@ -17,10 +17,24 @@ from pylab import *
 import pyvista as pv
 from clawpack.geoclaw import topotools
 
-fname_png = None  # None ==> interactive, or provide file name for screenshot
+# Some parameters to modify as described in pyvista.md
 
+warpfactor = 3  # amplification of elevations
+show_water = False  # also show the water surface?
+
+# Set desired output to 'interactive' or 'png' or 'html'
+output = 'interactive'
+
+# if not interactive, one of these filenames will be used for output:
+fname_png = 'CopalisTopo3D.png'
+fname_html = 'CopalisTopo3D.html'
+
+# load the topography
 topo = topotools.Topography('../topo/topofiles/Copalis_13s.asc')
-topo = topo.crop([-124.19486111, -124.15597222, 47.10791667, 47.14597222])
+
+# crop it to the fgmax/fgout regions used in CopalisBeach/example2:
+fg_extent = [-124.195, -124.155, 47.11, 47.145]
+topo = topo.crop(fg_extent)
 
 z = array([0.])
 x = (topo.x - topo.x[0]) * 111e3 * cos(topo.y.mean()*pi/180)
@@ -36,15 +50,15 @@ Bmax = 50.
 B = minimum(B, Bmax)
 
 topoxyz.point_data['B'] = B.flatten(order='C')
-warpfactor = 3  # amplification of elevations
 topowarp = topoxyz.warp_by_scalar('B', factor=warpfactor)
 
-p = pv.Plotter()
+p = pv.Plotter(off_screen=(output=='png'))
+#p = pv.Plotter(off_screen=False)
 p.add_mesh(topowarp,cmap='gist_earth',clim=(-5,20))
 p.add_title(f'Copalis Beach area with \nvertical amplification factor {warpfactor}',
             font_size=20)
 
-if 0:
+if show_water:
     # add water surface at some level:
     sea_level = 0.
     eta = where(B < sea_level, sea_level, nan)
@@ -56,10 +70,16 @@ p.camera_position =  [(723.397, -7287.272, 1911.49), (1762.85, -2652.806, -267.5
 
 p.window_size = (2500,1500)
 
-if fname_png is None:
-    # interactive view  (Close window to quit)
+if output == 'interactive':
+    # interactive view
+    print('interactive... close window to quit')
     p.show()
-else:
+elif output == 'html':
+    p.export_html(fname_html)
+    print('Created ',fname_html)
+elif output == 'png':
     p.screenshot(fname_png)
     print('Created ',fname_png)
     p.close()
+else:
+    print('Unrecognized output requested')
