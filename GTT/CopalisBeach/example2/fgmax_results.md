@@ -69,4 +69,8 @@ package [folium](https://python-visualization.github.io/folium/latest/).
 Here is a screenshot, or see [](fgmax_folium_interactive) for an interactive
 view.
 
-![](sample_results/fgmax_folium.jpg)
+```{image} ./sample_results/fgmax_folium.jpg
+:width: 800px
+:align: center
+```
+

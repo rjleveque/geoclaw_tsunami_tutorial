@@ -12,12 +12,20 @@ The script `pyvista_CopalisTopo.py` was used to create a 3D view of
 the topography given by the topofile `topofiles/Copalis_13s.asc` (which was
 created using the [](CopalisTopo) notebook).  
 
-![](./images/CopalisTopo3D.png)
+
+```{image} ./images/CopalisTopo3D.png
+:width: 800px
+:align: center
+```
 
 and here's a version with the water surface at MHW also shown (obtained
     by setting `show_water = True` in the script):
 
-![](./images/CopalisTopo3Db.png)
+```{image} ./images/CopalisTopo3Db.png
+:width: 800px
+:align: center
+```
+
 
 For this figure the vertical exaggeration of topography has also been
 increased from 3 to 10 (the `warpfactor` parameter in the code) to better
@@ -51,10 +59,24 @@ use a map or other image.
 The water surface at the current MHW is shown in plots above. These
 snapshots show two elevated levels.
 
-![](./images/CopalisTopo_mhw000cm.png)
 
-![](./images/CopalisTopo_mhw100cm.png)
+```{image} ./images/CopalisTopo_mhw000cm.png
+:width: 800px
+:align: center
+```
 
-![](./images/CopalisTopo_mhw200cm.png)
+```{image} ./images/CopalisTopo_mhw100cm.png
+:width: 800px
+:align: center
+```
 
-![](./images/CopalisTopo_mhw300cm.png)
+```{image} ./images/CopalisTopo_mhw200cm.png
+:width: 800px
+:align: center
+```
+
+```{image} ./images/CopalisTopo_mhw300cm.png
+:width: 800px
+:align: center
+```
+
