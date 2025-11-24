@@ -78,6 +78,21 @@ There are some subtleties in deciding which of these is better in different
 contexts, discussed later and in
 [Nearshore interpolation](https://www.clawpack.org/nearshore_interp.html).
 
+Note that if you take care to insure that the fgmax or fgout points are
+exactly aligned with cell centers of the computational grid at the finest
+resolution from which you plan to take data, then bilinear interpolation
+reduces to simply taking the value at that cell center, which is the
+cell-averaged value, so the two "interpolation methods" agree and no
+interpolation between values is needed.  See [](../example3/README) for
+more discussion of centering fgmax points.
+
+:::{warning}
+When using zero-order interpolation,
+the worst possible case is if an fgout or fgmax point lies right at the cell
+edge between two computational cells.  Rounding errors might then affect
+which cell value is sampled.  
+:::
+
 There are some differences in the way fgout and fgmax grids are specified
 in `setrun.py`, partly due to their different applications and partly for
 historical reasons since fgmax grids were introduced around 2012 and fgout
@@ -121,10 +136,22 @@ See the
 for more details
 :::
 
+:::{warning}
+Point style 4 described above can be very useful, but requires that the fgmax
+points are exactly aligned with the points in the topofile used to set this
+up, which should then ideally also agree with the cell centers of
+computational cells on the finest AMR level being used to update the fgmax
+values. This also generally requires some care in selecting the domain
+edges, and may vary with the resolution of the fgmax grid. A more
+complicated example illustrating some of these issues is being developed in 
+[](../example3/README) (work in progress).
+:::
+
 (example2-setrun)=
 ## Specification of fgout and fgmax for this example
 
-The `setrun.py` file in this directory is very similar to the one in
+The `setrun.py` file in this directory for [](README)
+is very similar to the one in
 [](../exercise1/README), with the addition of some lines shown below.
 Near the top of the file we import two Python modules that are needed
 to specify the fg grids:

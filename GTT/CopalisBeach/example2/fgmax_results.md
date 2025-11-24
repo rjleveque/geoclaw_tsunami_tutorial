@@ -66,8 +66,8 @@ The notebook [](plot_fgmax_folium) produces an intereactive plot of the
 maximum water depth on top of a leaflet.js map produced using the Python
 package [folium](https://python-visualization.github.io/folium/latest/).
 
-Here is a screenshot, or see [](fgmax_folium_interactive) for an interactive
-view.
+Here is a screenshot, or see [](copalis:example2:fgmax_folium_interactive)
+for an interactive view.
 
 ```{image} ./sample_results/fgmax_folium.jpg
 :width: 800px
