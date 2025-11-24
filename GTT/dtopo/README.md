@@ -11,3 +11,6 @@ notebooks that download or create dtopo files.
 
 The subdirectory `dtopo/dtopofiles` contains the actual dtopofiles that are
 used as GeoClaw input in various examples. 
+
+See [](intro_dtopo) for a more general introduction to dtopofiles and
+additional links.

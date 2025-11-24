@@ -18,14 +18,5 @@ used as GeoClaw input in various examples.
 Rather than generating these topofiles using the notebooks above,
 they can be downloaded using the script `../CopalisBeach/fetch_input_data.py`.
 
-:::{seealso}
-- [Topography data documentation](https://www.clawpack.org/topo.html)
-- [Sources of data](https://www.clawpack.org/tsunamidata.html) (needs
-  updating)
-- [Grid registration documentation](https://www.clawpack.org/grid_registration.html)
-- [topotools_examples notebook](https://www.clawpack.org/gallery/_static/apps/notebooks/geoclaw/topotools_examples.html)
-- [Topography file ordering
-  documentation](https://www.clawpack.org/topo_order.html)
-- [Setting `sea_level` documentation](https://www.clawpack.org/sealevel.html)
-:::
+See [](topo_intro) for a more general introduction to topofiles.
 

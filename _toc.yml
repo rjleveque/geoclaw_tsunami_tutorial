@@ -38,13 +38,15 @@ parts:
     - file: GTT/CopalisBeach/example3/README
       sections:
       - file: GTT/CopalisBeach/example3/CopalisTopoAligned
-    - file: GTT/topo/README
+    - file: GTT/topo/intro_topo
       sections:
+      - file: GTT/topo/README
       - file: GTT/topo/fetch_etopo22
       - file: GTT/topo/CopalisTopo
       - file: GTT/topo/pyvista
-    - file: GTT/dtopo/README
+    - file: GTT/dtopo/intro_dtopo
       sections:
+      - file: GTT/dtopo/README
       - file: GTT/dtopo/ASCE_SIFT_Region2
     - file: GTT/CopalisBeach/MOST_comparison/README
   - caption: Detailed discussion of topics
