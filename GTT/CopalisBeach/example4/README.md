@@ -7,8 +7,8 @@ See [](../README) for more about the Copalis Beach location and a
 list of other examples and tutorials based on this location.
 
 The directory `$GTT/CopalisBeach/example4` will
-contain an example of a far-field tsunami, by specifying an inverted
-source for the 2025 Kamchatka event (?).
+contain an example of a far-field tsunami, by specifying hypothetical
+source in Alaska (the AKmaxWA event used for WA state hazard maps?).
 
 See [](../README) for more about the Copalis Beach location and a
 list of other examples and tutorials based on this location.
@@ -17,9 +17,11 @@ list of other examples and tutorials based on this location.
 
 Plan to illustrate...
 
-- Domain that spans the date line and the need for care in specifying
-  topo and dtopo files, gauge locations, etc. in longitude E or W.
-- An event with little inundation (will this be sufficiently interesting?)
+- Larger domain and appropriate grid resolutions for long-distance
+  propagation,
+- Using flagregions to guide AMR, including RuledRectangles that cover
+  the continental shelf, as created in the notebook
+  [Make Flagregions along the Coast](https://www.clawpack.org/gallery/_static/apps/notebooks/geoclaw/MakeFlagregionsCoast.html)
 
 :::{warning}
 As in [](../example1/README), these examples are not intended to be modified,
