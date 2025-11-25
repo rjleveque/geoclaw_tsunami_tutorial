@@ -26,10 +26,14 @@ following changes:
 
 ## To run this code
 
-You should first try running this code as-is.  If you have problems with
-this, please see the following pages:
+You should first try running this code as-is by following the steps
+listed in:
 
 - [](debug)
+
+For more information about how the code is run and the resulting plots are
+specified, see:
+
 - [](makefile_description)
 - [](setplot_description)
 
@@ -41,6 +45,12 @@ fetch those using:
     $ python fetch_sample_results.py
 
 Compare the plots you made in `_plots` to those in `sample_results/_plots`.
+
+:::{seealso}
+- [](plot_transect) illustrates how to plot a single frame of the solution
+  and extract values along a 1D transect from the full AMR solution.
+  This is a rendered version of the notebook `plot_transect.ipynb`.
+:::
 
 
 ## Exercises

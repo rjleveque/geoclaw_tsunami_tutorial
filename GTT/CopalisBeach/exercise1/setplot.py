@@ -13,7 +13,7 @@ import numpy as np
 
 
 #--------------------------
-def setplot(plotdata):
+def setplot(plotdata=None):
 #--------------------------
 
     """
@@ -25,6 +25,10 @@ def setplot(plotdata):
 
     from clawpack.visclaw import colormaps, geoplot
     from numpy import linspace
+
+    if plotdata is None:
+        from clawpack.visclaw.data import ClawPlotData
+        plotdata = ClawPlotData()
 
     plotdata.clearfigures()
     plotdata.format = 'binary'
