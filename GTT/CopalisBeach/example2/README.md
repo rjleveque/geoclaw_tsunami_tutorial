@@ -1,3 +1,4 @@
+(copalis_example2)=
 # Copalis Beach example2
 
 From the
