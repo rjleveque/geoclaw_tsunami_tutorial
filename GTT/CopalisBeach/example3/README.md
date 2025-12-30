@@ -10,3 +10,8 @@ The directory `$GTT/CopalisBeach/example3` illustrates the use
 `point_style=4` for fgmax grids.
 
 More description to come...
+
+:::{seealso}
+- [](example3:make_fgmax_grid)
+- [](example3:plot_fgmax)
+:::
