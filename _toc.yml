@@ -54,6 +54,7 @@ parts:
     chapters:
     - file: intro_topics
     - file: coordinates
+    - file: alignment
     - file: checkpoint_restart
   - caption: Resources
     chapters:
