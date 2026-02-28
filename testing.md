@@ -7,16 +7,14 @@ This is just a test page for trying things out and debugging the Jupyter book...
 
 
 :::{note}
-The reason some features tested below do not work is because I am using
-JupyterBook 1, which does the rendering via Sphinx.  
-
-[JupyterBook 2](https://next.jupyterbook.org/) uses a new MyST Document
-Engine and handles fancier Myst features that do not render properly here.
-See [Upgrade](https://next.jupyterbook.org/upgrade/) for more information
-about the differences.
+Some of these things are now working after updating from
+JupyterBook 1, which does the rendering via Sphinx, to
+[JupyterBook 2](https://jupyterbook.org/), which is now the default and
+uses a new MyST Document
+Engine and handles fancier Myst features.
 :::
 
-- ~~testing stirkethrough~~
+- ~~testing strikethrough~~
 
 ## Why don't `wiki:` and `doi:` citations work like they should?
 

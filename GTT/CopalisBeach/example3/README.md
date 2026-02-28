@@ -12,6 +12,6 @@ The directory `$GTT/CopalisBeach/example3` illustrates the use
 More description to come...
 
 :::{seealso}
-- [](example3:make_fgmax_grid)
-- [](example3:plot_fgmax)
+- [](example3:make_fgmax_grid_Copalis)
+- [](example3:plot_fgmax_grid_Copalis)
 :::

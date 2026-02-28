@@ -1,4 +1,4 @@
-name: deploy-book
+name: MyST GitHub Pages Deploy
 
 on:
   # Trigger the workflow on push to main branch
@@ -17,38 +17,36 @@ concurrency:
 
 jobs:
   deploy-book:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
     permissions:
+      contents: read
       pages: write
       id-token: write
+    # steps copied from https://github.com/jupyter-book/jupyter-book/blob/main/.github/workflows/deploy.yml
     steps:
-      - uses: actions/checkout@v4
-
-      # Install dependencies
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Setup Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
+      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
         with:
-          python-version: "3.11"
-          cache: pip # Implicitly depends upon requirements.txt
-
+          node-version: 18.x
+      - name: Install MyST Markdown & Deps
+        run: npm install
+        working-directory: docs
       - name: Install dependencies
+        # specific to GTT:
         run: pip install -r requirements.txt
-
-      - name: Fetch input data and sample results needed for book
-        run: python fetch_all_data.py
-
-      # Build the book
-      - name: Build the book
-        run: jupyter-book build .
-
-      # Upload the book's HTML as an artifact
+      - name: Build HTML Assets
+        run: npx myst build --html --execute
+        working-directory: docs
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
         with:
-          path: "./_build/html"
-
-      # Deploy the book's HTML to GitHub Pages
+          path: "_build/html"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

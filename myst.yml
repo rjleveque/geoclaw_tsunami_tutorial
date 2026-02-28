@@ -1,0 +1,83 @@
+version: 1
+project:
+  title: GeoClaw Tsunami Tutorial
+  authors:
+    - name: R.J. LeVeque
+  copyright: '2025'
+  github: rjleveque/geoclaw_tsunami_tutorial
+  bibliography:
+    - references.bib
+  exports:
+    - format: pdf
+      template: plain_latex_book
+      output: exports/GeoClawTsunamiTutorial.pdf
+  toc:
+    - file: intro.md
+    - title: Overview and introduction
+      children:
+        - file: prerequisites.md
+          children:
+            - file: python_environment.md
+        - file: workflow.md
+        - file: testing_chile2010.md
+        - file: intro_setrun.md
+        - file: intro_postproc.md
+    - title: GeoClaw examples
+      children:
+        - file: intro_examples.md
+        - file: GTT/CopalisBeach/README.md
+        - file: GTT/CopalisBeach/example1/README.md
+          children:
+            - file: GTT/CopalisBeach/example1/setrun_description.md
+            - file: GTT/CopalisBeach/example1/results.md
+            - file: GTT/CopalisBeach/example1/gauges.md
+        - file: GTT/CopalisBeach/exercise1/README.md
+          children:
+            - file: GTT/CopalisBeach/exercise1/makefile_description.md
+            - file: GTT/CopalisBeach/exercise1/debug.md
+            - file: GTT/CopalisBeach/exercise1/setplot_description.md
+            - file: GTT/CopalisBeach/exercise1/plot_transect.md
+        - file: GTT/CopalisBeach/example2/README.md
+          children:
+            - file: GTT/CopalisBeach/example2/fg_intro.md
+            - file: GTT/CopalisBeach/example2/fgout_results.md
+            - file: GTT/CopalisBeach/example2/plot_fgout.ipynb
+            - file: GTT/CopalisBeach/example2/fgmax_results.md
+            - file: GTT/CopalisBeach/example2/plot_fgmax.ipynb
+            - file: GTT/CopalisBeach/example2/plot_fgmax_folium.ipynb
+        - file: GTT/CopalisBeach/example3/README.md
+          children:
+          - file: GTT/CopalisBeach/example3/CopalisTopoAligned.ipynb
+        - file: GTT/topo/intro_topo
+          children:
+          - file: GTT/topo/README.md
+          - file: GTT/topo/fetch_etopo22.ipynb
+          - file: GTT/topo/CopalisTopo.ipynb
+          - file: GTT/topo/pyvista.md
+        - file: GTT/dtopo/intro_dtopo
+          children:
+            - file: GTT/dtopo/ASCE_SIFT_Region2.ipynb
+        - file: GTT/CopalisBeach/MOST_comparison/README.md
+
+    - title: Detailed discussion of topics
+      children:
+        - file: intro_topics.md
+        - file: coordinates.md
+        - file: alignment.md
+        - file: checkpoint_restart.md
+    - title: Resources
+      children:
+        - file: intro_resources.md
+        - file: biblio.md
+    - title: Juptyer Book notes and issues
+      children:
+        - file: GTT/datasets/README.md
+        - file: testing.md
+        - file: testing2.md
+        - file: GTT/testing/pyvista_trame.ipynb
+site:
+  options:
+    logo: images/GeoClawLogoTitle.jpg
+    favicon: images/geoclaw-favicon-32x32.png
+    folders: true
+  template: book-theme
