@@ -11,3 +11,4 @@ pooch
 sphinx-iframes
 folium
 pyvista
+ipywidgets

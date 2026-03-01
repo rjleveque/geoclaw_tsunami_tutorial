@@ -17,3 +17,15 @@ These notebooks explain the main ideas:
 Then this notebook explains more details and illustrates how to plot things using some pre-computed tsunami simulation results:
 
 - [](Make_Hazard_Curves_and_Maps)
+
+:::{warning}
+These notebooks use some IPython widgets to allow the user to change some
+values and see how the plots change.  These do not work in the static versions
+shown in this tutorial, but if you clone this repository and run the notebooks,
+they should work (provided you have installed `ipywidgets`).
+:::
+
+The original self-contained repository containing these notebooks can be found
+at https://github.com/rjleveque/ptha_rog.
+From that page there is also a link to start up a [binder](https://mybinder.org/)
+instance to run the notebooks.

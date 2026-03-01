@@ -33,7 +33,7 @@ of [Grezio et al. 2017](https://doi.org/10.1002/2017RG000579),
 "Probabilistic Tsunami Hazard Analysis: Multiple Sources and Global Applications"
 provides an overview of PTHA.  As part of this, a tutorial was created in the
 form of Jupyter notebooks.  These notebooks have been adapted for these
-notes can can be find in the following sections.  See [](TutorialIndex)
+notes can can be find in the following sections.  See [](PTHA-Tutorial)
 for more information and links.
 
 A self-contained repository containing these notebooks can be found at https://github.com/rjleveque/ptha_rog.
