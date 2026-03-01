@@ -119,7 +119,7 @@ want (but not within the `$GTT` or `$CLAW` directories) and then set an
 environment variable to point to this directory, and call it e.g. `$MYGTT`.
 Then before running the Jupyter notebook `$GTT/topo/CopalisTopo.ipynb`,
 for example (which is rendered in this tutorial as
-[](GTT/topo/CopalisTopo)),
+[](../GTT/topo/CopalisTopo)),
 you could first do:
 
     $ cp -r $GTT/topo $MYGTT/
@@ -164,7 +164,7 @@ sample results (e.g. the `_plots` directory containing plots generated after
 running the code).  Executing this allows you to explore the results without
 having to run the code. This script is also run to fetch the sample results
 that are shown on the pages built by Jupyter Book such as 
-[](GTT/CopalisBeach/example1/results).
+[](../GTT/CopalisBeach/example1/results).
 (See [](datasets) for more information about how this works.)
 
 (workflow:run)=
@@ -174,15 +174,15 @@ The typical workflow for running GeoClaw and making plots from the output is
 explained in [](testing_chile2010).
 
 For more details on setting up a run via `setrun.py`, see
-[](GTT/CopalisBeach/example1/README) and the annotated `setrun.py` in
-[](GTT/CopalisBeach/example1/setrun_description).
+[](../GTT/CopalisBeach/example1/README) and the annotated `setrun.py` in
+[](../GTT/CopalisBeach/example1/setrun_description).
 
 To run/modify an example yourself, you might want to start with
-[](GTT/CopalisBeach/exercise1/README) and 
-[](GTT/CopalisBeach/exercise1/debug).
+[](../GTT/CopalisBeach/exercise1/README) and 
+[](../GTT/CopalisBeach/exercise1/debug).
 
 The use of fgmax and fgout grids is covered in 
-[](GTT/CopalisBeach/example2/README).
+[](../GTT/CopalisBeach/example2/README).
 
 Other GeoClaw features will be
 covered in additional examples still under development.
