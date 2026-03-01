@@ -96,7 +96,7 @@ q_r & = \begin{bmatrix} h_r \\ h_r u_r \end{bmatrix}.
 
 Typically the Riemann solution consists of two waves, one related to each of the eigenvectors in (\ref{SW:fjac-evecs}).  We refer to the wave related to $r_1$ (the first characteristic family) as a 1-wave, and the wave related to $r_2$ (the second characteristic family) as a 2-wave.  Each wave may be a shock or rarefaction.  There is a constant intermediate state $q_m$ between them.  In the figure below, we illustrate a typical situation in which the 1-wave happens to be a rarefaction and the 2-wave is a shock:
 
-![Structure of Riemann solution](./images/shallow_water_riemann.png)
+![Structure of Riemann solution](../images/shallow_water_riemann.png)
 
 In the figure we have one wave going in each direction, but since the wave speeds depend on $q$ and can have either sign, it is possible to have both waves going left, or both going right.  In these cases, the flow is said to be *supercritical*.
 
