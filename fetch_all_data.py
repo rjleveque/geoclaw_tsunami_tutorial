@@ -25,7 +25,6 @@ all_datasets = [
         'CopalisBeach/example1/sample_results',
         'CopalisBeach/exercise1/sample_results',
         'CopalisBeach/example2/sample_results'
-        'CopalisBeach/example2b/sample_results',
         'CopalisBeach/MOST_comparison/sample_results',
         'PTHA/ptha_rog/Events', 'PTHA/ptha_rog/figures',
         'PTHA/ptha_rog/MapsTopo', 'PTHA/ptha_rog/SampleResults',
