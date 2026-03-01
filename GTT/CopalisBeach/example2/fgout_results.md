@@ -36,7 +36,7 @@ this directory without running the GeoClaw code.
 
 ```{code-cell}
 :tags: [remove-input, remove-output]
-run fetch_sample_results.py
+#run fetch_sample_results.py
 ```
 
 ## Plotting fgout results using `setplot.py`
