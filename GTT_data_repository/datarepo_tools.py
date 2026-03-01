@@ -24,7 +24,11 @@ all_datasets = [
         'topo/topofiles/csz_shore.txt',
         'dtopo/dtopofiles/ASCE_SIFT_Region2.dtt3',
         'CopalisBeach/example1/sample_results',
-        'CopalisBeach/example2/sample_results'
+        'CopalisBeach/example2/sample_results',
+        'CopalisBeach/example2b/sample_results',
+        'CopalisBeach/MOST_comparison/sample_results',
+        'PTHA/ptha_rog/Events', 'PTHA/ptha_rog/figures',
+        'PTHA/ptha_rog/MapsTopo', 'PTHA/ptha_rog/SampleResults',
         ]
 
 
@@ -58,7 +62,9 @@ if __name__ == '__main__':
         datasets = all_datasets
     else:
         # specify the new/modified datasets to copy and zip:
-        datasets = ['CopalisBeach/example2/sample_results']
+        #datasets = ['CopalisBeach/example2/sample_results']
+        datasets = ['PTHA/ptha_rog/Events', 'PTHA/ptha_rog/figures',
+                    'PTHA/ptha_rog/MapsTopo', 'PTHA/ptha_rog/SampleResults']
 
     for dataset in datasets:
         copy_and_zip(dataset, verbose=True)

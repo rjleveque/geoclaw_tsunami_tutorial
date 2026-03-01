@@ -65,6 +65,14 @@ project:
         - file: docs/coordinates.md
         - file: docs/alignment.md
         - file: docs/checkpoint_restart.md
+    - title: Probabalistic Tsunami Hazard Assessment (PTHA)
+      children:
+        - file: GTT/PTHA/intro-ptha.md
+        - file: GTT/PTHA/ptha_rog/PTHA-Tutorial.md
+          children:
+            - file: GTT/PTHA/ptha_rog/Hazard_Curves.ipynb
+            - file: GTT/PTHA/ptha_rog/Hazard_Maps.ipynb
+            - file: GTT/PTHA/ptha_rog/Make_Hazard_Curves_and_Maps.ipynb
     - title: Resources
       children:
         - file: docs/intro_resources.md

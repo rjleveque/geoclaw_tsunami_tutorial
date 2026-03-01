@@ -40,6 +40,8 @@ jobs:
       - name: Install dependencies
         # specific to GTT:
         run: pip install -r requirements.txt
+      - name: Fetch input data and sample results needed for book
+        run: python fetch_all_data.py
       - name: Build HTML Assets
         run: npx myst build --html --execute
         working-directory: docs
