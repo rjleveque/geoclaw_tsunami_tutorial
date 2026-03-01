@@ -28,4 +28,5 @@ they should work (provided you have installed `ipywidgets`).
 The original self-contained repository containing these notebooks can be found
 at https://github.com/rjleveque/ptha_rog.
 From that page there is also a link to start up a [binder](https://mybinder.org/)
-instance to run the notebooks.
+instance to run the notebooks.  The repository is also permenently archived
+on Zenodo with [DOI 10.5281/zenodo.816291](https://doi.org/10.5281/zenodo.816291)
