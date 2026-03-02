@@ -39,12 +39,21 @@ jobs:
         working-directory: docs
       - name: Install dependencies
         # specific to GTT:
-        run: pip install -r requirements.txt
+        run: |
+            pip install -r requirements.txt
+            pip install --src=${{ github.workspace }} --user --no-build-isolation -e git+https://github.com/clawpack/clawpack.git@v5.14.0#egg=clawpack
+            ls -la ${{ github.workspace }}
+            
       - name: Fetch input data and sample results needed for book
         run: python fetch_all_data.py
       - name: Build HTML Assets
-        run: npx myst build --html --execute
+        env:
+            CLAW: ${{ github.workspace }}/clawpack
+        run: |
+            echo CLAW=$CLAW
+            npx myst build --html --execute
         working-directory: docs
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
         with:
