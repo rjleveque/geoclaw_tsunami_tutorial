@@ -12,3 +12,5 @@ sphinx-iframes
 folium
 pyvista
 ipywidgets
+ffmpeg
+meson-python
