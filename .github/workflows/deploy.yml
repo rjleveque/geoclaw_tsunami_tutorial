@@ -1,7 +1,7 @@
 name: MyST GitHub Pages Deploy
 
 on:
-  # Trigger the workflow on push to main branch
+  # Trigger the workflow on push to specified branch:
   push:
     branches:
       - publish
