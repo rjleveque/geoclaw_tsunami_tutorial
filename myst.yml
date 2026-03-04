@@ -82,7 +82,6 @@ project:
         - file: GTT/datasets/README.md
         - file: docs/testing.md
         - file: docs/testing2.md
-        - file: GTT/testing/pyvista_trame.ipynb
 site:
   options:
     logo: images/GeoClawLogoTitle.jpg
