@@ -1,4 +1,8 @@
 version: 1
+on:
+  push:
+    branches:
+      - publish
 project:
   title: GeoClaw Tsunami Tutorial
   authors:
