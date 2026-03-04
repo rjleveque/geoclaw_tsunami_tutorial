@@ -1,3 +1,4 @@
+(intro_examples)=
 # GeoClaw examples
 
 A collection of GeoClaw examples are under development.

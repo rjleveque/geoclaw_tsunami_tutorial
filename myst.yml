@@ -13,11 +13,11 @@ project:
       output: exports/GeoClawTsunamiTutorial.pdf
   toc:
     - file: index.md
-    - title: Overview and introduction
+    - title: Getting Started
       children:
+        - file: intro.md
         - file: docs/prerequisites.md
-          children:
-            - file: docs/python_environment.md
+        - file: docs/python_environment.md
         - file: docs/workflow.md
         - file: docs/testing_chile2010.md
         - file: docs/intro_setrun.md
@@ -36,7 +36,7 @@ project:
             - file: GTT/CopalisBeach/exercise1/makefile_description.md
             - file: GTT/CopalisBeach/exercise1/debug.md
             - file: GTT/CopalisBeach/exercise1/setplot_description.md
-            - file: GTT/CopalisBeach/exercise1/plot_transect.md
+            - file: GTT/CopalisBeach/exercise1/plot_transect.ipynb
         - file: GTT/CopalisBeach/example2/README.md
           children:
             - file: GTT/CopalisBeach/example2/fg_intro.md
@@ -48,13 +48,13 @@ project:
         - file: GTT/CopalisBeach/example3/README.md
           children:
           - file: GTT/CopalisBeach/example3/CopalisTopoAligned.ipynb
-        - file: GTT/topo/intro_topo
+        - file: GTT/topo/intro_topo.md
           children:
           - file: GTT/topo/README.md
           - file: GTT/topo/fetch_etopo22.ipynb
           - file: GTT/topo/CopalisTopo.ipynb
           - file: GTT/topo/pyvista.md
-        - file: GTT/dtopo/intro_dtopo
+        - file: GTT/dtopo/intro_dtopo.md
           children:
             - file: GTT/dtopo/ASCE_SIFT_Region2.ipynb
         - file: GTT/CopalisBeach/MOST_comparison/README.md

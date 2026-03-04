@@ -1,4 +1,4 @@
-
+(intro_resources)=
 # Other learning resources
 
 - [GeoClaw Documentation](https://www.clawpack.org/contents.html#geoclaw-geophysical-flows)

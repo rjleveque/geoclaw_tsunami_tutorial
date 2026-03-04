@@ -1,4 +1,4 @@
-
+(prerequisites)=
 # GeoClaw Prerequisites
 
 GeoClaw is distributed with [Clawpack](https://www.clawpack.org), and

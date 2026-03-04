@@ -1,3 +1,4 @@
+(testing_chile2010)=
 # Testing GeoClaw -- chile2010
 
 The GeoClaw distribution includes a few examples.  A good place to start, both
