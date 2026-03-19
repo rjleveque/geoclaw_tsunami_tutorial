@@ -24,6 +24,7 @@ and shift + left button pans.
     allowfullscreen>text
 </iframe>
 
+
 Alternatively, one can
 [open the html file](https://depts.washington.edu/clawpack/geoclaw/GTT_html/CopalisTopo3D.html)
 directly in a new tab.
