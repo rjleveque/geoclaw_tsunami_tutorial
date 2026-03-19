@@ -1,5 +1,5 @@
 (topo:pyvista_interactive)=
-# An interactive 3D plot
+# Interactive 3D plot of topography
 
 
 ## Interactive plot of the Copalis Beach topography

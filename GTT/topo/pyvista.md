@@ -15,9 +15,11 @@ For these examples, we use the topography given by the topofile
 
 ### Topography alone
 
-The script `pyvista_CopalisTopo.py` can be used to create a 3D view of
-the topography given by the topofile `topofiles/Copalis_13s.asc`.
-(The topofile was created using the [](CopalisTopo) notebook.)  
+The script `$GTT/topo/pyvista_CopalisTopo.py` can be used to create a 3D view of
+the topography alone.  Running the script produces an interactive version where
+you can pan, zoom, and rotate (see [](topo:pyvista_interactive)),
+but here we just show a screen shot obtained by setting `output = 'png'`
+in the script:
 
 ```{image} ./images/CopalisTopo3D.png
 :width: 800px
@@ -43,7 +45,7 @@ Note that vertical exaggeration can help to in visualization but can also
 be very misleading if used in excess.  In many cases setting `warpfactor` to
 1 or some small value is best.
 
-For an interactive version see [](topo:pyvista_interactive).  If you have PyVista
+For an interactive version see [](topo:pyvista_interactive). If you have PyVista
 installed, then running the `pyvista_CopalisTopo.py` script will create
 a separate window with a similar interactive view.
 
