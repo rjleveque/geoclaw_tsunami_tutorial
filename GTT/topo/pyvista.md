@@ -10,7 +10,7 @@ described below.
 ## Simple plot of the Copalis Beach topography
 
 For these examples, we use the topography given by the topofile
-`topofiles/Copalis_13s.asc`, which was created using the
+`$GTT/topo/topofiles/Copalis_13s.asc`, which was created using the
 [](CopalisTopo) notebook.
 
 ### Topography alone
