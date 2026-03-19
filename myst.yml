@@ -54,6 +54,7 @@ project:
           - file: GTT/topo/fetch_etopo22.ipynb
           - file: GTT/topo/CopalisTopo.ipynb
           - file: GTT/topo/pyvista.md
+          - file: GTT/topo/pyvista_interactive.md
         - file: GTT/dtopo/intro_dtopo.md
           children:
             - file: GTT/dtopo/ASCE_SIFT_Region2.ipynb

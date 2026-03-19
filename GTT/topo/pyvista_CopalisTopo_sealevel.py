@@ -5,12 +5,18 @@ subsidence (or sea level rise) on this location, and to better understand
 topographic features.
 
 Some tips to using this:
-    - With make_snapshots == False, running this produces an interactive view
-      With make_snapshots == True, a set of screenshots is made instead.
-    - Whenever the slider bar is moved the current camera_position is printed,
-      useful to select an initial position you like (copy and paste)
-    - Can use image as texture rather than coloring topography as elevation,
-      by setting use_image_texture to True
+    - With make_snapshots = make_html = False, the view is interactive.
+      With make_snapshots = True, a set of screenshots is made as png files.
+      With make_html = True, an interactive html file is made (for sea_level=0)
+
+    - When running interactively, whenever the slider bar is moved the current
+      camera_position is printed. This is useful to select an initial position
+      that you like (then copy and paste it into this script)
+
+    - Can use an image as texture rather than coloring topography by elevation,
+      by setting use_image_texture to True.
+      In this case there is an unlabelled checkbox on the interactive view
+      (lower left corner) to toggle the image on or off.
 
 """
 
@@ -21,11 +27,13 @@ from clawpack.geoclaw import topotools
 # Some parameters to modify as described in pyvista.md
 
 warpfactor = 3  # amplification of elevations
-make_snapshots = False
-use_image_texture = True
+make_snapshots = False  # True to save a set of png files for different slr
+make_html = False  # True to save an interactive html file
+use_image_texture = True  # True to drape an image over the topo
 
 # load the topography
 topo = topotools.Topography('../topo/topofiles/Copalis_13s.asc')
+
 # crop it to the fgmax/fgout regions used in CopalisBeach/example2:
 fg_extent = [-124.195, -124.155, 47.11, 47.145]
 topo = topo.crop(fg_extent)
@@ -43,13 +51,20 @@ B = flipud(topo.Z)
 Bmax = 50.
 B = minimum(B, Bmax)
 
+# warp the topo surface:
 topoxyz.point_data['B'] = B.flatten(order='C')
 topowarp = topoxyz.warp_by_scalar('B', factor=warpfactor)
 
 
-global etamesh
+global etamesh, texturesurf
 
 p = pv.Plotter(off_screen=make_snapshots)
+
+# color mesh based on elevation:
+scalar_bar_args={'title_font_size':50, 'label_font_size':30,
+                 'title':'Topography elevation (meters)'}
+toposurf = p.add_mesh(topowarp,cmap='gist_earth',clim=(-5,20),
+                      scalar_bar_args=scalar_bar_args)
 
 if use_image_texture:
     # Add GE image as texture:
@@ -67,13 +82,13 @@ if use_image_texture:
     point_u = (x2, y1, 0.)  # bottom right corner
     point_v = (x1, y2, 0.)  # top right corner
 
-    mapped_surf = topowarp.texture_map_to_plane(origin, point_u, point_v)
-    p.add_mesh(mapped_surf,texture=texture)
-else:
-    # color mesh based on elevation:
-    p.add_mesh(topowarp,cmap='gist_earth',clim=(-5,20))
+    mapped_surf = topowarp.texture_map_to_plane(origin=origin,
+                                                point_u=point_u,
+                                                point_v=point_v)
+    texturesurf = p.add_mesh(mapped_surf,texture=texture, opacity=1)
 
 
+# initial eta plot:
 sea_level = 0.
 eta = where(B < sea_level, sea_level, nan)
 topoxyz.point_data['eta'] = eta.flatten(order='C')
@@ -109,15 +124,18 @@ def set_sea_level(sea_level):
             camera_position[i] = tuple(b)
         print('p.camera_position = ', camera_position)
 
-if not make_snapshots:
-    # interactive view
-    print('interactive... close window to quit')
-    p.add_title('MHW after sea level rise / subsidence')
-    p.add_slider_widget(set_sea_level, [-5,5], value=0,
-                        title='Change in Sea Level (m)',
-                        pointa=(0.1,0.1), pointb=(0.4,0.1),)
-    p.show()
-else:
+
+if make_html:
+    slr = 0.  # set the desired sea_level for the html file
+    set_sea_level(slr)
+    if use_image_texture:
+        fname = f'CopalisTopo_mhw{100*slr:03.0f}cm_with_image.html'
+    else:
+        fname = f'CopalisTopo_mhw{100*slr:03.0f}cm.html'
+    p.export_html(fname)
+    print('Created ', fname)
+
+elif make_snapshots:
     for slr in [0,1,2,3]:
         set_sea_level(slr)
         p.add_title(f'MHW after {slr:.2f} m subsidence (or sea level rise)')
@@ -125,3 +143,28 @@ else:
         p.screenshot(fname_png)
         print('Created ',fname_png)
     p.close()
+
+else:
+    # interactive view
+    print('interactive... close window to quit')
+    p.add_title('MHW after sea level rise / subsidence')
+
+    # sea_level slider bar:
+    p.add_slider_widget(set_sea_level, [-5,5], value=0,
+                        title='Change in Sea Level (m)',
+                        pointa=(0.1,0.2), pointb=(0.4,0.2),
+                        slider_width=0.02, tube_width=0.005)
+
+
+    if use_image_texture:
+
+        # add checkbox to interactive version to toggle image on or off:
+
+        def toggle_vis(flag) -> None:
+            texturesurf.SetVisibility(flag)
+
+        p.add_checkbox_button_widget(toggle_vis, value=True,
+                    position=(90,10), color_on='green')
+
+
+    p.show()  # show interactive view, close external window to exit

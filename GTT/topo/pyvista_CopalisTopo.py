@@ -11,6 +11,10 @@ Some tips to using this:
       allowing you to capture a good position and then paste it in to this file.
     - You can add a water surface at sea_level = 0 (or some other level)
       as indicated below, but this hides the topography underneath.
+
+The more complicated script pyvista_CopalisTopo_sealevel.py
+gives more control, shows how to drap an image over the topography,
+and provides a slider bar to adjust the sea level shown.
 """
 
 from pylab import *
